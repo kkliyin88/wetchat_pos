@@ -1,0 +1,41 @@
+/* pages/home/index.wxss */
+
+.data_wrap1 {
+  height: 300rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.title {
+  text-align: center;
+  font-size: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.content {
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+}
+
+.flex_wrap {
+  display: flex;
+  
+}
+.flex_item {
+  display: block;
+  height: 200rpx;
+  width: 50%;
+  border: 1px solid #FFF;
+  text-align: center;
+}
+.title2{
+  height: 80px;
+  line-height: 80px;
+}
+
+page {
+  background-color: rgb(236, 236, 236);
+}

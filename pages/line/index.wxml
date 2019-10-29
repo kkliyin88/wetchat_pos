@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  线条
+  <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>

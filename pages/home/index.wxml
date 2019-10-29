@@ -1,0 +1,24 @@
+<view class='data_wrap1'>
+  <view class='title'>实时销售数据</view>
+  <view class='content'>{{pageData.netSalesAmt}}</view>
+</view>
+<view class='flex_wrap' style="flex-direction:row;">
+  <view class='flex_item'>
+    <view class='title2'>订单数</view>
+    <view class='content2'>{{pageData.perMemberSales}}</view>
+  </view>
+  <view class='flex_item'>
+    <view class='title2'>销售量</view>
+    <view class='content2'>{{pageData.netSalesCnt}}</view>
+  </view>
+</view>
+<view class='flex_wrap' style="flex-direction:row;">
+  <view class='flex_item'>
+    <view class='title2'>连带率</view>
+    <view class='content2'>{{pageData.perMemberSales}}</view>
+  </view>
+  <view class='flex_item'>
+    <view class='title2'>客单价</view>
+    <view class='content2'>{{pageData.perMemberSales}}</view>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+<!--pages/main/index.wxml-->
+
+<view class='wrap'>
+  <view class='input_box input_box1'>
+    <image class='pre_img' src='/images/main/people.png'></image>
+    <input placeholder="请输入用户名" />
+  </view>
+  <view class='input_box'>
+    <image class='pre_img' src='/images/main/password.png'></image>
+    <input placeholder="请输入密码" />
+  </view>
+    <view class='btn' align='center'>
+       <image class='bnt_img' src='/images/main/btn.png'></image>
+    </view>
+</view>
