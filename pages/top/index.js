@@ -1,29 +1,38 @@
 // pages/top/index.js
 import { http } from '../../utils/http.js';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     areaList: [],
     pageData:[],
+    query: { 
+      statisticalMode:'',
+      regionCode:'',
+      dateType:'',
+    },
     saleTypeArray: [{
       "id": "1",
-      "text":'销售额'
+      "text":'销售额',
+      "value": "1",
     }, {
       "id": "2",
+      "value": "2",
       "text": '销售量'
     }],
     dateTypeArray: [{
       "id": "1",
-      "text": '本天'
+      "text": '当天',
+      "value": "1",
     }, {
       "id": "2",
+        "value": "2",
         "text": '本周'
     },
       {
         "id": "3",
+        "value": "3",
         "text": '本月'
       }
     ],
@@ -66,6 +75,12 @@ Page({
       url: '/pages/index/index'
     })
   },
+  search(){
+    this.getpageData();
+  },
+  change(key,value){
+    console.log(key,value)
+  },
   getAreaList() {
     let params = {
       url: '/behaviorapi/mini/fegin/listRegionAndCity',
@@ -82,13 +97,10 @@ Page({
       console.log('err'.err)
     })
   },
-  getSaleTop(){
+  getpageData(){
     let params = {
       url: '/behaviorapi/mini/pos/getGoodsSalesRankingList',
-      data:{
-        dateType:3,
-        statisticalMode:1
-      }
+      data:this.query
     }
     wx.showLoading({
       title: '加载中'
@@ -103,7 +115,6 @@ Page({
         })
         this.setData({pageData:res.data.data})
         console.log('pageData', this.data.pageData);
-
       }
     }).catch((err) => {
       wx.hideLoading()
@@ -115,7 +126,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAreaList();
-    this.getSaleTop();
+    this.getpageData();
   },
 
   /**

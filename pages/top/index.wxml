@@ -3,9 +3,10 @@
 </view>
 <view class='condition_wrap'>
   <view class='condition'>
-    <select prop-array='{{saleTypeArray}}' class='select_box' placeholder='销售类型'></select>
-    <select prop-array='{{dateTypeArray}}' class='select_box' placeholder='日期类型'></select>
-    <select prop-array='{{areaList}}'  class='select_box' placeholder='区域'></select>
+    <select prop-array='{{saleTypeArray}}' bind:change-select='change' key='statisticalMode' class='select_box' placeholder='销售类型'></select>
+    <select prop-array='{{areaList}}' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
+     <select prop-array='{{dateTypeArray}}' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
+     <text bindtap='search'>查询</text>
   </view>
 </view>
 <view class='table_box'>

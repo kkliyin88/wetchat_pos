@@ -37,7 +37,6 @@ Page({
     let params = {
       url: '/behaviorapi/mini/pos/getStoreSalesDayInfo',
       data: {}
-
     }
     wx.showLoading({
       title: '加载中'

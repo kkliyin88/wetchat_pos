@@ -15,6 +15,10 @@ Component({
       type: String,
       value: '请选择'
     },
+    key: {
+      type: String,
+      value: ''
+    }
   },
   /**
    * 组件的初始数据
@@ -55,7 +59,10 @@ Component({
     setText(e){
       let nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
       let nowIdx = e.target.dataset.index;//当前点击的索引
+      // this.triggerEvent('changeSelect', this.data.key)
       let nowText = nowData[nowIdx].text;//当前点击的内容
+      let value = nowData[nowIdx].value;//选择的值
+      this.triggerEvent('changeSelect',this.data.key,value)
       //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
       this.animation.rotate(0).step();
       this.setData({

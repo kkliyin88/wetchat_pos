@@ -14,10 +14,6 @@
     "selectedColor": "#31A083",
     "list": [
       {
-        "pagePath": "pages/login/index",
-        "text": "登录"
-      },
-      {
         "pagePath": "pages/home/index",
         "text": "首页"
       },
