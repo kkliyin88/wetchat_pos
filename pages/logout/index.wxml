@@ -1,0 +1,2 @@
+<!--pages/logout/index.wxml-->
+<web-view src="http://oauth-test.pureh2b.com:9888/sso/mobile/invalid?redirectUrl=http%3A%2F%2Foauth-test.pureh2b.com%2Fsso%2Foauth%2Fauthorize%3Fresponse_type%3Dtoken%26client_id%3Dmobilelogin%26redirect_uri%3Dhttp%3A%2F%2Flocalhost:9888%2Fsso%2Fpages%2Fcallback%2Fmp.html%3Fpath%3D%2Fpages%2Findex%2Findex"></web-view>

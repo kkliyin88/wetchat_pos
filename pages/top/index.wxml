@@ -1,0 +1,11 @@
+<view class='wrap'>
+  <top title='畅销商品排行' bind:goback='goback'></top>
+</view>
+<view class='condition'>
+  <select prop-array='{{saleTypeArray}}' width='180rpx' placeholder='请选择销售类型'></select>
+  <select prop-array='{{dateTypeArray}}' width='180rpx' placeholder='请选择日期类型'></select>
+  <select prop-array='{{areaList}}' width='180rpx' placeholder='请选择区域'></select>
+</view>
+<view class='table_box'>
+  <table columns='{{columns}}'></table>
+</view>

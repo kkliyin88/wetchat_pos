@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/logout/index",
     "pages/login/index",
     "pages/index/index",
+    "pages/top/index",
     "pages/line/index",
     "pages/pie/index",
     "pages/logs/logs"
@@ -31,6 +33,7 @@
   },
   "window": {
     "backgroundTextStyle": "light",
+	"navigationStyle":"custom",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"

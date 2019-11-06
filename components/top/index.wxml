@@ -1,0 +1,10 @@
+<!--components/top/index.wxml-->
+<view class='container'>
+  <view class='empty'></view>
+  <view class='title'>
+    <iview class='goback' bindtap='goback'>
+      <van-icon name="arrow-left" />
+    </iview>
+    <iview>{{title}}</iview>
+  </view>
+</view>

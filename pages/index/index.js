@@ -1,34 +1,64 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var format = require('../../utils/format');
+import { http } from '../../utils/http.js';
 Page({
   data: {
-   
+    pageData: {},
   },
-  getUserMsg:function(){
-  	  let token = null;
-  	  let token_type=null;
-  	  token = wx.getStorageSync('token')
-  	  token_type = wx.getStorageSync('token_type')
-  	  let temp = 'Bearer' +' '+token;
-  	  console.log('temp',temp)
-  	 wx.request({
-  	 	  url: 'http://oauth-test.pureh2b.com/sso/user/info', //仅为示例，并非真实的接口地址
-  	 	  header:{
-  	 		 Authorization:temp,
-  	 	  },
-  	 	  success (res) {
-  	 		console.log(res.data)
-  	 	  }
-  	 }) 
+
+  gototop() {
+    wx.navigateTo({
+      url: '/pages/top/index'
+    })
+  },
+  getArea() {
+    let params = {
+      url: '/api/mdm/region/pageRegionCity',
+    }
+    http(params).then((res) => {
+    }).catch((err) => {
+      console.log('err'.err)
+    })
+
+  },
+  getUserMsg() {
+    let params = {
+      url: '/sso/user/info',
+      server: 'http://oauth-test.pureh2b.com'
+    }
+    http(params).then((res) => {
+    }).catch((err) => {
+      console.log('err'.err)
+    })
+  },
+  getPageData() {
+    let params = {
+      url: '/behaviorapi/mini/pos/getStoreSalesDayInfo',
+      data: {}
+
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    http(params).then((res) => {
+      wx.hideLoading()
+      if (res.data.code == 200) {
+        this.setData({ pageData: res.data.data })
+        return
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+    })
   },
   onLoad: function (options) {
-	  wx.setStorageSync('token',options.access_token)
-	  wx.setStorageSync('token_type',options.token_type)
-	  console.log('options',options);
-	  this.getUserMsg();
-    
+    wx.setStorageSync('token', options.access_token)
+    console.log('token=', options.access_token)
+    wx.setStorageSync('token_type', options.token_type)
+    this.getUserMsg();
+    this.getArea();
+    this.getPageData();
   }
 
 })
