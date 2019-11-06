@@ -1,28 +1,44 @@
-/* .com-selectBox{
-    width: 200px;
-} */
+
 .com-sContent{
-    border: 1rpx solid #e2e2e2;
     background: white;
     font-size: 24rpx;
     position: relative;
     height: 40rpx;
     line-height: 40rpx;
+    background: rgb(153, 165,243);
+    border-radius:8rpx; 
 }
 .com-sImg{
     position: absolute;
     right: 10rpx;
-    top: 11rpx;
+    top: 16rpx;
     width: 16rpx;
     height: 9rpx;
-    transition: all .3s ease;
+    display: inline-block;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKBAMAAABPkMOvAAAAMFBMVEX///9HcEz///////////////////////////////////////////////////////8jI1VHAAAAD3RSTlNSAPhKS0wx91ARSKASSabpYUS0AAAARklEQVQI12OYwQAGPQz7/4PBP4ZFEIYug6g+iP4UyCAYBGKoCjIIigCFPjkCGYJO//+rCIIYwvqfDMEMQfNiQQhDLBFIAAC4lyORqAMIEgAAAABJRU5ErkJggg==');
+  background-size: cover;
+  transition: all .3s ease;
+
+}
+.placeholder-sTxt{
+   overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding:0 30rpx 0 10rpx;
+    font-size: 24rpx;
+    color: lightgray;
+    display: inline-block;
+    position: relative
 }
 .com-sTxt{
     overflow: hidden;
+    color: #FFF;
     text-overflow: ellipsis;
+    padding:0 30rpx 0 10rpx;
     white-space: nowrap;
-    padding:0 20rpx 0 6rpx;
     font-size: 24rpx;
+    display: inline-block;
+    position: relative
 }
 .com-sList{
     background: white;
@@ -33,16 +49,17 @@
     z-index: 3;
     max-height: 120rpx;
     overflow: auto;
+    color:#FFF;
+    background: rgb(153, 165,243);
 }
 .com-sItem{
-    height: 40rpx;
-    line-height: 40rpx;
-    padding: 0 6rpx;
-    text-align: left;
+    height: 50rpx;
+    line-height: 50rpx;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 24rpx;
+    text-align: center;
 }
 .com-sItem:first-child{
     border-top: none;

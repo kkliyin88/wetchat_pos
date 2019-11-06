@@ -5,11 +5,28 @@
 page{
    background:linear-gradient(181deg,rgba(145,158,247,1) 0%,rgba(93,105,231,1) 100%);
 }
-.condition{
+.condition_wrap{
   height: 110rpx;
   width: 100%;
-  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.condition{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+.select_box{
+  margin: 0 10rpx;
+  background: rgb(153, 165,243);
+  border-radius: 10rpx;
+}
+.table_box{
+  margin: 0 20rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+  
 }

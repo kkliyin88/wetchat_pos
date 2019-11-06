@@ -28,6 +28,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-   
+   ColunmstoArr(){
+     let colunmsArr=[]
+     this.data.columns.map((item)=>{
+       colunmsArr.push(item.key)
+     })
+     this.setData({ columnsArr:colunmsArr});
+     console.log('columnsArr', this.data.columnsArr)
+   },
+  
+  },
+  attached(){
+    this.ColunmstoArr();
+    console.log('listData',this.data.listData)
   }
 })

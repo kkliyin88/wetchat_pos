@@ -21,7 +21,7 @@ Component({
    */
   data: {
     selectShow: false,//初始option不显示
-    nowText: "请选择",//初始内容
+    nowText: "",//初始内容
     animationData: {}//右边箭头的动画
   },
   /**

@@ -1,14 +1,14 @@
 <view class="table">
-  <view class='title'>{{title}}</view>
+  <view class='title' wx:if='{{title}}'>{{title}}</view>
   <view class="tr header">
-    <view class="th" wx:for="{{columns}}" wx:key="{{key}}" columns>{{item.title}}</view>
+    <view class="th" wx:for="{{columns}}" wx:key="{{key}}" style='{{item.style}};width:{{item.width}}'>{{item.title}}</view>
   </view>
-  <block  wx:for="{{listData}}" wx:key="{{code}}">
+  <block  wx:for="{{listData}}" wx:key="{{code}}" wx:for-item="item">
     <view class="tr">
-      <view class="td firstcolumn">{{item.code}}</view>
-      <view class="td contentColumn">{{item.text}}</view>
-      <view class="td contentColumn">{{item.type}}</view>
-	  <view class="td lastColumn">{{item.name}}</view>
+      <view wx:for="{{columns}}" wx:for-item="colunmItem" class="td" style='width:{{colunmItem.width}}'>
+        <image src='{{item[colunmItem.key]}}' wx:if='{{colunmItem.key=="picUrl"}}'></image>
+        <text wx:else > {{item[colunmItem.key]}}</text>
+      </view>
     </view>
   </block>
 </view>

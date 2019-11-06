@@ -32,21 +32,33 @@ Page({
     [
       {
         title:'排行',
-        key:''
+        key:'index',
+        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+        width:'110rpx'
       },
         {
+          title: '',
+          key: 'picUrl',
+          style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
+          width: '90rpx'
+        },
+        {
           title: '商品名称',
-          key: ''
+          key: 'goodsName',
+          style:'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
         },
         {
           title: '销售量',
-          key: ''
+          key: 'netSalesCnt',
+          style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+          width: '120rpx'
         },
         {
           title: '销售额',
-          key: ''
+          key: 'netSalesAmt',
+          style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+          width: '140rpx'
         }
-
     ]
   },
   goback(){
@@ -78,11 +90,23 @@ Page({
         statisticalMode:1
       }
     }
+    wx.showLoading({
+      title: '加载中'
+    })
     http(params).then((res) => {
+      console.log('res', res)
+      wx.hideLoading()
       if (res.data.code == 200) {
-        console.log('res',res)
+        res.data.data.map((item,index)=>{
+          item.picUrl ='http://c4.haibao.cn/img/600_0_100_0/1509425278.7843/d37c2358fb2fa49af2e72602ef1b3935.jpg';
+          item.index=index+1; 
+        })
+        this.setData({pageData:res.data.data})
+        console.log('pageData', this.data.pageData);
+
       }
     }).catch((err) => {
+      wx.hideLoading()
       console.log('err'.err)
     })
   },
