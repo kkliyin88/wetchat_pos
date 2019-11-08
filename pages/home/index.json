@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
-    "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
-    "ec-canvas": "/common/ec-canvas/ec-canvas"
+    "van-rate": "/miniprogram_npm/vant-weapp/rate/index"
   }
 }

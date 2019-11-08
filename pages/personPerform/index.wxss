@@ -1,0 +1,107 @@
+/* pages/shopPerformance/index.wxss */
+
+.container1 {
+  height: 361rpx;
+  width: 100%;
+  background: linear-gradient(181deg, rgba(145, 158, 247, 1) 0%, rgba(93, 105, 231, 1) 100%);
+  border-radius: 0px 0px 20px 20px;
+}
+
+.condition_wrap {
+  height: 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 22rpx;
+}
+
+.condition {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.perform_title {
+  color: #fff;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  display: inline-block;
+  position: absolute;
+  left: 22rpx;
+}
+
+.select_box {
+  margin: 0 10rpx;
+  background: rgb(153, 165, 243);
+  border-radius: 10rpx;
+}
+
+.content_box {
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.content {
+  height: 120rpx;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.content_box .content .text {
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 300;
+  font-family: PingFangSC-Light, PingFang SC;
+  line-height: 42rpx;
+}
+
+.container2 {
+  height: 468rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 8px 0px rgba(209, 212, 243, 1);
+  border-radius: 10rpx;
+  margin: 10rpx 5rpx;
+}
+
+.container2 .title {
+  height: 42px;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0, 5, 55, 1);
+  line-height: 42rpx;
+  margin-left: 18rpx;
+}
+
+.person_box {
+  height: 100rpx;
+  margin: 30rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.person_box .name {
+  height: 33rpx;
+  font-size: 24rpx;
+  width: 100rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(117, 114, 114, 1);
+  line-height: 33rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+}
+.progress{
+  width:600rpx;
+  height: 33rpx;
+  line-height: 33rpx;
+  display: inline-block;
+}

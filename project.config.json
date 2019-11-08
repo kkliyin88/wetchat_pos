@@ -23,7 +23,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.0",
-	"appid": "wx2c69e07969af2b7e",
+	"appid": "wx4d0b5670e30fbdb7",
 	"projectname": "wetchat_pos",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -56,9 +56,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "pages/login/index",
 					"pathName": "pages/login/index",
+					"query": "",
 					"scene": null
 				}
 			]

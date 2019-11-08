@@ -1,0 +1,33 @@
+<view class='container1'>
+  <top title='导购员业绩' bind:goback='goback'></top>
+  <view class='condition_wrap'>
+    <view class='condition'>
+      <view class='perform_title'>导购员销售</view>
+      <select prop-array='{{areaList}}'  bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
+      <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
+    </view>
+  </view>
+  <view class='content_box'>
+    <view   class='content'>
+       <view class='text'>订单数</view>
+        <view class='text'>{{sumData.ticketsCnt}}</view>
+    </view>
+     <view   class='content'>
+       <view class='text'>销售额</view>
+        <view class='text'>{{sumData.netSalesCnt}}</view>
+    </view>
+     <view   class='content'>
+       <view class='text'>销售量</view>
+        <view class='text'>{{sumData.netSalesAmt}}</view>
+    </view>
+  </view>
+</view>
+<view class='container2'>
+ <view class='title'>业绩完成情况</view>
+  <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box' >
+   <view class='name'>{{item.guideName}}</view>
+   <view class='process'>
+    <progress class="progress" percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
+   </view>
+  </view>
+</view>

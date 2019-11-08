@@ -20,8 +20,23 @@
 }
   .condition{
     height: 90rpx;
+    line-height: 90rpx;
+    color: #FFF;
     width: 100%;
     border: 1px solid gray;
+  }
+  .condition .text{
+    display: inline-block;
+    font-size:24rpx;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color: #FFF;
+    line-height:33rpx;
+    height:34rpx;
+    padding: 0 15rpx;
+    margin: 0 22rpx;
+    background:rgba(255,255,255,0.25);
+    border-radius:17rpx;
   }
   .title2{
     height: 60rpx;
@@ -30,6 +45,33 @@
     color: #FFF;
     text-align: center;
   }
+.content_box {
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 70rpx;
+}
+
+.content {
+  height: 120rpx;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.content_box .content .text {
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 300;
+  font-family: PingFangSC-Light, PingFang SC;
+  line-height: 42rpx;
+}
+
+
 .container_content {
   text-align: center;
   height: 80rpx;
@@ -101,7 +143,41 @@ page {
   line-height: 45rpx;
   display: inline-block;
   margin: 0 10rpx;
-  /* position: absolute; */
+  position: absolute;
+}
+.add_wrap{
+  height: 150rpx;
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  display: flex;
+  justify-content: center
+}
+.add_box{
+  height: 240rpx;
+  width: 240rpx;
+  border: 1px solid #D1D4F3;
+  border-radius: 50%;
+  position: relative;
+  vertical-align: center;
+  text-align: center;
+}
+.add_box image{
+  height: 118rpx;
+  width: 118rpx;
+  position: absolute;
+}
+.add_box image.sale{
+ left: -50rpx;
+}
+.add_box image.profit{
+  right: -50rpx;
+}
+.add_box image.add{
+ width: 58rpx;
+ height: 58rpx;
+ position: relative;
+ margin-top: 70rpx;
 }
 .bottom_bg{
   height: 95rpx;

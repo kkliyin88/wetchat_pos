@@ -5,31 +5,14 @@
     "pages/login/index",
     "pages/index/index",
     "pages/top/index",
-    "pages/line/index",
-    "pages/pie/index",
+    "pages/shopPerformance/index",
+    "pages/personPerform/index",
     "pages/logs/logs"
   ],
-  "tabBar": {
-    "color": "#1E1E1E",
-    "selectedColor": "#31A083",
-    "list": [
-      {
-        "pagePath": "pages/home/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/line/index",
-        "text": "折线图"
-      },
-      {
-        "pagePath": "pages/pie/index",
-        "text": "饼图"
-      }
-    ]
-  },
+ 
   "window": {
     "backgroundTextStyle": "light",
-	"navigationStyle":"custom",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"

@@ -2,11 +2,23 @@
 <!-- <view class='wrap'> -->
   <view class='container1'>
     <top title='导购工具'></top>
-    <view class='condition'></view>
+    <view class='condition'>
+      <view class='text'>{{userInfo.name}}，欢迎您</view>
+    </view>
     <view class='title2'>实时销售额</view>
     <view class='container_content'>
       <text>{{pageData.netSalesAmt}}</text>
     </view>
+    <view class='content_box'>
+    <view   class='content'>
+       <view class='text'>今日指标</view>
+        <view class='text'>--</view>
+    </view>
+     <view   class='content'>
+       <view class='text'>完成率</view>
+        <view class='text'>--</view>
+    </view>
+  </view>
   </view>
 
   <view class='flex_box' style="margin-top: -20rpx;">
@@ -34,4 +46,18 @@
     <image  src='/images/index/top.png'></image>
     <text >畅销商品排行</text>
   </view>
-  <view class='bottom_bg'> </view>
+  
+  <view wx:if='{{addFlag}}' class='add_wrap' >
+      <view class="add_box" align="center" style='border:none'>
+        <image  bindtap="changIcon" class='add' src="/images/index/add.png"></image>
+      </view>
+  </view>
+  <view wx:else class='add_wrap' >
+      <view class="add_box" align="center"  >
+        <image  bindtap="gotoSale" class='sale' src="/images/index/sale.png"></image>
+        <image bindtap="gotoProfit" class='profit' src="/images/index/profit.png"></image>
+        <image bindtap="changIcon" class='add'  src="/images/index/clear.png"></image>
+      </view>
+  </view>
+  <view class='bottom_bg'>
+   </view>

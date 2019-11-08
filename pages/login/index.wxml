@@ -1,3 +1,4 @@
 <!--pages/main/index.wxml-->
-<text>正在登陆。。。。</text>
-<web-view src="http://oauth-test.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index#sdfsdfsfsdfdsf"></web-view>
+<web-view src="http://oauth-test.pureh2b.com/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=http://oauth-test.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index"></web-view>
+
+<!-- <web-view src="http://oauth-test.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index#sdfsdfsfsdfdsf"></web-view> -->

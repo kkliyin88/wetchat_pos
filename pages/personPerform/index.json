@@ -1,0 +1,7 @@
+{
+  "usingComponents": 
+  {
+    "top": "/components/top/index",
+    "select": "/components/select/index"
+  }
+}
