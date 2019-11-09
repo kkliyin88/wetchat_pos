@@ -8,11 +8,51 @@ import {
 Page({
   data: {
     pageData: {},
-    addFlag: false,
+    addFlag: true,
     areaList: [],
-    userInfo:{}
+    userInfo: {},
+    dateTypeList: [{
+      "id": "1",
+      "text": '当天',
+      "value": "1",    
+    }, {
+      "id": "2",
+      "value": "2",
+      "text": '本周'
+    },
+    {
+      "id": "3",
+      "value": "3",
+      "text": '本月'
+    }
+    ],
   },
-  
+  logout() {
+    wx.navigateTo({
+      url: '/pages/logout/index'
+    })
+  },
+    getAreaList() {
+    let params = {
+      url: 'behaviorapi/mini/fegin/listRegionAndCity',
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        let temparr = res.data.data.map((item) => {
+          item.text = item.regionName;
+          item.value = item.regionCode;
+        })
+        temp.unshift({ text: '全国', value: '', regionName:'全国'})
+        console.log('temp', temp)
+        this.setData({
+          areaList: temparr
+        })
+        return
+      }
+    }).catch((err) => {
+      console.log('err'.err)
+    })
+  },
   gototop() {
     wx.navigateTo({
       url: '/pages/top/index'
@@ -22,17 +62,31 @@ Page({
     this.setData({
       addFlag: !this.data.addFlag
     });
-    console.log('addFlag', this.data.addFlag)
   },
-  gotoSale() {
-    wx.showToast({
-      title: '页面即将跳转',
-      duration: 1000
-    })
+  gotoShopPerformance() {
     wx.navigateTo({
       url: '/pages/shopPerformance/index'
     })
-
+  },
+  gotoPersonPerform() {
+    wx.navigateTo({
+      url: '/pages/personPerform/index'
+    })
+  },
+  changePage_perform(){ 
+         //如果是导购员直接跳转到 导购员业绩
+     console.log('userInfo',app.globalData.userInfo)
+    let roles = app.globalData.userInfo.roles
+    if (roles.length<1){
+      wx.showToast({
+        title: '您没有权限查看该页面,如有需要请联系管理员!',
+        duration: 2000
+      })
+    } else if (roles.length == 1 && roles[0].name=='店员'){
+     this.gotoPersonPerform() 
+    }else {
+      this.gotoShopPerformance();
+    }
   },
   gotoProfit() {
     wx.showToast({
@@ -46,25 +100,28 @@ Page({
     }
     http(params).then((res) => {
       if (res.data.code == 200) {
-        let temparr = res.data.data.map((item) => {
-          item.text = item.regionName
+         res.data.data.map((item) => {
+          item.text = item.regionName;
+          item.value = item.regionCode
         })
+        res.data.data.unshift({ text: '全国', value: '', regionName:'全国'});
         wx.setStorageSync('areaList', res.data.data) //将地区设置到缓存中
       }
     }).catch((err) => {
       console.log('err'.err)
     })
   },
-  getUserMsg() {  //获取用户信息
+  getUserMsg() { //获取用户信息
     let params = {
       url: '/sso/user/info',
       server: 'http://oauth-test.pureh2b.com'
     }
     http(params).then((res) => {
-      console.log('user_info',res)
-      this.setData({ userInfo: res.data})
-      wx.setStorageSync('userInfo', res.data)
-
+      this.setData({
+        userInfo: res.data
+      })
+      app.globalData.userInfo = res.data;
+      // wx.setStorageSync('userInfo', res.data)
     }).catch((err) => {
       console.log('err'.err)
     })
@@ -90,12 +147,12 @@ Page({
     })
   },
   onLoad: function(options) {
-    console.log('options', options)
-    wx.setStorageSync('token', options.access_token)
-    wx.setStorageSync('token_type', options.token_type);
+    if (options.access_token){
+      wx.setStorageSync('token', options.access_token);
+      wx.setStorageSync('token_type', options.token_type);
+    }
     this.getUserMsg();
     this.getPageData();
     this.getAreaList();
   }
-
 })

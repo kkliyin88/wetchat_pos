@@ -8,6 +8,7 @@ Page({
    */
   data: {
     pageData: [],
+    areaList:[],
     dateTypeList: [{
       "id": "1",
       "text": '当天',
@@ -31,8 +32,6 @@ Page({
     },
   },
   gotoPersonPerform(e){
-    console.log('触发了点击事件')
-    console.log('e',e);
     wx.navigateTo({
       url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName
     })
@@ -46,21 +45,39 @@ Page({
       title: '加载中'
     })
     http(params).then((res) => {
-      console.log('res', res)
       wx.hideLoading()
       if (res.data.code == 200) {
        
         this.setData({
           pageData: res.data.data.list
         })
-        console.log('pageData', this.data.pageData);
       }
     }).catch((err) => {
       wx.hideLoading()
-      console.log('err'.err)
     })
   },
+  getAreaList() {
+    let that = this
+    wx.getStorage({
+      key: 'areaList',
+      success(res) {
+        that.setData({
+          areaList: res.data
+         
+        })
+        console.log('areaList', that.data.areaList)
+      }
+    })
+  },
+  change(targer) {
+    let temp = 'query.' + targer.detail.key
+    this.setData({ [temp]: targer.detail.value });
+    this.getPageData();
+  },
   goback() {
+    wx.showLoading({
+      title: '返回首页'
+    });
     wx.navigateTo({
       url: '/pages/index/index'
     })
@@ -69,6 +86,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getAreaList();
     this.getPageData();
   },
 

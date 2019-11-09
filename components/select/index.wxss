@@ -46,11 +46,11 @@
     position: absolute;
     border-top: none;
     box-sizing: border-box;
-    z-index: 3;
-    max-height: 120rpx;
+    max-height: 180rpx;
     overflow: auto;
     color:#FFF;
     background: rgb(153, 165,243);
+     z-index: 1000;
 }
 .com-sItem{
     height: 50rpx;
@@ -60,6 +60,7 @@
     white-space: nowrap;
     font-size: 24rpx;
     text-align: center;
+    z-index: 1000;
 }
 .com-sItem:first-child{
     border-top: none;

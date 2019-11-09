@@ -34,6 +34,7 @@ Page({
       storeCode: ''
     },
   },
+
   change(targer) {
     let temp = 'query.' + targer.detail.key
     this.setData({
@@ -52,7 +53,23 @@ Page({
       }
     })
   },
-  
+  getPerformTrend(){
+    let params = {
+      url: 'behaviorapi/mini/pos/getGuideSalesPerformanceMonthList',
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    http(params).then((res) => {
+      console.log('res_trend', res)
+      wx.hideLoading()
+      if (res.data.code == 200) {
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+      console.log('err'.err)
+    })
+  },
   getPageData() {
     let params = {
       url: 'behaviorapi/mini/pos/getGuideSalesPerformanceList',
@@ -67,11 +84,9 @@ Page({
       if (res.data.code == 200) {
 
         this.setData({
-          sumData: res.data.data.list.slice(-1)[0]
-        });
-        this.setData({
+          sumData: res.data.data.list.slice(-1)[0],
           personData: res.data.data.list.slice(0, res.data.data.list.length - 1)
-        })
+        });
       }
     }).catch((err) => {
       wx.hideLoading()
@@ -79,6 +94,9 @@ Page({
     })
   },
   goback() {
+    wx.showLoading({
+      title: '返回首页'
+    });
     wx.navigateTo({
       url: '/pages/index/index'
     })
@@ -87,13 +105,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      storeCode: options.storeCode,
-      storeName: options.storeName
-    })
-    this.setData({
-      'qurey.storeCode': options.storeCode
-    })
+    if (options.storeCode && options.storeName) {
+      this.setData({
+        storeCode: options.storeCode,
+        storeName: options.storeName
+      })
+      this.setData({
+        'qurey.storeCode': options.storeCode
+      });
+    }
+    this.getAreaList();
+    this.getPerformTrend();
     this.getPageData();
   },
 

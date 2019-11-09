@@ -1,4 +1,5 @@
 // pages/top/index.js
+const app = getApp()
 import {
   http
 } from '../../utils/http.js';
@@ -23,22 +24,21 @@ Page({
       "value": "2",
       "text": '销售量'
     }],
-    dateTypeArray: [{
-        "id": "1",
-        "text": '当天',
-        "value": "1",
-      }, {
-        "id": "2",
-        "value": "2",
-        "text": '本周'
-      },
-      {
-        "id": "3",
-        "value": "3",
-        "text": '本月'
-      }
+    dateTypeList: [{
+      "id": "1",
+      "text": '当天',
+      "value": "1",
+    }, {
+      "id": "2",
+      "value": "2",
+      "text": '本周'
+    },
+    {
+      "id": "3",
+      "value": "3",
+      "text": '本月'
+    }
     ],
-
     columns: [{
         title: '排行',
         key: 'index',
@@ -71,6 +71,9 @@ Page({
     ]
   },
   goback() {
+    wx.showLoading({
+      title: '返回首页'
+    });
     wx.navigateTo({
       url: '/pages/index/index'
     })
@@ -81,21 +84,14 @@ Page({
     this.getpageData();
   },
   getAreaList() {
-    let params = {
-      url: 'behaviorapi/mini/fegin/listRegionAndCity',
-    }
-    http(params).then((res) => {
-      if (res.data.code == 200) {
-        let temparr = res.data.data.map((item) => {
-          item.text = item.regionName
+    let that = this
+    wx.getStorage({
+      key: 'areaList',
+      success(res) {
+        that.setData({
+          areaList: res.data
         })
-        this.setData({
-          areaList: res.data.data
-        })
-        return
       }
-    }).catch((err) => {
-      console.log('err'.err)
     })
   },
   getpageData() {
@@ -107,7 +103,6 @@ Page({
       title: '加载中'
     })
     http(params).then((res) => {
-      console.log('res', res)
       wx.hideLoading()
       if (res.data.code == 200) {
         res.data.data.list.map((item, index) => {
@@ -117,7 +112,6 @@ Page({
         this.setData({
           pageData: res.data.data.list
         })
-        console.log('pageData', this.data.pageData);
       }
     }).catch((err) => {
       wx.hideLoading()
@@ -131,7 +125,6 @@ Page({
     this.getAreaList();
     this.getpageData();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

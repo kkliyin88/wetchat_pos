@@ -1,5 +1,7 @@
 /* pages/home/index.wxss */
-
+page{
+  overflow: hidden;
+}
 .empty{
   height: 55rpx;
   width: 100%;
@@ -19,11 +21,15 @@
   left:20rpx
 }
   .condition{
-    height: 90rpx;
-    line-height: 90rpx;
+    height: 33rpx;
+    line-height: 33rpx;
+    margin: 30rpx 0;
     color: #FFF;
     width: 100%;
-    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-between;
   }
   .condition .text{
     display: inline-block;
@@ -37,6 +43,11 @@
     margin: 0 22rpx;
     background:rgba(255,255,255,0.25);
     border-radius:17rpx;
+  }
+  .condition .chang_acount{
+     background: #7783EF;
+     line-height:33rpx;
+     height:34rpx;
   }
   .title2{
     height: 60rpx;
@@ -130,8 +141,9 @@ page {
   line-height: 45rpx;
   padding-left: 25rpx;
   color:#1E1E1E;
-  margin-top: 25rpx;
+  margin-top: 40rpx;
   position: relative;
+  z-index: 1000;
 }
 .top image{
   height: 45rpx;
@@ -162,15 +174,18 @@ page {
   vertical-align: center;
   text-align: center;
 }
+
 .add_box image{
   height: 118rpx;
   width: 118rpx;
   position: absolute;
+  z-index: 200;
+  
 }
-.add_box image.sale{
+.add_box .sale{
  left: -50rpx;
 }
-.add_box image.profit{
+.add_box .profit{
   right: -50rpx;
 }
 .add_box image.add{

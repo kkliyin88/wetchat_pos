@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    url1: 'http://oauth-test.pureh2b.com/sso/mobile/invalid?redirectUrl=', url2:'http://oauth-test.pureh2b.com/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=http://oauth-test.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let token = wx.getStorageSync('token');
+    let url2 = encodeURIComponent(this.data.url2)
+    let url = this.data.url1 + url2 + '&access_token=' + token;
+     console.log('url',url)
+   this.setData({
+     url: url
+   })
   },
 
   /**

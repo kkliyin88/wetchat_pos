@@ -26,8 +26,11 @@
  <view class='title'>业绩完成情况</view>
   <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box' >
    <view class='name'>{{item.guideName}}</view>
+    <view class='name' style='margin-left:20rpx'>销售额:</view>
+    <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
+    <view class='name' style='margin-left:8rpx'>元</view>
    <view class='process'>
-    <progress class="progress" percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
+    <progress class="progress" percent="50"  border-radius='5' stroke-width='20rpx' activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
    </view>
   </view>
 </view>

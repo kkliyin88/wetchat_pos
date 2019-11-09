@@ -34,14 +34,22 @@
   background: rgb(153, 165,243);
   border-radius: 10rpx;
 }
-
+.sale_box text{
+height:33rpx;
+line-height:33rpx;
+font-size:24rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(115,127,238,1);
+margin: 12rpx 0;
+}
 .li_box{
  height:178rpx;
 background:rgba(255,255,255,1);
 box-shadow:0px 2px 8px 0px rgba(209,212,243,1);
 border-radius:24rpx;
-margin: 0 22rpx;
-margin-top: 10rpx;
+margin: 10rpx 22rpx;
+padding: 15rpx;
 position: relative;
 }
 .container2{
@@ -55,11 +63,9 @@ font-family:PingFangSC-Regular,PingFang SC;
 font-weight:400;
 color:rgba(0,5,55,1);
 line-height:42rpx;
-margin: 12rpx;
+
 }
-.sale_box{
-  margin: 12rpx;
-}
+
 .li_box image{
   height: 30rpx;
   width: 30rpx;
@@ -67,14 +73,8 @@ margin: 12rpx;
   right: 22rpx;
   top:60rpx;
 }
-.sale_box text{
-height:33rpx;
-line-height:33rpx;
-font-size:24rpx;
-font-family:PingFangSC-Regular,PingFang SC;
-font-weight:400;
-color:rgba(115,127,238,1);
-}
-.progress{
-  margin: 0 10rpx;
+
+.li_box .progress{
+  margin-top: 12rpx;
+
 }
