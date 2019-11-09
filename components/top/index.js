@@ -12,6 +12,8 @@ Component({
       type: String,
       value: ''
     },
+    
+
   },
 
   /**

@@ -8,9 +8,11 @@ import {
 Page({
   data: {
     pageData: {},
-    addFlag: true,
+    addFlag: false,
     areaList: [],
     userInfo: {},
+    storeName:'',
+    storeCode:'',
     dateTypeList: [{
       "id": "1",
       "text": '当天',
@@ -63,19 +65,36 @@ Page({
       addFlag: !this.data.addFlag
     });
   },
+  
   gotoShopPerformance() {
+    // this.getShopList()
+    console.log('storeName2222',this.data.storeName);
     wx.navigateTo({
       url: '/pages/shopPerformance/index'
     })
   },
+  getShopList() {
+    let params = {
+      url: 'behaviorapi/mini/fegin/listStore',
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        this.setData({
+          storeName: res.data.data[0].storeName,
+          storeCode: res.data.data[0].storeCode
+        });
+      }
+    }).catch((err) => {
+      console.log('err'.err)
+    })
+  },
   gotoPersonPerform() {
     wx.navigateTo({
-      url: '/pages/personPerform/index'
+      url: '/pages/personPerform/index?storeName=' + this.data.storeName +'&storeCode=' + this.data.storeCode
     })
   },
   changePage_perform(){ 
          //如果是导购员直接跳转到 导购员业绩
-     console.log('userInfo',app.globalData.userInfo)
     let roles = app.globalData.userInfo.roles
     if (roles.length<1){
       wx.showToast({
@@ -154,5 +173,6 @@ Page({
     this.getUserMsg();
     this.getPageData();
     this.getAreaList();
+    this.getShopList();
   }
 })

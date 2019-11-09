@@ -1,6 +1,87 @@
-import {
-  http
-} from '../../utils/http.js';
+import { http } from '../../utils/http.js';
+import * as echarts from '../../common/ec-canvas/echarts';
+function initChart(canvas, width, height) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  });
+  canvas.setChart(chart);
+  var option = {
+    title: {
+      text: '业务趋势-收入',
+      left: 20,
+      textStyle: {
+        color: '#666',
+        fontSize: 15,
+        height: 30,
+        lineHeight: 30
+      }
+    },
+    grid: {
+      containLabel: false,
+      left: 30,
+      top: 40,
+      right: 20,
+      bottom: 40
+    },
+    tooltip: {
+      show: false,
+      trigger: 'axis'
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false, //从0开始
+      data: ['17年', '18年', '19年'],
+      show: true,
+      nameTextStyle: {
+        color: 'green',
+        fontSize: 15,
+      },
+      axisLine: {
+        show: false,//是否显示x轴线
+      },
+      axisTic: {
+        show: false
+      },
+      splitLine: {
+        show: false
+      }
+    },
+    yAxis: {
+      x: 'center',
+      type: 'value',
+      show: false,
+    },
+    series: [{
+      name: 'A',
+      type: 'line',
+      symbol: 'circle',//拐点样式
+      symbolColor: 'green',
+      symbolSize: 8,//拐点大小
+      lineStyle: {
+        color: '#27C69B', //改变折线颜色
+        shadowColor: '#27C69B',//阴影
+        shadowBlur: 10, //模糊度
+        width: 3,//线条宽度
+      },
+      itemStyle: {
+        normal: { //拐点显示数值
+          color: '#27C69B', //拐点颜色
+          label: {
+            show: true,
+            color: 'gray',//拐点文字样式
+            fontSize: 15,
+          }
+        }
+      },
+      smooth: true,
+      data: [700, 800, 988]
+    }]
+  };
+  chart.setOption(option);
+  return chart;
+}
+
 Page({
 
   /**
@@ -105,11 +186,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log('options', options)
     if (options.storeCode && options.storeName) {
       this.setData({
         storeCode: options.storeCode,
         storeName: options.storeName
       })
+      console.log('storeName222', this.data.storeName)
       this.setData({
         'qurey.storeCode': options.storeCode
       });

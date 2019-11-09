@@ -2,7 +2,7 @@
   <top title='导购员业绩' bind:goback='goback'></top>
   <view class='condition_wrap'>
     <view class='condition'>
-      <view class='perform_title'>导购员销售</view>
+      <view class='perform_title'>{{storeName}}</view>
       <select prop-array='{{areaList}}'  bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
       <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
     </view>
@@ -34,3 +34,6 @@
    </view>
   </view>
 </view>
+<view class='container3'>
+		<table listData='{{listData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+	</view>

@@ -79,8 +79,6 @@
   font-weight: 400;
   color: rgba(0, 5, 55, 1);
   line-height: 42rpx;
-
-  border: 1px solid green;
 }
 
 .person_box {
@@ -105,4 +103,10 @@
   width: 100%;
   line-height: 33rpx;
   display: inline-block;
+}
+.container3{
+  margin-top: 200rpx;
+  background: #FFF;
+  border-radius: 20rpx;
+  margin: 0 25rpx;
 }

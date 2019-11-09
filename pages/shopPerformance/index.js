@@ -26,7 +26,7 @@ Page({
     ],
     query: {
       regionCode: '',
-      dateType: '3',
+      dateType: 3,
       pageNum:1,
       pageSize: 10,
     },

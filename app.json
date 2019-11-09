@@ -9,7 +9,6 @@
     "pages/personPerform/index",
     "pages/logs/logs"
   ],
- 
   "window": {
     "backgroundTextStyle": "light",
     "navigationStyle": "custom",

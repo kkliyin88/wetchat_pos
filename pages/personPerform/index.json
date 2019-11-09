@@ -2,6 +2,7 @@
   "usingComponents": 
   {
     "top": "/components/top/index",
-    "select": "/components/select/index"
+    "select": "/components/select/index",
+	  "ec-canvas": "/common/ec-canvas/ec-canvas"
   }
 }
