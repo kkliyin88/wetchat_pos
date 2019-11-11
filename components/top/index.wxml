@@ -2,12 +2,9 @@
 <view class='container'>
   <view class='empty'></view>
   <view class='title'>
-    <iview wx:if='{{url}}' class='goback' bindtap='goback'>
+    <iview wx:if='{{backflag}}' class='goback' bindtap='goback'>
       <van-icon name="arrow-left" />
     </iview>
-    <!-- <iview wx:else class='goback'>
-      <van-icon name="arrow-left" />
-    </iview> -->
     <iview>{{title}}</iview>
   </view>
 </view>

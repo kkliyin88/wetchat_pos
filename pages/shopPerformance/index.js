@@ -75,9 +75,10 @@ Page({
     this.getPageData();
   },
   goback() {
-    wx.showLoading({
-      title: '返回首页'
-    });
+    wx.showToast({
+      title: '返回首页',
+      duration: 2000
+    })
     wx.navigateTo({
       url: '/pages/index/index'
     })

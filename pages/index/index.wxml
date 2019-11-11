@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <!-- <view class='wrap'> -->
   <view class='container1'>
-    <top title='报表平台'></top>
+    <top title='报表平台' backflag='{{false}}'></top>
     <view class='condition'>
       <view class='text'>{{userInfo.name}}，欢迎您</view>
        <view class='text chang_acount' bindtap="logout" >切换账号</view>

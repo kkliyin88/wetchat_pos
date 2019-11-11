@@ -35,5 +35,5 @@
   </view>
 </view>
 <view class='container3'>
-		<table listData='{{listData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+		<ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
 	</view>

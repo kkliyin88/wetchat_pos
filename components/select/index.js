@@ -66,7 +66,6 @@ Component({
       let nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
       let nowIdx = e.target.dataset.index;//当前点击的索引
       // this.triggerEvent('changeSelect', this.data.key)
-      console.log()
       let nowText = nowData[nowIdx].text;//当前点击的内容
       let value = nowData[nowIdx].value;//选择的值
       this.triggerEvent('change-select', { value:nowData[nowIdx].value,key:this.data.key})
@@ -81,7 +80,6 @@ Component({
   },
   attached() {
      // 默认选项
-    console.log('propArray', this.data.propArray);
     this.data.propArray.map((item)=>{
       if(item.value==this.data.value){
         this.setData({ nowText: item.text})

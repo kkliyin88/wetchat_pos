@@ -12,13 +12,11 @@ Component({
       type: String,
       value: ''
     },
-    
-
+    backflag:{
+      type: Boolean,
+      value: true
+    }
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
 
   },

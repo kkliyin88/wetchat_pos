@@ -64,7 +64,6 @@
 }
 
 .container2 {
-  height: 468rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 2px 8px 0px rgba(209, 212, 243, 1);
   border-radius: 10rpx;
@@ -98,15 +97,19 @@
   margin: 20rpx 0;
   display: inline-block;
 }
-.progress{
+
+.progress {
   height: 33rpx;
   width: 100%;
   line-height: 33rpx;
   display: inline-block;
 }
-.container3{
-  margin-top: 200rpx;
-  background: #FFF;
-  border-radius: 20rpx;
-  margin: 0 25rpx;
+
+.container3 {
+  margin-top: 20rpx;
+  height: 450rpx;
+  background: #fff;
+  height: 45r0px;
+  box-shadow: 0px 2px 8px 0px rgba(209, 212, 243, 1);
+  border-radius: 10rpx;
 }

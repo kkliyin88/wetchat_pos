@@ -4,6 +4,7 @@ const app = getApp()
 var format = require('../../utils/format');
 import {
   http
+  
 } from '../../utils/http.js';
 Page({
   data: {
@@ -11,22 +12,22 @@ Page({
     addFlag: false,
     areaList: [],
     userInfo: {},
-    storeName:'',
-    storeCode:'',
+    storeName: '',
+    storeCode: '',
     dateTypeList: [{
-      "id": "1",
-      "text": '当天',
-      "value": "1",    
-    }, {
-      "id": "2",
-      "value": "2",
-      "text": '本周'
-    },
-    {
-      "id": "3",
-      "value": "3",
-      "text": '本月'
-    }
+        "id": "1",
+        "text": '当天',
+        "value": "1",
+      }, {
+        "id": "2",
+        "value": "2",
+        "text": '本周'
+      },
+      {
+        "id": "3",
+        "value": "3",
+        "text": '本月'
+      }
     ],
   },
   logout() {
@@ -34,7 +35,7 @@ Page({
       url: '/pages/logout/index'
     })
   },
-    getAreaList() {
+  getAreaList() {
     let params = {
       url: 'behaviorapi/mini/fegin/listRegionAndCity',
     }
@@ -44,7 +45,11 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode;
         })
-        temp.unshift({ text: '全国', value: '', regionName:'全国'})
+        temp.unshift({
+          text: '全国',
+          value: '',
+          regionName: '全国'
+        })
         console.log('temp', temp)
         this.setData({
           areaList: temparr
@@ -65,10 +70,8 @@ Page({
       addFlag: !this.data.addFlag
     });
   },
-  
+
   gotoShopPerformance() {
-    // this.getShopList()
-    console.log('storeName2222',this.data.storeName);
     wx.navigateTo({
       url: '/pages/shopPerformance/index'
     })
@@ -90,20 +93,20 @@ Page({
   },
   gotoPersonPerform() {
     wx.navigateTo({
-      url: '/pages/personPerform/index?storeName=' + this.data.storeName +'&storeCode=' + this.data.storeCode
+      url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode
     })
   },
-  changePage_perform(){ 
-         //如果是导购员直接跳转到 导购员业绩
+  changePage_perform() {
+    //如果是导购员直接跳转到 导购员业绩
     let roles = app.globalData.userInfo.roles
-    if (roles.length<1){
+    if (roles.length < 1) {
       wx.showToast({
         title: '您没有权限查看该页面,如有需要请联系管理员!',
         duration: 2000
       })
-    } else if (roles.length == 1 && roles[0].name=='店员'){
-     this.gotoPersonPerform() 
-    }else {
+    } else if (roles.length == 1 && roles[0].name == '店员') {
+      this.gotoPersonPerform()
+    } else {
       this.gotoShopPerformance();
     }
   },
@@ -119,11 +122,15 @@ Page({
     }
     http(params).then((res) => {
       if (res.data.code == 200) {
-         res.data.data.map((item) => {
+        res.data.data.map((item) => {
           item.text = item.regionName;
           item.value = item.regionCode
         })
-        res.data.data.unshift({ text: '全国', value: '', regionName:'全国'});
+        res.data.data.unshift({
+          text: '全国',
+          value: '',
+          regionName: '全国'
+        });
         wx.setStorageSync('areaList', res.data.data) //将地区设置到缓存中
       }
     }).catch((err) => {
@@ -160,13 +167,19 @@ Page({
           pageData: res.data.data
         })
         return
+      }else{
+        wx.showToast({
+          title: res.data.message,
+          duration: 2000
+        })
       }
     }).catch((err) => {
       wx.hideLoading()
     })
   },
   onLoad: function(options) {
-    if (options.access_token){
+    console.log('options', options)
+    if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
     }
