@@ -3,37 +3,42 @@
   <view class='condition_wrap'>
     <view class='condition'>
       <view class='perform_title'>{{storeName}}</view>
-      <select prop-array='{{areaList}}'  bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
+      <select prop-array='{{areaList}}' bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
       <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
     </view>
   </view>
   <view class='content_box'>
-    <view   class='content'>
-       <view class='text'>订单数</view>
-        <view class='text'>{{sumData.ticketsCnt}}</view>
+    <view class='content'>
+      <view class='text'>订单数</view>
+      <view class='text'>{{sumData.ticketsCnt}}</view>
     </view>
-     <view   class='content'>
-       <view class='text'>销售额</view>
-        <view class='text'>{{sumData.netSalesCnt}}</view>
+    <view class='content'>
+      <view class='text'>销售额</view>
+      <view class='text'>{{sumData.netSalesAmt}}</view>
     </view>
-     <view   class='content'>
-       <view class='text'>销售量</view>
-        <view class='text'>{{sumData.netSalesAmt}}</view>
+    <view class='content'>
+      <view class='text'>销售量</view>
+      <view class='text'>{{sumData.netSalesCnt}}</view>
     </view>
   </view>
 </view>
 <view class='container2'>
- <view class='title'>业绩完成情况</view>
-  <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box' >
-   <view class='name'>{{item.guideName}}</view>
-    <view class='name' style='margin-left:20rpx'>销售额:</view>
-    <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
-    <view class='name' style='margin-left:8rpx'>元</view>
-   <view class='process'>
-    <progress class="progress" percent="50"  border-radius='5' stroke-width='20rpx' activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
-   </view>
+  <view class='title'>业绩完成情况</view>
+  <view class='person_box_wrap'>
+    <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box'>
+      <view class='name'>{{item.guideName}}</view>
+      <view class='name' style='margin-left:20rpx'>销售额:</view>
+      <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
+      <view class='name' style='margin-left:8rpx'>元</view>
+      <view class='process'>
+        <progress class="progress" percent="50" border-radius='5' stroke-width='20rpx' activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
+      </view>
+    </view>
   </view>
 </view>
 <view class='container3'>
-		<ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-	</view>
+  <view class='title '>销售业绩趋势</view>
+  <view class='echart_second_title'> 销售额(万) </view>
+  <view class='circle'></view>
+  <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>

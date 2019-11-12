@@ -40,7 +40,7 @@
     </view>
     <view class='flex_item'>
       <text class='name'>客单价</text>
-      <text class='value'>{{pageData.perMemberSales}}</text>
+      <text class='value'>{{pageData.perTicketSales}}</text>
     </view>
   </view>
   <view class='top' bindtap="gototop" >

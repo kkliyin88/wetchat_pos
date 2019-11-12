@@ -28,5 +28,4 @@ page{
   margin: 0 20rpx;
   border-radius: 15rpx;
   overflow: hidden;
-  
 }

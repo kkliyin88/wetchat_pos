@@ -1,4 +1,6 @@
-import { http } from '../../utils/http.js';
+import {
+  http
+} from '../../utils/http.js';
 import * as echarts from '../../common/ec-canvas/echarts';
 Page({
 
@@ -32,7 +34,7 @@ Page({
     ],
     query: {
       regionCode: '',
-      dateType: '3',
+      dateType: '1',
       storeCode: ''
     },
   },
@@ -41,7 +43,15 @@ Page({
     this.setData({
       [temp]: targer.detail.value
     });
+    console.log('targer', targer)
+    if (targer.detail.key == 'regionCode' && targer.detail.value !=""){
+      this.setData({ 
+        storeName: '' ,
+        'query.storeCode':'',
+        })
+    }
     this.getPageData();
+    this.getPerformTrend();
   },
   getAreaList() {
     let that = this
@@ -54,7 +64,6 @@ Page({
       }
     })
   },
-  
   getPageData() {
     let params = {
       url: 'behaviorapi/mini/pos/getGuideSalesPerformanceList',
@@ -64,13 +73,23 @@ Page({
       title: '加载中'
     })
     http(params).then((res) => {
-      console.log('res', res)
       wx.hideLoading()
       if (res.data.code == 200) {
+        let nosum = res.data.data.list.filter((item)=>{
+          return item.guideName != '总计'
+        })
+
+        console.log('flag', this.data.query.regionCode == "")
         this.setData({
           sumData: res.data.data.list.slice(-1)[0],
-          personData: res.data.data.list.slice(0, 4)
+          personData: this.data.query.regionCode == "" ? nosum: nosum.slice(0, 5)
         });
+      } else {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 5000
+        })
       }
     }).catch((err) => {
       wx.hideLoading()
@@ -86,7 +105,7 @@ Page({
       url: '/pages/index/index'
     })
   },
-  getPerformTrend(){
+  getPerformTrend() {
     let params = {
       url: 'behaviorapi/mini/pos/getGuideSalesPerformanceMonthList',
     }
@@ -96,14 +115,14 @@ Page({
     http(params).then((res) => {
       wx.hideLoading()
       if (res.data.code == 200) {
-		  this.init_echarts(res.data.data.list);
+        this.init_echarts(res.data.data.list);
       }
     }).catch((err) => {
       wx.hideLoading()
       console.log('err'.err)
     })
   },
-  init_echarts(dataList){
+  init_echarts(dataList) {
     this.echartsComponnet.init((canvas, width, height) => {
       // 初始化图表
       const Chart = echarts.init(canvas, null, {
@@ -115,53 +134,57 @@ Page({
       return Chart;
     });
   },
-  getOption(dataList){
-     console.log('dataList',dataList)
-    let xdata = dataList.map((item)=>{
-      return item.month+'月'
+  getOption(dataList) {
+    let xdata = dataList.map((item) => {
+      return item.month + '月'
     })
     let sdata = dataList.map((item) => {
-      return item.netSalesAmt
-    })
+      if (item.netSalesAmt == 0 || item.netSalesAmt ==null){
+          return 0
+      }else {
+        return (item.netSalesAmt/10000).toFixed(2)
+      }
+    });
     let option = {
       title: {
-        text: '业务趋势-收入',
-        left: 20,
-        textStyle:{
-          color:'#666',
-          fontSize:15,
-          height:30,
-          lineHeight:30
+        text: '',
+        left: 0,
+        textStyle: {
+          color: '#000537',
+          fontSize: 15,
+          height: 42,
+          lineHeight: 42,
+          fontWeight:'normal',
         }
       },
       grid: {
         containLabel: false,
-        left:30,
-        top:40,
-        right:20,
-        bottom:40
+        left: 30,
+        top: 40,
+        right: 20,
+        bottom: 40
       },
-      tooltip: {
-        show: false,
-        trigger: 'axis'
+      legend: {
+        right: '5',
+        data: ['销售额(万)']
       },
       xAxis: {
         type: 'category',
         boundaryGap: false, //从0开始
         data: xdata,
         show: true,
-        nameTextStyle:{
-          color:'green',
-          fontSize:15,
+        nameTextStyle: {
+          color: 'green',
+          fontSize: 15,
         },
-        axisLine:{
-          show:false,//是否显示x轴线
+        axisLine: {
+          show: false, //是否显示x轴线
         },
-        axisTic:{
-          show:false
+        axisTic: {
+          show: false
         },
-        splitLine:{
-          show:false
+        splitLine: {
+          show: false
         }
       },
       yAxis: {
@@ -170,34 +193,40 @@ Page({
         show: false,
       },
       series: [{
-        name: 'A',
+        // name: '销售额(万)',
         type: 'line',
-        symbol:'circle',//拐点样式
-        symbolColor:'green',
-        symbolSize: 8,//拐点大小
-        lineStyle:{
-          color: '#27C69B', //改变折线颜色
-          shadowColor: '#27C69B',//阴影
-          shadowBlur: 10, //模糊度
-          width:3,//线条宽度
+        symbolColor: '#757272',
+        symbolSize: 8, //拐点大小
+        lineStyle: {
+          color: '#7482EB', //改变折线颜色
+          width: 1, //线条宽度
         },
-        itemStyle:{
-          normal:{ //拐点显示数值
-            color: '#27C69B', //拐点颜色
-            label:{
-              show:true,
-              color:'gray',//拐点文字样式
-              fontSize:15,
+        tooltip:{
+          trigge: 'item',
+          show:true,
+          formatter: '{b}'
+        },
+        itemStyle: {
+          normal: { //拐点显示数值
+            color: '#7482EB', //拐点颜色,
+            borderColor: 'blue',
+            label: {
+              show: true,
+              backgroundColor:'#7482EB',
+              color: '#FFF', //拐点文字样式
+              fontSize: 12,
+              height:22,
+              lineHeight:22,
+              padding:[0,5]
             }
           }
         },
-        smooth: true,
+        smooth: false,
         data: sdata
       }]
     };
     return option;
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -205,22 +234,22 @@ Page({
     if (options.storeCode && options.storeName) {
       this.setData({
         storeCode: options.storeCode,
-        storeName: options.storeName
+        storeName: options.storeName,
+        'query.storeCode': options.storeCode
       })
-      this.setData({
-        'qurey.storeCode': options.storeCode
-      });
     }
     this.getAreaList();
     this.getPageData();
-    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
     this.echartsComponnet = this.selectComponent('#mychart');
+    this.getPerformTrend();
+  },
+  onPullDownRefresh: function () {
+    this.getPageData();
     this.getPerformTrend();
   },
 })

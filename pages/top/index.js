@@ -81,7 +81,7 @@ Page({
   change(targer) {
     let temp = 'query.'+targer.detail.key
     this.setData({ [temp]:targer.detail.value});
-    this.getpageData();
+    this.getPageData();
   },
   getAreaList() {
     let that = this
@@ -94,7 +94,7 @@ Page({
       }
     })
   },
-  getpageData() {
+  getPageData() {
     let params = {
       url: 'behaviorapi/mini/pos/getGoodsSalesRankingList',
       data: this.data.query
@@ -106,7 +106,6 @@ Page({
       wx.hideLoading()
       if (res.data.code == 200) {
         res.data.data.list.map((item, index) => {
-          item.picUrl = 'http://c4.haibao.cn/img/600_0_100_0/1509425278.7843/d37c2358fb2fa49af2e72602ef1b3935.jpg';
           item.index = index + 1;
         })
         this.setData({
@@ -123,7 +122,7 @@ Page({
    */
   onLoad: function(options) {
     this.getAreaList();
-    this.getpageData();
+    this.getPageData();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -131,46 +130,8 @@ Page({
   onReady: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
+  onPullDownRefresh: function () {
+    this.getPageData();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
+  
 })

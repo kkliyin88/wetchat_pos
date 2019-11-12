@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-      "i-button": "/common/iview/button/index",
-      "i-input": "/common/iview/input/index"
+    
   }
 }

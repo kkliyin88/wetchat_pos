@@ -4,5 +4,6 @@
     "top": "/components/top/index",
     "select": "/components/select/index",
 	  "ec-canvas": "/common/ec-canvas/ec-canvas"
-  }
+  },
+  "enablePullDownRefresh": true
 }

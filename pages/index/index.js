@@ -4,12 +4,11 @@ const app = getApp()
 var format = require('../../utils/format');
 import {
   http
-  
 } from '../../utils/http.js';
 Page({
   data: {
     pageData: {},
-    addFlag: false,
+    addFlag: true,
     areaList: [],
     userInfo: {},
     storeName: '',
@@ -70,7 +69,9 @@ Page({
       addFlag: !this.data.addFlag
     });
   },
+    onPullDownRefresh: function() {
 
+  },
   gotoShopPerformance() {
     wx.navigateTo({
       url: '/pages/shopPerformance/index'
@@ -147,7 +148,6 @@ Page({
         userInfo: res.data
       })
       app.globalData.userInfo = res.data;
-      // wx.setStorageSync('userInfo', res.data)
     }).catch((err) => {
       console.log('err'.err)
     })
@@ -157,6 +157,7 @@ Page({
       url: 'behaviorapi/mini/pos/getStoreSalesDayInfo',
       data: {}
     }
+   
     wx.showLoading({
       title: '加载中'
     })
@@ -170,7 +171,8 @@ Page({
       }else{
         wx.showToast({
           title: res.data.message,
-          duration: 2000
+          icon: 'none',
+          duration: 5000
         })
       }
     }).catch((err) => {
@@ -178,7 +180,6 @@ Page({
     })
   },
   onLoad: function(options) {
-    console.log('options', options)
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
@@ -187,5 +188,8 @@ Page({
     this.getPageData();
     this.getAreaList();
     this.getShopList();
-  }
+  },
+  onPullDownRefresh: function () {
+    this.getPageData();
+  },
 })

@@ -76,5 +76,4 @@ line-height:42rpx;
 
 .li_box .progress{
   margin-top: 12rpx;
-
 }

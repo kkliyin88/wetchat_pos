@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
-    "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
+    "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
     "top": "/components/top/index"
-  }
+  },
+ "enablePullDownRefresh": true
 }

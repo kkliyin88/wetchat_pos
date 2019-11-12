@@ -17,7 +17,7 @@
       <image data-store-code='{{item.storeCode}}' data-store-name='{{item.storeName}}'  bindtap='gotoPersonPerform' src='/images/shopPerform/arrows.png'></image>
       </view>
       <view class='progress'>
-       <progress class="progress" show-info stroke-width='20rpx' percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'>
+       <progress class="progress"  stroke-width='20rpx' percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'>
        </progress>
       </view>
   </view>
