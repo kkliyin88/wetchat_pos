@@ -38,6 +38,12 @@ Page({
       storeCode: ''
     },
   },
+  goback() {
+    console.log('返回首页')
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
   change(targer) {
     let temp = 'query.' + targer.detail.key
     this.setData({
@@ -78,8 +84,6 @@ Page({
         let nosum = res.data.data.list.filter((item)=>{
           return item.guideName != '总计'
         })
-
-        console.log('flag', this.data.query.regionCode == "")
         this.setData({
           sumData: res.data.data.list.slice(-1)[0],
           personData: this.data.query.regionCode == "" ? nosum: nosum.slice(0, 5)
@@ -94,15 +98,6 @@ Page({
     }).catch((err) => {
       wx.hideLoading()
       console.log('err'.err)
-    })
-  },
-  goback() {
-    wx.showToast({
-      title: '返回首页',
-      duration: 2000
-    })
-    wx.navigateTo({
-      url: '/pages/index/index'
     })
   },
   getPerformTrend() {
@@ -159,14 +154,10 @@ Page({
       },
       grid: {
         containLabel: false,
-        left: 30,
+        left: 20,
         top: 40,
         right: 20,
         bottom: 40
-      },
-      legend: {
-        right: '5',
-        data: ['销售额(万)']
       },
       xAxis: {
         type: 'category',
@@ -249,7 +240,10 @@ Page({
     this.getPerformTrend();
   },
   onPullDownRefresh: function () {
-    this.getPageData();
-    this.getPerformTrend();
+    wx.stopPullDownRefresh(); //这句也很重要
+    setTimeout(() => {
+      this.getPageData();
+      this.getPerformTrend();
+    }, 500)
   },
 })

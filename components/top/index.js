@@ -26,6 +26,7 @@ Component({
    */
   methods: {
     goback() {
+      
       this.triggerEvent('goback') 
     }
   }

@@ -71,10 +71,8 @@ Page({
     ]
   },
   goback() {
-    wx.showLoading({
-      title: '返回首页'
-    });
-    wx.navigateTo({
+    console.log('返回首页')
+    wx.redirectTo({
       url: '/pages/index/index'
     })
   },
@@ -124,14 +122,12 @@ Page({
     this.getAreaList();
     this.getPageData();
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
-  },
   onPullDownRefresh: function () {
-    this.getPageData();
+    wx.stopPullDownRefresh(); //这句也很重要
+    setTimeout(() => {
+      this.getPageData();
+    }, 500)
   },
   
 })

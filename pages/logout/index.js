@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url1: 'http://oauth-test.pureh2b.com/sso/mobile/invalid?redirectUrl=', url2:'http://oauth-test.pureh2b.com/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=http://oauth-test.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index'
+    url1: 'https://oauth.pureh2b.com/sso/mobile/invalid?',
+    url2:'http://oauth.pureh2b.com/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=https://oauth.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**
@@ -14,8 +15,8 @@ Page({
   onLoad: function (options) {
     let token = wx.getStorageSync('token');
     let url2 = encodeURIComponent(this.data.url2)
-    let url = this.data.url1 + url2 + '&access_token=' + token;
-     console.log('url',url)
+    let url = this.data.url1 + 'redirectUrl='+ url2 + '&access_token=' + token;
+    console.log('退出登录',url)
    this.setData({
      url: url
    })

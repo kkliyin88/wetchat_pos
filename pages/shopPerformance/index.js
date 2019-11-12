@@ -79,11 +79,8 @@ Page({
     this.getPageData();
   },
   goback() {
-    wx.showToast({
-      title: '返回首页',
-      duration: 2000
-    })
-    wx.navigateTo({
+    console.log('返回首页')
+    wx.redirectTo({
       url: '/pages/index/index'
     })
   },
@@ -95,14 +92,10 @@ Page({
     this.getPageData();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
   onPullDownRefresh: function () {
-    this.getPageData();
+    wx.stopPullDownRefresh(); //这句也很重要
+    setTimeout(() => {
+      this.getPageData();
+    }, 500)
   },
-  
 })

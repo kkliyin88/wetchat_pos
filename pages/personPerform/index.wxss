@@ -70,6 +70,7 @@
   margin: 10rpx 5rpx;
   padding: 18rpx;
   position: relative;
+  min-height: 80rpx;
 }
 .container2 .title {
   position: absolute;
@@ -82,7 +83,7 @@
   color: rgba(0, 5, 55, 1);
   line-height: 42rpx;
   background: #FFF;
-  width: 100%
+  width: 95%
 }
 .person_box_wrap{
   max-height: 600rpx;

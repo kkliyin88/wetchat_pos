@@ -30,7 +30,7 @@ Page({
     ],
   },
   logout() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/logout/index'
     })
   },
@@ -44,12 +44,12 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode;
         })
+
         temp.unshift({
           text: '全国',
           value: '',
           regionName: '全国'
         })
-        console.log('temp', temp)
         this.setData({
           areaList: temparr
         })
@@ -127,11 +127,19 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode
         })
-        res.data.data.unshift({
-          text: '全国',
-          value: '',
-          regionName: '全国'
-        });
+        let manageFlag= false;
+        app.globalData.userInfo.roles.map((item)=>{
+          if (item.name.indexOf('高层')!=-1 || item.name.indexOf('超级')!=-1){
+            manageFlag = true;
+           }
+        })
+        if (manageFlag){
+          res.data.data.unshift({
+            text: '全国',
+            value: '',
+            regionName: '全国'
+          });
+        }
         wx.setStorageSync('areaList', res.data.data) //将地区设置到缓存中
       }
     }).catch((err) => {
@@ -141,7 +149,7 @@ Page({
   getUserMsg() { //获取用户信息
     let params = {
       url: '/sso/user/info',
-      server: 'http://oauth-test.pureh2b.com'
+      server: 'http://oauth.pureh2b.com'
     }
     http(params).then((res) => {
       this.setData({
@@ -190,6 +198,9 @@ Page({
     this.getShopList();
   },
   onPullDownRefresh: function () {
-    this.getPageData();
+    wx.stopPullDownRefresh(); //这句也很重要
+    setTimeout(()=>{
+      this.getPageData();
+    },500)
   },
 })
