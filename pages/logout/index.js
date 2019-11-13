@@ -17,7 +17,6 @@ Page({
     let token = wx.getStorageSync('token');
     let url2 = encodeURIComponent(this.data.url2)
     let url = this.data.url1 + 'redirectUrl='+ url2 + '&access_token=' + token;
-    console.log('退出登录',url)
    this.setData({
      url: url
    })

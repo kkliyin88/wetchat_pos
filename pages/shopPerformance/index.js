@@ -69,7 +69,6 @@ Page({
         that.setData({
           areaList: res.data
         })
-        console.log('areaList', that.data.areaList)
       }
     })
   },
@@ -79,7 +78,6 @@ Page({
     this.getPageData();
   },
   goback() {
-    console.log('返回首页')
     wx.redirectTo({
       url: '/pages/index/index'
     })

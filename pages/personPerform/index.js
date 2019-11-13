@@ -39,7 +39,6 @@ Page({
     },
   },
   goback() {
-    console.log('返回首页')
     wx.redirectTo({
       url: '/pages/index/index'
     })
@@ -49,7 +48,6 @@ Page({
     this.setData({
       [temp]: targer.detail.value
     });
-    console.log('targer', targer)
     if (targer.detail.key == 'regionCode' && targer.detail.value !=""){
       this.setData({ 
         storeName: '' ,
