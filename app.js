@@ -33,5 +33,20 @@ App({
   },
   globalData: {
     userInfo: null,
+    dateTypeList: [{
+      "id": "1",
+      "text": '当天',
+      "value": "1",
+    }, {
+      "id": "2",
+      "value": "2",
+      "text": '本周'
+    },
+    {
+      "id": "3",
+      "value": "3",
+      "text": '本月'
+    }
+    ],
   }
 })

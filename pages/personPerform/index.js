@@ -1,6 +1,7 @@
 import {
   http
 } from '../../utils/http.js';
+const app = getApp()
 import * as echarts from '../../common/ec-canvas/echarts';
 Page({
 
@@ -17,21 +18,7 @@ Page({
     ec: {
       lazyLoad: true // 延迟加载
     },
-    dateTypeList: [{
-        "id": "1",
-        "text": '当天',
-        "value": "1",
-      }, {
-        "id": "2",
-        "value": "2",
-        "text": '本周'
-      },
-      {
-        "id": "3",
-        "value": "3",
-        "text": '本月'
-      }
-    ],
+    dateTypeList: [],
     query: {
       regionCode: '',
       dateType: '1',
@@ -39,8 +26,15 @@ Page({
     },
   },
   goback() {
+    console.log('触发点击事件')
+    let flag = false; //如果为店员的话直接返回首页
+    app.globalData.userInfo.roles.map((item) => {
+      if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('区域') != -1 || item.name.indexOf('Superman') != -1) {
+        flag = true
+      }
+    })
     wx.redirectTo({
-      url: '/pages/index/index'
+      url: flag ? '/pages/shopPerformance/index?dateType='+this.data.query.dateType:'/pages/index/index'
     })
   },
   change(targer) {
@@ -99,8 +93,10 @@ Page({
     })
   },
   getPerformTrend() {
+    let data = (({ regionCode, storeCode }) => ({ regionCode, storeCode }))(this.data.query)
     let params = {
       url: 'behaviorapi/mini/pos/getGuideSalesPerformanceMonthList',
+      data: data
     }
     wx.showLoading({
       title: '加载中'
@@ -216,6 +212,11 @@ Page({
     };
     return option;
   },
+  getdateTypeList() {
+    this.setData({
+      dateTypeList: app.globalData.dateTypeList
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -224,11 +225,13 @@ Page({
       this.setData({
         storeCode: options.storeCode,
         storeName: options.storeName,
-        'query.storeCode': options.storeCode
+        'query.storeCode': options.storeCode,
+        'query.dateType': options.dateType,
       })
     }
     this.getAreaList();
     this.getPageData();
+    this.getdateTypeList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

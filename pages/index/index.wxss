@@ -170,7 +170,7 @@ page {
   height: 150rpx;
   width: 100%;
   position: fixed;
-  animation: move 1s 1;
+  animation: move 0.3s 1;
   bottom:0;
   display: flex;
   justify-content: center;

@@ -24,21 +24,7 @@ Page({
       "value": "2",
       "text": '销售量'
     }],
-    dateTypeList: [{
-      "id": "1",
-      "text": '当天',
-      "value": "1",
-    }, {
-      "id": "2",
-      "value": "2",
-      "text": '本周'
-    },
-    {
-      "id": "3",
-      "value": "3",
-      "text": '本月'
-    }
-    ],
+    dateTypeList: [],
     columns: [{
         title: '排行',
         key: 'index',
@@ -71,7 +57,7 @@ Page({
     ]
   },
   goback() {
-    console.log('返回首页')
+    console.log('触发点击事件')
     wx.redirectTo({
       url: '/pages/index/index'
     })
@@ -115,12 +101,18 @@ Page({
       console.log('err'.err)
     })
   },
+  getdateTypeList() {
+    this.setData({
+      dateTypeList: app.globalData.dateTypeList
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.getAreaList();
     this.getPageData();
+    this.getdateTypeList();
   },
 
   onPullDownRefresh: function () {

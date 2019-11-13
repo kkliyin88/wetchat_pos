@@ -80,11 +80,12 @@ Component({
   },
   attached() {
      // 默认选项
-    this.data.propArray.map((item)=>{
-      if(item.value==this.data.value){
-        this.setData({ nowText: item.text})
-      }
-    })
+   setTimeout(()=>{
+     this.data.propArray.map((item) => {
+       if (item.value == this.data.value) {
+         this.setData({ nowText: item.text })
+       }
+     })
+   },200)
   }
-
 })

@@ -13,21 +13,7 @@ Page({
     userInfo: {},
     storeName: '',
     storeCode: '',
-    dateTypeList: [{
-        "id": "1",
-        "text": '当天',
-        "value": "1",
-      }, {
-        "id": "2",
-        "value": "2",
-        "text": '本周'
-      },
-      {
-        "id": "3",
-        "value": "3",
-        "text": '本月'
-      }
-    ],
+   
   },
   logout() {
     wx.redirectTo({
@@ -70,10 +56,10 @@ Page({
     });
   },
     onPullDownRefresh: function() {
-
   },
   gotoShopPerformance() {
-    wx.navigateTo({
+    console.log('触发点击事件')
+    wx.redirectTo({
       url: '/pages/shopPerformance/index'
     })
   },
@@ -93,7 +79,8 @@ Page({
     })
   },
   gotoPersonPerform() {
-    wx.navigateTo({
+    console.log('触发点击事件')
+    wx.redirectTo({
       url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode
     })
   },
@@ -191,11 +178,16 @@ Page({
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
+      this.getAreaList();
+      this.getShopList();
+      this.getUserMsg();
     }
-    this.getUserMsg();
+    if (app.globalData.userInfo){
+      this.setData({ userInfo: app.globalData.userInfo})
+    }
+   
+    
     this.getPageData();
-    this.getAreaList();
-    this.getShopList();
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh(); //这句也很重要

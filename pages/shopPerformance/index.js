@@ -1,6 +1,7 @@
 import {
   http
 } from '../../utils/http.js';
+const app = getApp();
 Page({
 
   /**
@@ -9,31 +10,17 @@ Page({
   data: {
     pageData: [],
     areaList:[],
-    dateTypeList: [{
-      "id": "1",
-      "text": '当天',
-      "value": "1",
-    }, {
-      "id": "2",
-      "value": "2",
-      "text": '本周'
-    },
-    {
-      "id": "3",
-      "value": "3",
-      "text": '本月'
-    }
-    ],
+    dateTypeList: [],
     query: {
       regionCode: '',
       dateType: 1,
-      pageNum:1,
-      pageSize: 10,
-    },
+      pageNum:1,   
+    },       
   },
   gotoPersonPerform(e){
-    wx.navigateTo({
-      url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName
+    console.log('触发点击事件')
+    wx.redirectTo({
+      url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName + '&dateType=' + this.data.query.dateType
     })
   },
   getPageData() {
@@ -78,22 +65,35 @@ Page({
     this.getPageData();
   },
   goback() {
+    console.log('触发点击事件')
     wx.redirectTo({
       url: '/pages/index/index'
+    })
+  },
+  getdateTypeList(){
+    this.setData({
+      dateTypeList: app.globalData.dateTypeList
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log('options',options)
+    
+    if (options.dateType){
+     this.setData({
+       'query.dateType': options.dateType
+     })
+    }
+    this.getdateTypeList();
     this.getAreaList();
     this.getPageData();
   },
-
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh(); //这句也很重要
     setTimeout(() => {
       this.getPageData();
     }, 500)
-  },
+  }
 })
