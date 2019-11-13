@@ -113,7 +113,6 @@ page {
 .flex_item {
   height: 135rpx;
   width: 292rpx;
-  display: inline-block;
   background: #fff;
   box-shadow: 0px 2rpx 8rpx 0px rgba(209, 212, 243, 1);
   border-radius: 18rpx;
@@ -171,10 +170,20 @@ page {
   height: 150rpx;
   width: 100%;
   position: fixed;
-  bottom: 0;
+  animation: move 1s 1;
+  bottom:0;
   display: flex;
   justify-content: center;
 }
+@keyframes move{
+   0% {
+   bottom:-100rpx;
+  }
+  100% {
+   bottom:0;
+  }
+}
+
 
 .add_box {
   height: 240rpx;

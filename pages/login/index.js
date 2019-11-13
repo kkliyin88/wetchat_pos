@@ -1,11 +1,12 @@
 // pages/main/index.js
+var loginServer = require('../../utils/loginServer');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    url: loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer + '/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**

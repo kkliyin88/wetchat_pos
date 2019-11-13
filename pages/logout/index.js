@@ -1,12 +1,13 @@
 // pages/logout/index.js
+var loginServer = require('../../utils/loginServer');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    url1: 'https://oauth.pureh2b.com/sso/mobile/invalid?',
-    url2:'http://oauth.pureh2b.com/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=https://oauth.pureh2b.com/sso/pages/callback/mp.html?path=/pages/index/index'
+    url1: loginServer+'/sso/mobile/invalid?',
+    url2: loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer +'/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**
