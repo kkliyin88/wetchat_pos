@@ -32,7 +32,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
+    userInfo: {},
+    systemInfo:{},
     dateTypeList: [{
       "id": "1",
       "text": '当天',

@@ -1,7 +1,6 @@
 <!--components/top/index.wxml-->
 <view class='container'>
-  <view class='empty'></view>
-  <view class='title'>
+  <view class='title'  style='padding-top:{{statusBarHeight+5+"px"}}'>
     <iview wx:if='{{backflag}}' class='goback' bindtap='goback'>
       <van-icon name="arrow-left" />
     </iview>

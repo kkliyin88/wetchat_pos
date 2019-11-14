@@ -62,7 +62,6 @@
     font-size: 24rpx;
     text-align: center;
     z-index: 1000;
-   
 }
 .com-sItem:first-child{
     border-top: none;

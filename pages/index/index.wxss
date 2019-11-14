@@ -171,16 +171,16 @@ page {
   width: 100%;
   position: fixed;
   animation: move 0.3s 1;
-  bottom:0;
+  bottom:15rpx;
   display: flex;
   justify-content: center;
 }
 @keyframes move{
    0% {
-   bottom:-100rpx;
+   bottom:-110rpx;
   }
   100% {
-   bottom:0;
+   bottom:15rpx;
   }
 }
 
@@ -201,11 +201,9 @@ page {
   position: absolute;
   z-index: 200;
 }
-
 .add_box .sale {
   left: -50rpx;
 }
-
 .add_box .profit {
   right: -50rpx;
 }

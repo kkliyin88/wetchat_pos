@@ -79,7 +79,6 @@ Component({
   attached() {
      // 默认选项
    setTimeout(()=>{
-     console.log('propArray', this.data.propArray)
      this.data.propArray.map((item) => {
        if (item.value == this.data.value) {
          this.setData({ nowText: item.text })

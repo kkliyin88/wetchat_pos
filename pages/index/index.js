@@ -13,7 +13,6 @@ Page({
     userInfo: {},
     storeName: '',
     storeCode: '',
-   
   },
   logout() {
     wx.redirectTo({
@@ -174,6 +173,14 @@ Page({
       wx.hideLoading()
     })
   },
+  getSystemInfo(){
+    wx.getSystemInfo({
+      success: function (res) {
+        app.globalData.systemInfo = res;
+      }
+    });
+    console.log('systemInfo11', app.globalData.systemInfo)
+  },
   onLoad: function(options) {
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
@@ -185,8 +192,7 @@ Page({
     if (app.globalData.userInfo){
       this.setData({ userInfo: app.globalData.userInfo})
     }
-   
-    
+    this.getSystemInfo();
     this.getPageData();
   },
   onPullDownRefresh: function () {

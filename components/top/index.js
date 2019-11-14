@@ -18,7 +18,7 @@ Component({
     }
   },
   data: {
-
+    statusBarHeight:'',
   },
 
   /**
@@ -26,8 +26,19 @@ Component({
    */
   methods: {
     goback() {
-      
       this.triggerEvent('goback') 
     }
+  },
+  attached() {
+    let  that= this
+      wx.getSystemInfo({
+        success: function (res) {
+          that.setData({
+            statusBarHeight: res.statusBarHeight
+          })
+          console.log('sysInfo', res)
+        }
+      })
   }
+
 })
