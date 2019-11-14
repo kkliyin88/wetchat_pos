@@ -32,8 +32,6 @@ Component({
     nowText: "",//初始内容
     animationData: {}//右边箭头的动画
   },
-
-
   /**
    * 组件的方法列表
    */
@@ -81,11 +79,12 @@ Component({
   attached() {
      // 默认选项
    setTimeout(()=>{
+     console.log('propArray', this.data.propArray)
      this.data.propArray.map((item) => {
        if (item.value == this.data.value) {
          this.setData({ nowText: item.text })
        }
      })
-   },200)
+   },500)
   }
 })

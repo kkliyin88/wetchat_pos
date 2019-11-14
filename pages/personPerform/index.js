@@ -13,6 +13,7 @@ Page({
     storeCode: '',
     storeName: '',
     sumData: {},
+    shopRegionCode:'',
     personData: [],
     areaList: [],
     ec: {
@@ -34,7 +35,7 @@ Page({
       }
     })
     wx.redirectTo({
-      url: flag ? '/pages/shopPerformance/index?dateType='+this.data.query.dateType:'/pages/index/index'
+      url: flag ? '/pages/shopPerformance/index?dateType=' + this.data.query.dateType + '&regionCode='+this.data.shopRegionCode:'/pages/index/index'
     })
   },
   change(targer) {
@@ -221,12 +222,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log('options_person', options)
     if (options.storeCode && options.storeName) {
       this.setData({
         storeCode: options.storeCode,
         storeName: options.storeName,
         'query.storeCode': options.storeCode,
         'query.dateType': options.dateType,
+      })
+    }
+    if (options.regionCode){
+      this.setData({
+        shopRegionCode: options.regionCode
       })
     }
     this.getAreaList();

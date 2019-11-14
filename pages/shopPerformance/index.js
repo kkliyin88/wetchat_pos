@@ -20,7 +20,7 @@ Page({
   gotoPersonPerform(e){
     console.log('触发点击事件')
     wx.redirectTo({
-      url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName + '&dateType=' + this.data.query.dateType
+      url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName + '&dateType=' + this.data.query.dateType + '&regionCode=' + this.data.query.regionCode
     })
   },
   getPageData() {
@@ -86,6 +86,12 @@ Page({
        'query.dateType': options.dateType
      })
     }
+    if (options.regionCode) {
+      this.setData({
+        'query.regionCode': options.regionCode
+      })
+    }
+    
     this.getdateTypeList();
     this.getAreaList();
     this.getPageData();

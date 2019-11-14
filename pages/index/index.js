@@ -81,7 +81,7 @@ Page({
   gotoPersonPerform() {
     console.log('触发点击事件')
     wx.redirectTo({
-      url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode
+      url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode +'&dateType=1'
     })
   },
   changePage_perform() {
