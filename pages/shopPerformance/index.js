@@ -3,7 +3,6 @@ import {
 } from '../../utils/http.js';
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -20,7 +19,7 @@ Page({
   gotoPersonPerform(e){
     console.log('触发点击事件')
     wx.redirectTo({
-      url: '/pages/personPerform/index?storeCode=' + e.target.dataset.storeCode + '&storeName=' + e.target.dataset.storeName + '&dateType=' + this.data.query.dateType + '&regionCode=' + this.data.query.regionCode
+      url: '/pages/personPerform/index?storeCode=' + e.currentTarget.dataset.storeCode + '&storeName=' + e.currentTarget.dataset.storeName + '&dateType=' + this.data.query.dateType + '&regionCode=' + this.data.query.regionCode
     })
   },
   getPageData() {
@@ -79,8 +78,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('options',options)
-    
     if (options.dateType){
      this.setData({
        'query.dateType': options.dateType
@@ -91,7 +88,6 @@ Page({
         'query.regionCode': options.regionCode
       })
     }
-    
     this.getdateTypeList();
     this.getAreaList();
     this.getPageData();

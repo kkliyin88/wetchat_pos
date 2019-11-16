@@ -36,7 +36,6 @@ Component({
           that.setData({
             statusBarHeight: res.statusBarHeight
           })
-          console.log('sysInfo', res)
         }
       })
   }

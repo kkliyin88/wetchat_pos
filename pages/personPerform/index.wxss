@@ -1,10 +1,14 @@
 /* pages/shopPerformance/index.wxss */
 
 .container1 {
-  height: 361rpx;
+  /* height: 361rpx; */
   width: 100%;
   background: linear-gradient(181deg, rgba(145, 158, 247, 1) 0%, rgba(93, 105, 231, 1) 100%);
   border-radius: 0px 0px 20px 20px;
+  padding-bottom: 20rpx;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 .condition_wrap {
@@ -83,12 +87,10 @@
   color: rgba(0, 5, 55, 1);
   line-height: 42rpx;
   background: #FFF;
-  width: 95%
+  width: 95%;
+  z-index: 3;
 }
-.person_box_wrap{
-  max-height: 600rpx;
-  overflow-y: auto;
-}
+
 .person_box {
   height: 100rpx;
   margin: 30rpx 20rpx;

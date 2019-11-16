@@ -1,4 +1,4 @@
-<view class='container1'>
+<view class='container1' id='con1'>
   <top title='导购员业绩' bind:goback='goback'></top>
   <view class='condition_wrap'>
     <view class='condition'>
@@ -22,18 +22,20 @@
     </view>
   </view>
 </view>
-<view class='container2'>
+<view class='container2' style="margin-top:{{container1Height+5+'px'}}">
   <view class='title'>业绩完成情况</view>
   <view class='person_box_wrap'>
-    <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box'>
-      <view class='name'>{{item.guideName}}</view>
-      <view class='name' style='margin-left:20rpx'>销售额:</view>
-      <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
-      <view class='name' style='margin-left:8rpx'>元</view>
-      <view class='process'>
-        <progress class="progress" percent="50" border-radius='5' stroke-width='20rpx' activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
+    <scroll-view scroll-y="true" style="max-height: 600rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll"  scroll-top="1">
+      <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box'>
+        <view class='name'>{{item.guideName}}</view>
+        <view class='name' style='margin-left:20rpx'>销售额:</view>
+        <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
+        <view class='name' style='margin-left:8rpx'>元</view>
+        <view class='process'>
+          <progress class="progress" percent="50" border-radius='5' stroke-width='20rpx' activeColor='#7488EB' backgroundColor='#EAEDFD'></progress>
+        </view>
       </view>
-    </view>
+    </scroll-view>
   </view>
 </view>
 <view class='container3'>

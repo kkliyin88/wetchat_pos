@@ -4,7 +4,6 @@ import {
 const app = getApp()
 import * as echarts from '../../common/ec-canvas/echarts';
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,6 +11,7 @@ Page({
     pageData: [],
     storeCode: '',
     storeName: '',
+    container1Height:'',
     sumData: {},
     shopRegionCode:'',
     personData: [],
@@ -164,7 +164,10 @@ Page({
           fontSize: 15,
         },
         axisLine: {
-          show: false, //是否显示x轴线
+          show: false, //是否显示x轴线\
+          lineStyle:{
+            color:'#757272' //x轴线以及字体颜色
+          },
         },
         axisTic: {
           show: false
@@ -239,6 +242,8 @@ Page({
     this.getAreaList();
     this.getPageData();
     this.getdateTypeList();
+  
+    this.setData({ statusBarHeight: app.globalData.systemInfo.statusBarHeight*2});
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -246,6 +251,13 @@ Page({
   onReady: function() {
     this.echartsComponnet = this.selectComponent('#mychart');
     this.getPerformTrend();
+    
+    const objselect = wx.createSelectorQuery();
+    objselect.select('#con1').boundingClientRect( (rect)=> {
+     this.setData({
+       container1Height: rect.height
+     })
+    }).exec();
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh(); //这句也很重要

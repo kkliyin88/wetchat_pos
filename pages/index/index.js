@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var loginServer = require('../../utils/loginServer');
 const app = getApp()
 var format = require('../../utils/format');
 import {
@@ -133,9 +134,10 @@ Page({
     })
   },
   getUserMsg() { //获取用户信息
+    console.log('获取用户信息')
     let params = {
       url: '/sso/user/info',
-      server: 'http://oauth.pureh2b.com'
+      server: loginServer
     }
     http(params).then((res) => {
       this.setData({
@@ -177,9 +179,9 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         app.globalData.systemInfo = res;
+
       }
     });
-    console.log('systemInfo11', app.globalData.systemInfo)
   },
   onLoad: function(options) {
     if (options.access_token) {
