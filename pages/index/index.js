@@ -46,7 +46,16 @@ Page({
     })
   },
   gototop() {
-    wx.navigateTo({
+    let roles = app.globalData.userInfo.roles
+    if (roles.length < 1 || (roles.length == 1 && roles[0].name == '店员')) {
+      wx.showToast({
+        title: '您没有权限查看该页面,如有需要请联系管理员!',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    } 
+    wx.redirectTo({
       url: '/pages/top/index'
     })
   },
@@ -58,7 +67,6 @@ Page({
     onPullDownRefresh: function() {
   },
   gotoShopPerformance() {
-    console.log('触发点击事件')
     wx.redirectTo({
       url: '/pages/shopPerformance/index'
     })
@@ -90,6 +98,7 @@ Page({
     if (roles.length < 1) {
       wx.showToast({
         title: '您没有权限查看该页面,如有需要请联系管理员!',
+        icon: 'none',
         duration: 2000
       })
     } else if (roles.length == 1 && roles[0].name == '店员') {
@@ -101,6 +110,7 @@ Page({
   gotoProfit() {
     wx.showToast({
       title: '页面待开发',
+      icon: 'none',
       duration: 2000
     })
   },
@@ -201,6 +211,7 @@ Page({
     wx.stopPullDownRefresh(); //这句也很重要
     setTimeout(()=>{
       this.getPageData();
+      this.getUserMsg();
     },500)
   },
 })

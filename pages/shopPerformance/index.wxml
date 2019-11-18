@@ -1,27 +1,27 @@
-<!-- <view> -->
 <view class='container1'>
   <top title='店铺业绩' bind:goback='goback'></top>
- 
+
 </view>
 <view class='container2'>
-   <view class='condition_wrap'>
+  <view class='condition_wrap'>
     <view class='condition'>
       <view class='perform_title'>业绩达标情况</view>
       <select prop-array='{{areaList}}' bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
       <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
     </view>
   </view>
-  <view class='li_box' wx:for='{{pageData}}' wx:key='index' data-store-code='{{item.storeCode}}' data-store-name='{{item.storeName}}' bindtap='gotoPersonPerform' >
-    <view class="title">{{item.storeName}}</view>
-    <view class="sale_box">
-      <text>销售额:</text>
-      <text> {{item.netSalesAmt}}元</text>
-      <image src='/images/shopPerform/arrows.png'  ></image>
+  <scroll-view scroll-y="true" style="max-height:{{windowHeight-150}}px">
+    <view class='li_box' wx:for='{{pageData}}' wx:key='index' data-store-code='{{item.storeCode}}' data-store-name='{{item.storeName}}' bindtap='gotoPersonPerform'>
+      <view class="title">{{item.storeName}}</view>
+      <view class="sale_box">
+        <text>销售额:</text>
+        <text> {{item.netSalesAmt}}元</text>
+        <image src='/images/shopPerform/arrows.png'></image>
+      </view>
+      <view class='progress'>
+        <progress class="progress" stroke-width='20rpx' percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'>
+        </progress>
+      </view>
     </view>
-    <view class='progress'>
-      <progress class="progress" stroke-width='20rpx' percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'>
-      </progress>
-    </view>
-  </view>
+  </scroll-view>
 </view>
-<!-- </view> -->

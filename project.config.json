@@ -61,6 +61,20 @@
 					"pathName": "pages/login/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/index",
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

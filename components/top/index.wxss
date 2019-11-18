@@ -15,8 +15,10 @@
   position: relative;
 }
 .goback{
-  height: 35rpx;
-  width: 35rpx;
+  height: 50rpx;
+  width: 150rpx;
   position: absolute;
-  left:20rpx
+  left:0rpx;
+  padding-left: 20rpx;
+  text-align: left;
 }

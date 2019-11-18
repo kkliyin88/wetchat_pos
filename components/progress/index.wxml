@@ -1,4 +1,5 @@
 <!--components/process/index.wxml-->
 <view class='wrap'>
-<view></view>
+<view class='ouer'>
+</view>
 </view>

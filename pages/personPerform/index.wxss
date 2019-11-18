@@ -144,3 +144,28 @@
   right: 140rpx;
   top: 28rpx;
 }
+
+
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  color:#ffffff;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+/* ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color:#FFFFFF;
+} */
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+   background-color:rgba(0, 0, 0, 0.1);
+}

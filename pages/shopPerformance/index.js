@@ -10,6 +10,7 @@ Page({
     pageData: [],
     areaList:[],
     dateTypeList: [],
+    windowHeight: '',
     query: {
       regionCode: '',
       dateType: 1,
@@ -17,7 +18,6 @@ Page({
     },       
   },
   gotoPersonPerform(e){
-    console.log('触发点击事件')
     wx.redirectTo({
       url: '/pages/personPerform/index?storeCode=' + e.currentTarget.dataset.storeCode + '&storeName=' + e.currentTarget.dataset.storeName + '&dateType=' + this.data.query.dateType + '&regionCode=' + this.data.query.regionCode
     })
@@ -64,7 +64,6 @@ Page({
     this.getPageData();
   },
   goback() {
-    console.log('触发点击事件')
     wx.redirectTo({
       url: '/pages/index/index'
     })
@@ -72,6 +71,11 @@ Page({
   getdateTypeList(){
     this.setData({
       dateTypeList: app.globalData.dateTypeList
+    })
+  },
+  getSystemInfo(){
+    this.setData({
+      windowHeight: app.globalData.systemInfo.windowHeight
     })
   },
   /**
@@ -91,6 +95,7 @@ Page({
     this.getdateTypeList();
     this.getAreaList();
     this.getPageData();
+    this.getSystemInfo();
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh(); //这句也很重要

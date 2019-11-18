@@ -31,6 +31,7 @@ const http = (params) => {
     } catch (e) {
       wx.showToast({
         title: '获取token失败',
+		 icon: 'none',
         duration: 2000
       })
     }

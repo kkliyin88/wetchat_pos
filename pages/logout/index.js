@@ -7,7 +7,7 @@ Page({
    */
   data: {
     url1: loginServer+'/sso/mobile/invalid?',
-    url2: loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer +'/sso/pages/callback/mp.html?path=/pages/index/index'
+    url2: loginServer + '/sso/mobileLogin?redirectUrl=' + loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer + '/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**

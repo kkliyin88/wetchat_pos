@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url: loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer + '/sso/pages/callback/mp.html?path=/pages/index/index'
+    url: loginServer + '/sso/mobileLogin?redirectUrl=' + loginServer + '/sso/oauth/authorize?response_type=token&client_id=mobilelogin&redirect_uri=' + loginServer +'/sso/pages/callback/mp.html?path=/pages/index/index'
   },
 
   /**

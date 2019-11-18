@@ -25,7 +25,7 @@
 <view class='container2' style="margin-top:{{container1Height+5+'px'}}">
   <view class='title'>业绩完成情况</view>
   <view class='person_box_wrap'>
-    <scroll-view scroll-y="true" style="max-height: 600rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll"  scroll-top="1">
+    <scroll-view scroll-y="true" style="max-height:500rpx" >
       <view wx:for='{{personData}}' wx:key='item.guideId' class='person_box'>
         <view class='name'>{{item.guideName}}</view>
         <view class='name' style='margin-left:20rpx'>销售额:</view>

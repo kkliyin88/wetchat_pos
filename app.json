@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/index/index",
     "pages/home/index",
     "pages/logout/index",
-    "pages/login/index",
     "pages/top/index",
     "pages/shopPerformance/index",
     "pages/personPerform/index",
