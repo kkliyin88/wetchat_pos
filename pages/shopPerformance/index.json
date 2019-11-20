@@ -2,7 +2,8 @@
   "usingComponents": 
   {
     "top": "/components/top/index",
-    "select": "/components/select/index"
+    "select": "/components/select/index",
+    "progress": "/components/progress/index"
   },
   "enablePullDownRefresh": true
 }

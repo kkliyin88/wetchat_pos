@@ -51,7 +51,9 @@ page {
   line-height: 33rpx;
   height: 34rpx;
 }
-
+.swiper_box,swiper {
+  height: 340rpx;
+}
 .title2 {
   height: 60rpx;
   line-height: 60rpx;
@@ -59,14 +61,13 @@ page {
   color: #fff;
   text-align: center;
 }
-
 .content_box {
   height: 120rpx;
-  width: 100%;
+  width: 98%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 70rpx;
+  margin-top: 50rpx;
 }
 
 .content {
@@ -92,16 +93,29 @@ page {
   line-height: 80rpx;
   font-size: 50rpx;
   color: #fff;
+  position: relative;
+  /* border: 1px solid green; */
+ width: 100%;
 }
 
-.container_content text {
+.container_content .actual_data {
   border-bottom: 1px solid #fff;
   height: 70rpx;
+  /* position: absolute; */
   line-height: 70rpx;
   padding: 0 15rpx;
   display: inline-block;
+  animation: dataMove 0.1s 1;
+  text-align: center;
 }
-
+@keyframes dataMove{
+   0% {
+   bottom:-30rpx;
+  }
+  100% {
+   bottom:0rpx;
+  }
+}
 .flex_box {
   display: flex;
   width: 100%;
@@ -183,8 +197,6 @@ page {
    bottom:15rpx;
   }
 }
-
-
 .add_box {
   height: 240rpx;
   width: 240rpx;
@@ -214,7 +226,9 @@ page {
   position: relative;
   margin-top: 70rpx;
 }
-
+.progress_box{
+  height: 100rpx;
+}
 .bottom_bg {
   height: 95rpx;
   width: 100%;

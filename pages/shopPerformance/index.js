@@ -92,6 +92,11 @@ Page({
         'query.regionCode': options.regionCode
       })
     }
+    if (options.memberBrandId) {
+      this.setData({
+        'query.memberBrandId': Number(options.memberBrandId)
+      })
+    }
     this.getdateTypeList();
     this.getAreaList();
     this.getPageData();

@@ -14,8 +14,24 @@ Page({
     userInfo: {},
     storeName: '',
     storeCode: '',
+    flashFlag:true,
+    menberBrandList: [{ id: '', desc:'实时销售额'}],
+    currentIndex:0,
+    time: '',
+    actualData: [],
+    swiperParams: {
+      indicatorDots: true,
+      autoplay: false,
+      interval: 3000,
+      duration: 500,
+      vertical: true,
+      current:0,
+      indicatorcolor: '#9EA8FF',
+      indicatoractivecolor: '#C1C7FA'
+    }
   },
   logout() {
+    wx.clearStorageSync('token_time')
     wx.redirectTo({
       url: '/pages/logout/index'
     })
@@ -30,7 +46,6 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode;
         })
-
         temp.unshift({
           text: '全国',
           value: '',
@@ -54,7 +69,7 @@ Page({
         duration: 2000
       })
       return
-    } 
+    }
     wx.redirectTo({
       url: '/pages/top/index'
     })
@@ -64,11 +79,9 @@ Page({
       addFlag: !this.data.addFlag
     });
   },
-    onPullDownRefresh: function() {
-  },
   gotoShopPerformance() {
     wx.redirectTo({
-      url: '/pages/shopPerformance/index'
+      url: '/pages/shopPerformance/index?memberBrandId=' + this.data.menberBrandList[this.data.currentIndex].id
     })
   },
   getShopList() {
@@ -87,13 +100,11 @@ Page({
     })
   },
   gotoPersonPerform() {
-    console.log('触发点击事件')
     wx.redirectTo({
-      url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode +'&dateType=1'
+      url: '/pages/personPerform/index?storeName=' + this.data.storeName + '&storeCode=' + this.data.storeCode + '&dateType=1'
     })
   },
   changePage_perform() {
-    //如果是导购员直接跳转到 导购员业绩
     let roles = app.globalData.userInfo.roles
     if (roles.length < 1) {
       wx.showToast({
@@ -124,13 +135,13 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode
         })
-        let manageFlag= false;
-        app.globalData.userInfo.roles.map((item)=>{
-          if (item.name.indexOf('高层')!=-1 || item.name.indexOf('超级')!=-1){
+        let manageFlag = false;
+        app.globalData.userInfo.roles.map((item) => {
+          if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('Superman') != -1) {
             manageFlag = true;
-           }
+          }
         })
-        if (manageFlag){
+        if (manageFlag) {
           res.data.data.unshift({
             text: '全国',
             value: '',
@@ -144,7 +155,6 @@ Page({
     })
   },
   getUserMsg() { //获取用户信息
-    console.log('获取用户信息')
     let params = {
       url: '/sso/user/info',
       server: loginServer
@@ -154,27 +164,41 @@ Page({
         userInfo: res.data
       })
       app.globalData.userInfo = res.data;
+      app.globalData.userInfo.roles.map((item) => { //高层才能看品牌
+        if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('Superman') != -1) {
+          this.getMenberList();
+        }
+      })
     }).catch((err) => {
       console.log('err'.err)
     })
   },
-  getPageData() {
+  getPageData(e) {
+    if(e){
+      this.setData({
+        currentIndex: e.detail.current
+      })
+    }
     let params = {
       url: 'behaviorapi/mini/pos/getStoreSalesDayInfo',
-      data: {}
+      data: { memberBrandId: this.data.menberBrandList[this.data.currentIndex].id}
     }
-   
-    wx.showLoading({
-      title: '加载中'
-    })
     http(params).then((res) => {
-      wx.hideLoading()
       if (res.data.code == 200) {
-        this.setData({
-          pageData: res.data.data
-        })
+        if (this.data.pageData.netSalesAmt != res.data.data.netSalesAmt){
+          this.setData({
+            flashFlag: false
+          });
+        }
+        setTimeout(()=>{
+          this.setData({
+            pageData: res.data.data,
+            flashFlag: true
+          });
+          
+        },100)
         return
-      }else{
+      } else {
         wx.showToast({
           title: res.data.message,
           icon: 'none',
@@ -185,33 +209,67 @@ Page({
       wx.hideLoading()
     })
   },
-  getSystemInfo(){
+  getSystemInfo() {
     wx.getSystemInfo({
       success: function (res) {
         app.globalData.systemInfo = res;
-
       }
     });
   },
-  onLoad: function(options) {
+  getMenberList() {
+    let params = {
+      url: '/behaviorapi/mini/fegin/listByDicCode?dicCode=1003',
+    }
+    if (this.data.menberBrandList.length>1) return false;
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+         menberBrandList =
+          this.setData({
+           menberBrandList: [...this.data.menberBrandList,...res.data.data]
+          })
+      } else {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 5000
+        })
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
+  onLoad: function (options) {
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
-      this.getAreaList();
-      this.getShopList();
-      this.getUserMsg();
+      wx.setStorageSync('token_time',new Date().getTime())
     }
-    if (app.globalData.userInfo){
-      this.setData({ userInfo: app.globalData.userInfo})
+    this.getUserMsg();
+    this.getAreaList();
+    this.getShopList();
+    if (app.globalData.userInfo) {
+      this.setData({ userInfo: app.globalData.userInfo })
     }
     this.getSystemInfo();
     this.getPageData();
+    let manageFlag = false;
+    
+  },
+  onReady() {
+    this.setData({
+      time: setInterval(() => {
+        this.getPageData();
+      }, 3000)
+    })
+  },
+  onUnload() {
+    clearInterval(this.data.time)
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh(); //这句也很重要
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getPageData();
       this.getUserMsg();
-    },500)
+    }, 500)
   },
 })

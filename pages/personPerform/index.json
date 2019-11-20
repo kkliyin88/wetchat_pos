@@ -3,7 +3,8 @@
   {
     "top": "/components/top/index",
     "select": "/components/select/index",
-	  "ec-canvas": "/common/ec-canvas/ec-canvas"
+	  "ec-canvas": "/common/ec-canvas/ec-canvas",
+    "progress": "/components/progress/index"
   },
   "enablePullDownRefresh": true
 }

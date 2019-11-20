@@ -1,1 +1,11 @@
 /* components/process/index.wxss */
+.wrap{
+  width: 100%;
+  position: relative;
+}
+.ouer,.inner{
+position: relative;
+}
+.content{
+ position: absolute;
+}

@@ -3,7 +3,8 @@
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
     "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
-    "top": "/components/top/index"
+    "top": "/components/top/index",
+    "progress": "/components/progress/index"
   },
  "enablePullDownRefresh": true
 }

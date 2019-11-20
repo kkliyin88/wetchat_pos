@@ -19,8 +19,7 @@
         <image src='/images/shopPerform/arrows.png'></image>
       </view>
       <view class='progress'>
-        <progress class="progress" stroke-width='20rpx' percent="50" activeColor='#7488EB' backgroundColor='#EAEDFD'>
-        </progress>
+        <progress class="progress" percent='80' ourterRadious='10rpx' activeRadious='10rpx'></progress>
       </view>
     </view>
   </scroll-view>
