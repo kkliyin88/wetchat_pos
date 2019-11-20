@@ -13,8 +13,10 @@ Page({
     windowHeight: '',
     query: {
       regionCode: '',
+      memberBrandId:'',
       dateType: 1,
-      pageNum:1,   
+      pageNum:1,
+      pageSize:200,
     },       
   },
   gotoPersonPerform(e){
@@ -82,6 +84,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    console.log('menberBrandList',app.globalData.menberBrandList);
+    console.log('currentMenberBrandIndex', app.globalData.currentMenberBrandIndex)
     if (options.dateType){
      this.setData({
        'query.dateType': options.dateType
@@ -92,11 +97,9 @@ Page({
         'query.regionCode': options.regionCode
       })
     }
-    if (options.memberBrandId) {
       this.setData({
-        'query.memberBrandId': Number(options.memberBrandId)
+        'query.memberBrandId': app.globalData.menberBrandList[app.globalData.currentMenberBrandIndex].id
       })
-    }
     this.getdateTypeList();
     this.getAreaList();
     this.getPageData();
@@ -107,5 +110,5 @@ Page({
     setTimeout(() => {
       this.getPageData();
     }, 500)
-  }
+  },
 })

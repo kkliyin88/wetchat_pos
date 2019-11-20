@@ -2,7 +2,7 @@
 <view class='wrap'>
   <view class='ouer' style="height:{{height}};background-color:{{backgroundColor}};border-radius:{{ourterRadious}}">
     <view class='inner' style="height:{{height}};background-color:{{activeColor}};width:{{percent+'%'}};border-radius:{{activeRadious}}">
-      <view wx:if='showInfo' class='content' style="color:{{textColor}};top:{{textTop}};right:{{textRight}};font-size:{{fontSize}}">
+      <view wx:if='{{showInfo}}' class='content' style="color:{{textColor}};top:{{textTop}};right:{{textRight}};font-size:{{fontSize}}">
         {{percent}}%
       </view>
     </view>

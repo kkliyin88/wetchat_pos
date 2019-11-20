@@ -27,7 +27,6 @@ Page({
     },
   },
   goback() {
-    console.log('触发点击事件')
     let flag = false; //如果为店员的话直接返回首页
     app.globalData.userInfo.roles.map((item) => {
       if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('区域') != -1 || item.name.indexOf('Superman') != -1) {
@@ -77,10 +76,18 @@ Page({
         let nosum = res.data.data.list.filter((item)=>{
           return item.guideName != '总计'
         })
-        this.setData({
-          sumData: res.data.data.list.slice(-1)[0],
-          personData: this.data.query.regionCode == "" ? nosum: nosum.slice(0, 5)
-        });
+        if (res.data.data.list.length<1){
+          this.setData({
+            sumData: {},
+            personData: []
+          });
+        }else{
+          this.setData({
+            sumData: res.data.data.list.slice(-1)[0],
+            personData: this.data.query.regionCode == "" ? nosum : nosum.slice(0, 5)
+          });
+        }
+       
       } else {
         wx.showToast({
           title: res.data.message,

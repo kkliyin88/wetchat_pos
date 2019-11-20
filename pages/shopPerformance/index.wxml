@@ -19,7 +19,7 @@
         <image src='/images/shopPerform/arrows.png'></image>
       </view>
       <view class='progress'>
-        <progress class="progress" percent='80' ourterRadious='10rpx' activeRadious='10rpx'></progress>
+        <progress class="progress" percent='{{item.netSalesAmt/300}}' showInfo='{{true}}' ourterRadious='10rpx' activeRadious='10rpx'></progress>
       </view>
     </view>
   </scroll-view>

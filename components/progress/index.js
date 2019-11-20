@@ -38,7 +38,7 @@ Component({
     },
     textRight: {
       type: String,
-      value: '-40rpx'
+      value: '0'
     },
     fontSize:{
       type: String,

@@ -3,6 +3,9 @@
   width: 100%;
   position: relative;
 }
+.ouer{
+  overflow: hidden
+}
 .ouer,.inner{
 position: relative;
 }

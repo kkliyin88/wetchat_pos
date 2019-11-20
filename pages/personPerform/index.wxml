@@ -32,7 +32,7 @@
         <view class='name' style='margin-left:8rpx'>{{item.netSalesAmt}}</view>
         <view class='name' style='margin-left:8rpx'>元</view>
         <view class='process'>
-           <progress class="progress" percent='80' ourterRadious='10rpx' activeRadious='10rpx'></progress>
+           <progress class="progress" percent='{{item.netSalesAmt/30}}' ourterRadious='10rpx' activeRadious='10rpx'></progress>
         </view>
       </view>
     </scroll-view>

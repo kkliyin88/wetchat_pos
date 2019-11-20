@@ -34,6 +34,8 @@ App({
   globalData: {
     userInfo: {},
     systemInfo:{},
+    menberBrandList: [{id:'',desc:'今日销售额'}],//会员品牌列表
+    currentMenberBrandIndex:0,
     dateTypeList: [{
       "id": "1",
       "text": '当天',

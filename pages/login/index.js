@@ -15,9 +15,7 @@ Page({
   onLoad: function (options) {
     let token_time = wx.getStorageSync('token_time');
     let now_time = new Date().getTime();
-    console.log('betwn_time', now_time - token_time)
     if (token_time && now_time - token_time<518400000){
-     
       wx.redirectTo({
         url: '/pages/index/index'
       })

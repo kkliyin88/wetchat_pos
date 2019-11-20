@@ -8,15 +8,19 @@ import {
 } from '../../utils/http.js';
 Page({
   data: {
-    pageData: {},
+    pageData: {
+      netSalesAmt: ''
+    },
     addFlag: true,
     areaList: [],
     userInfo: {},
     storeName: '',
     storeCode: '',
-    flashFlag:true,
-    menberBrandList: [{ id: '', desc:'实时销售额'}],
-    currentIndex:0,
+    titie: '',
+    listAll: [],
+    rollCssArr: [],
+    menberBrandList: [],
+    currentIndex: 0,
     time: '',
     actualData: [],
     swiperParams: {
@@ -25,7 +29,7 @@ Page({
       interval: 3000,
       duration: 500,
       vertical: true,
-      current:0,
+      current: 0,
       indicatorcolor: '#9EA8FF',
       indicatoractivecolor: '#C1C7FA'
     }
@@ -81,7 +85,7 @@ Page({
   },
   gotoShopPerformance() {
     wx.redirectTo({
-      url: '/pages/shopPerformance/index?memberBrandId=' + this.data.menberBrandList[this.data.currentIndex].id
+      url: '/pages/shopPerformance/index'
     })
   },
   getShopList() {
@@ -167,6 +171,18 @@ Page({
       app.globalData.userInfo.roles.map((item) => { //高层才能看品牌
         if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('Superman') != -1) {
           this.getMenberList();
+        } else {
+          this.setData({
+            menberBrandList: [{
+              id: '',
+              desc: '今日销售额'
+            }]
+          })
+          app.globalData.currentMenberBrandIndex = 0;
+          app.globalData.menberBrandList = [{
+            id: '',
+            desc: '今日销售额'
+          }]
         }
       })
     }).catch((err) => {
@@ -174,29 +190,49 @@ Page({
     })
   },
   getPageData(e) {
-    if(e){
-      this.setData({
-        currentIndex: e.detail.current
-      })
+    if (e) {
+      app.globalData.currentMenberBrandIndex = e.detail.current
     }
     let params = {
       url: 'behaviorapi/mini/pos/getStoreSalesDayInfo',
-      data: { memberBrandId: this.data.menberBrandList[this.data.currentIndex].id}
+      data: {
+        memberBrandId: app.globalData.menberBrandList[app.globalData.currentMenberBrandIndex].id
+      }
     }
     http(params).then((res) => {
       if (res.data.code == 200) {
-        if (this.data.pageData.netSalesAmt != res.data.data.netSalesAmt){
-          this.setData({
-            flashFlag: false
-          });
+        
+        let listInit = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let prevArray = [4, 8, 9] //this.data.pageData.netSalesAmt.toString().split("")
+        console.log('prevArray', prevArray);
+        let nextArray = [6,8,8] //res.data.data.netSalesAmt.toString().split("")
+        console.log('nextArray', nextArray);
+        let listAll = [];
+        for (let i = 0; i < nextArray.length; i++) {
+          let prevNumber = prevArray[i];
+          let nextNumber = nextArray[i];
+          let start = -1;
+          let end = -1;
+          for (let j = 0; j < listInit.length; j++) {
+            if (listInit[j] === prevNumber) {
+              start = j;
+            }
+            if (prevArray[i] - nextArray[i] > 0) {
+              end = j;
+            }
+            if (start !== -1 && listInit[j] === nextNumber) {
+              end = j;
+              break;
+            }
+          }
+          listAll.push(listInit.slice(start, end + 1));
         }
-        setTimeout(()=>{
-          this.setData({
-            pageData: res.data.data,
-            flashFlag: true
-          });
-          
-        },100)
+        console.log('listAll', listAll);
+        this.setData({
+          pageData: res.data.data,
+          listAll: listAll
+        });
+        cosole.log('pageData',this.data.pageData)
         return
       } else {
         wx.showToast({
@@ -211,7 +247,7 @@ Page({
   },
   getSystemInfo() {
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         app.globalData.systemInfo = res;
       }
     });
@@ -220,13 +256,18 @@ Page({
     let params = {
       url: '/behaviorapi/mini/fegin/listByDicCode?dicCode=1003',
     }
-    if (this.data.menberBrandList.length>1) return false;
     http(params).then((res) => {
       if (res.data.code == 200) {
-         menberBrandList =
-          this.setData({
-           menberBrandList: [...this.data.menberBrandList,...res.data.data]
-          })
+        let result = res.data.data.filter((item) => {
+          return item.id !== 534 //过滤稳健医疗
+        })
+        app.globalData.menberBrandList = [{
+          id: '',
+          desc: '今日销售额'
+        }, ...result]
+        this.setData({
+          menberBrandList: app.globalData.menberBrandList
+        })
       } else {
         wx.showToast({
           title: res.data.message,
@@ -238,22 +279,23 @@ Page({
       wx.hideLoading()
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
-      wx.setStorageSync('token_time',new Date().getTime())
+      wx.setStorageSync('token_time', new Date().getTime());
     }
+    app.globalData.currentMenberBrandIndex = 0
     this.getUserMsg();
     this.getAreaList();
     this.getShopList();
     if (app.globalData.userInfo) {
-      this.setData({ userInfo: app.globalData.userInfo })
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
     }
     this.getSystemInfo();
     this.getPageData();
-    let manageFlag = false;
-    
   },
   onReady() {
     this.setData({
@@ -263,9 +305,9 @@ Page({
     })
   },
   onUnload() {
-    clearInterval(this.data.time)
+    clearInterval(this.data.time);
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh(); //这句也很重要
     setTimeout(() => {
       this.getPageData();

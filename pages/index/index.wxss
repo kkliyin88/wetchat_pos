@@ -69,7 +69,6 @@ page {
   justify-content: space-around;
   margin-top: 50rpx;
 }
-
 .content {
   height: 120rpx;
   width: 30%;
@@ -77,7 +76,6 @@ page {
   flex-direction: column;
   justify-content: space-around;
 }
-
 .content_box .content .text {
   text-align: center;
   color: #fff;
@@ -99,15 +97,164 @@ page {
 }
 
 .container_content .actual_data {
-  border-bottom: 1px solid #fff;
-  height: 70rpx;
-  /* position: absolute; */
-  line-height: 70rpx;
-  padding: 0 15rpx;
+  border-bottom: 1px solid #FFF;
+  font-size: 60rpx;
+  height: 50px;
+  position: relative;
+  line-height: 50px;
+  /* padding: 0 15rpx; */
   display: inline-block;
-  animation: dataMove 0.1s 1;
   text-align: center;
 }
+
+.text_block{
+  height:  50px;
+  line-height: 50px;
+  width: 40rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  color: #FFF;
+}
+.roll{
+  height:  50px;
+  line-height: 50px;
+  width: 40rpx;
+  /* display: inline-block; */
+  border: 1px solid green;
+  text-align: center;
+  color: #FFF;
+  z-index: 100
+}
+.roll_0{
+  animation: roll_0 3s forwards; 
+}
+.roll_1{
+  animation: roll_1 3s forwards; 
+}
+.roll_2{
+  animation: roll_2 3s forwards; 
+}
+.roll_3{
+  animation: roll_3 3s forwards; 
+}
+.roll_4{
+  animation: roll_4 3s forwards; 
+}
+.roll_5{
+  animation: roll_5 3s forwards; 
+}
+.roll_6{
+  animation: roll_6 3s forwards; 
+}
+.roll_7{
+  animation: roll_7 3s forwards; 
+}
+.roll_8{
+  animation: roll_8 3s forwards; 
+}
+.roll_9{
+  animation: roll_9 3s forwards; 
+}
+
+@keyframes roll_0
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, 0px, 0);
+    }
+  }
+
+@keyframes roll_1 
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -50px, 0);
+    }
+  }
+@keyframes roll_2 
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -100px, 0);
+    }
+  }
+  @keyframes roll_3
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -150px, 0);
+    }
+  }
+    @keyframes roll_4
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -200px, 0);
+    }
+  }
+     @keyframes roll_5{
+  
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -250px, 0);
+    }
+  }
+      @keyframes roll_6
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -300px, 0);
+    }
+  }
+      @keyframes roll_7
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -350px, 0);
+    }
+  }
+  @keyframes roll_8
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -400px, 0);
+    }
+  }
+  @keyframes roll_9
+  {
+    0% {
+      transform: translate3d(0, 0px, 0);
+    }
+    100% {
+      transform: translate3d(0, -450px, 0);
+    }
+  }
+
+.container_content .actual_data text{
+  display: inline-block;
+  animation: dataMove 0.1s 1;
+  /* position: absolute; */
+}
+
 @keyframes dataMove{
    0% {
    bottom:-30rpx;
@@ -219,7 +366,6 @@ page {
 .add_box .profit {
   right: -50rpx;
 }
-
 .add_box image.add {
   width: 58rpx;
   height: 58rpx;
