@@ -97,32 +97,47 @@ page {
 }
 
 .container_content .actual_data {
+  display: inline-flex;
   border-bottom: 1px solid #FFF;
-  font-size: 60rpx;
-  height: 80rpx;
-  position: relative;
-  line-height: 80rpx;
+  font-size: 28px;
+  /* height: 80rpx; */
+  height: 36px;
+  /* position: relative; */
+  /* line-height: 80rpx; */
   padding: 0 15rpx;
-  display: inline-block;
-  text-align: center;
+  /* display: inline-block; */
+  /* text-align: center; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 .text_block{
-  height:  50rpx;
-  line-height: 50rpx;
-  width: 40rpx;
-  display: inline-block;
- overflow: hidden; 
-  text-align: center;
+  /* position: relative; */
+  height: 36px;
+  width: 20px;
   color: #FFF;
+  /* line-height: 30px; */
+  /* display: inline-block; */
+  text-align: center;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; */
+  /* border: 1px solid #fff; */
+  /* box-sizing: border-box; */
+  overflow: hidden; 
 }
-.roll{
-  height:  50rpx;
-  line-height: 50rpx;
-  width: 40rpx;
+.roll view{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  height:  30px;
+  line-height: 30px;
+  /* width: 20px;
   display: inline-block;
   text-align: center;
-  color: #FFF;
+  color: #FFF; */
 }
 .roll_0{
   animation: roll_0 1s forwards; 
@@ -158,92 +173,91 @@ page {
 @keyframes roll_0
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -1rpx, 0);
+      transform: translateY(0px);
     }
   }
 
 @keyframes roll_1 
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -49rpx, 0);
+      transform: translateY(-30px);
     }
   }
 @keyframes roll_2 
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -99rpx, 0);
+      transform: translateY(-60px);
     }
   }
   @keyframes roll_3
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -149rpx, 0);
+      transform: translateY(-90px);
     }
   }
     @keyframes roll_4
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -198rpx, 0);
+      transform: translateY(-120px);
     }
   }
      @keyframes roll_5{
-  
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -247rpx, 0);
+      transform: translateY(-150px);
     }
   }
       @keyframes roll_6
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -296rpx, 0);
+      transform: translateY(-180px);
     }
   }
       @keyframes roll_7
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -345rpx, 0);
+      transform: translateY(-210px);
     }
   }
   @keyframes roll_8
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -394rpx, 0);
+      transform: translateY(-240px);
     }
   }
   @keyframes roll_9
   {
     0% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate3d(0, -442rpx, 0);
+      transform: translateY(-270px);
     }
   }
 

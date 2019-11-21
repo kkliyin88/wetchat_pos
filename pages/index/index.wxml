@@ -14,14 +14,16 @@
             <view class='actual_data'>
             <!-- {{pageData.netSalesAmt}} -->
                <view  class='text_block' wx:for='{{listAll}}'  wx:for-item="initListArr"  wx:key='{{item.index}}' > 
-                  <view wx:if='{{initListArr.length>0}}'> 
+                  <block wx:if='{{initListArr.length>0}}'> 
                   
-                    <view  wx:for='{{initListArr}}' wx:for-item="number" wx:key='{{item.index}}' class='roll roll_{{initListArr.length-1}}' >
-                     {{number}}
+                    <view class='roll roll_{{initListArr.length-1}}' >
+                    <view wx:for='{{initListArr}}' wx:for-item="number" wx:key='{{item.index}}'>{{number}}</view>             
                     </view>
-                  </view>
+                  </block>
                   <view wx:else >
-                    <view class='roll'>.</view>
+                    <view class='roll'>
+                    <view>.</view>
+                    </view>
                   </view>
                </view>
             </view>
