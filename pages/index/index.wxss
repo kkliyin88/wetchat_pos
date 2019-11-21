@@ -99,62 +99,60 @@ page {
 .container_content .actual_data {
   border-bottom: 1px solid #FFF;
   font-size: 60rpx;
-  height: 50px;
+  height: 80rpx;
   position: relative;
-  line-height: 50px;
-  /* padding: 0 15rpx; */
+  line-height: 80rpx;
+  padding: 0 15rpx;
   display: inline-block;
   text-align: center;
 }
 
 .text_block{
-  height:  50px;
-  line-height: 50px;
+  height:  50rpx;
+  line-height: 50rpx;
   width: 40rpx;
   display: inline-block;
-  overflow: hidden;
+ overflow: hidden; 
   text-align: center;
   color: #FFF;
 }
 .roll{
-  height:  50px;
-  line-height: 50px;
+  height:  50rpx;
+  line-height: 50rpx;
   width: 40rpx;
-  /* display: inline-block; */
-  border: 1px solid green;
+  display: inline-block;
   text-align: center;
   color: #FFF;
-  z-index: 100
 }
 .roll_0{
-  animation: roll_0 3s forwards; 
+  animation: roll_0 1s forwards; 
 }
 .roll_1{
-  animation: roll_1 3s forwards; 
+  animation: roll_1 1s forwards; 
 }
 .roll_2{
-  animation: roll_2 3s forwards; 
+  animation: roll_2 1s forwards; 
 }
 .roll_3{
-  animation: roll_3 3s forwards; 
+  animation: roll_3 1s forwards; 
 }
 .roll_4{
-  animation: roll_4 3s forwards; 
+  animation: roll_4 1s forwards; 
 }
 .roll_5{
-  animation: roll_5 3s forwards; 
+  animation: roll_5 1s forwards; 
 }
 .roll_6{
-  animation: roll_6 3s forwards; 
+  animation: roll_6 1s forwards; 
 }
 .roll_7{
-  animation: roll_7 3s forwards; 
+  animation: roll_7 1s forwards; 
 }
 .roll_8{
-  animation: roll_8 3s forwards; 
+  animation: roll_8 1s forwards; 
 }
 .roll_9{
-  animation: roll_9 3s forwards; 
+  animation: roll_9 1s forwards; 
 }
 
 @keyframes roll_0
@@ -163,7 +161,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, 0px, 0);
+      transform: translate3d(0, -1rpx, 0);
     }
   }
 
@@ -173,7 +171,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -50px, 0);
+      transform: translate3d(0, -49rpx, 0);
     }
   }
 @keyframes roll_2 
@@ -182,7 +180,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -100px, 0);
+      transform: translate3d(0, -99rpx, 0);
     }
   }
   @keyframes roll_3
@@ -191,7 +189,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -150px, 0);
+      transform: translate3d(0, -149rpx, 0);
     }
   }
     @keyframes roll_4
@@ -200,7 +198,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -200px, 0);
+      transform: translate3d(0, -198rpx, 0);
     }
   }
      @keyframes roll_5{
@@ -209,7 +207,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -250px, 0);
+      transform: translate3d(0, -247rpx, 0);
     }
   }
       @keyframes roll_6
@@ -218,7 +216,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -300px, 0);
+      transform: translate3d(0, -296rpx, 0);
     }
   }
       @keyframes roll_7
@@ -227,7 +225,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -350px, 0);
+      transform: translate3d(0, -345rpx, 0);
     }
   }
   @keyframes roll_8
@@ -236,7 +234,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -400px, 0);
+      transform: translate3d(0, -394rpx, 0);
     }
   }
   @keyframes roll_9
@@ -245,7 +243,7 @@ page {
       transform: translate3d(0, 0px, 0);
     }
     100% {
-      transform: translate3d(0, -450px, 0);
+      transform: translate3d(0, -442rpx, 0);
     }
   }
 

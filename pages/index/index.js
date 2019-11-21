@@ -9,17 +9,20 @@ import {
 Page({
   data: {
     pageData: {
-      netSalesAmt: ''
+      netSalesAmt: 0
     },
     addFlag: true,
     areaList: [],
     userInfo: {},
     storeName: '',
     storeCode: '',
+    listAll1:[],
+    listAll2: [],
     titie: '',
     listAll: [],
     rollCssArr: [],
     menberBrandList: [],
+    statusBarHeight:0,
     currentIndex: 0,
     time: '',
     actualData: [],
@@ -88,6 +91,10 @@ Page({
       url: '/pages/shopPerformance/index'
     })
   },
+   changeswiper(e){
+     this.getPageData(e);
+    
+   },
   getShopList() {
     let params = {
       url: 'behaviorapi/mini/fegin/listStore',
@@ -201,16 +208,27 @@ Page({
     }
     http(params).then((res) => {
       if (res.data.code == 200) {
-        
         let listInit = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-        let prevArray = [4, 8, 9] //this.data.pageData.netSalesAmt.toString().split("")
-        console.log('prevArray', prevArray);
-        let nextArray = [6,8,8] //res.data.data.netSalesAmt.toString().split("")
-        console.log('nextArray', nextArray);
+        let prevArray0 = this.data.pageData.netSalesAmt.toFixed(2)
+        let prevArray = prevArray0.toString().split("")
+        let nextArray0 = res.data.data.netSalesAmt.toFixed(2); 
+        let nextArray = nextArray0.toString().split("")
+        if (nextArray.length > prevArray.length) {
+          let temp = nextArray.length - prevArray.length
+          
+          let filterarr = new Array(temp).fill('0')
+          prevArray.splice(prevArray.length - 3, 0, ...filterarr)
+        } else if (nextArray.length < prevArray.length){
+          let temp = prevArray.length - nextArray.length
+          let filterarr = new Array(temp).fill('0')
+          nextArray.splice(1, 0, ...filterarr)
+        }
+        console.log('prevArray', prevArray)
+        console.log('nextArray', nextArray)
         let listAll = [];
         for (let i = 0; i < nextArray.length; i++) {
-          let prevNumber = prevArray[i];
-          let nextNumber = nextArray[i];
+          let prevNumber = Number(prevArray[i]);
+          let nextNumber = Number(nextArray[i]);
           let start = -1;
           let end = -1;
           for (let j = 0; j < listInit.length; j++) {
@@ -227,12 +245,11 @@ Page({
           }
           listAll.push(listInit.slice(start, end + 1));
         }
-        console.log('listAll', listAll);
+        console.log('listAll',listAll)
         this.setData({
           pageData: res.data.data,
-          listAll: listAll
+          listAll: listAll,
         });
-        cosole.log('pageData',this.data.pageData)
         return
       } else {
         wx.showToast({
@@ -251,6 +268,9 @@ Page({
         app.globalData.systemInfo = res;
       }
     });
+    this.setData({
+      statusBarHeight: app.globalData.systemInfo.statusBarHeight
+    })
   },
   getMenberList() {
     let params = {
@@ -301,7 +321,7 @@ Page({
     this.setData({
       time: setInterval(() => {
         this.getPageData();
-      }, 3000)
+      }, 5000)
     })
   },
   onUnload() {
