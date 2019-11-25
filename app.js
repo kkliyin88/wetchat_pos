@@ -1,38 +1,47 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+    const updateManager = wx.getUpdateManager();
+    //检测版本更新
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      if (res.hasUpdate) {
+        //监听小程序有版本更新事件
+        //新的版本已经下载好，调用 applyUpdate 应用新版本并重启 （ 此处进行了自动更新操作）
+        wx.showModal({
+          title: '提示',
+          content: '检测到有新版本，是否更新？',
+          success: function (res) {
+            if (res.confirm) {
+              wx.showLoading({
+                title: '更新中...',
+              })
+              updateManager.onUpdateReady(function () {
+                wx.hideLoading();
+                updateManager.applyUpdate();
+              })
+            } else if (res.cancel) {
+              wx.showToast({
+                title: '取消更新',
+                duration: 2000,
+                icon: 'none'
+              });
             }
+          }
+        })
+        updateManager.onUpdateFailed(function () {
+          // 新版本下载失败
+          wx.showModal({
+            title: '已经有新版本喽~',
+            content: '请您删除当前小程序,通过二维码重新获取',
           })
-        }
+        })
       }
-    })
+    });
   },
   globalData: {
     userInfo: {},
+    roleLevel:null, // 1 是高层super 2 区域经理 3 店员 4 无权限
     systemInfo:{},
     menberBrandList: [{id:'',desc:'今日销售额'}],//会员品牌列表
     currentMenberBrandIndex:0,

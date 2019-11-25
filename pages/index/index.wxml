@@ -15,7 +15,6 @@
             <!-- {{pageData.netSalesAmt}} -->
                <view  class='text_block' wx:for='{{listAll}}'  wx:for-item="initListArr"  wx:key='{{item.index}}' > 
                   <block wx:if='{{initListArr.length>0}}'> 
-                  
                     <view class='roll roll_{{initListArr.length-1}}' >
                     <view wx:for='{{initListArr}}' wx:for-item="number" wx:key='{{item.index}}'>{{number}}</view>             
                     </view>
@@ -65,19 +64,19 @@
   </view>
 </view>
 <view class='top' bindtap="gototop">
-  <image src='/images/index/top.png'></image>
+  <image src='https://resource.pureh2b.com/wechat-look-start-platform/image/top.png'></image>
   <text>畅销商品排行</text>
 </view>
 <view wx:if='{{addFlag}}' class='add_wrap'>
   <view class="add_box" align="center" style='border:none'>
-    <image bindtap="changIcon" class='add' src="/images/index/add.png"></image>
+    <image bindtap="changIcon" class='add' src="https://resource.pureh2b.com/wechat-look-start-platform/image/add.png"></image>
   </view>
 </view>
 <view wx:else class='add_wrap'>
   <view class="add_box" align="center">
-    <image bindtap="changePage_perform" class='sale' src="/images/index/sale.png"></image>
-    <image bindtap="gotoProfit" class='profit' src="/images/index/profit.png"></image>
-    <image bindtap="changIcon" class='add' src="/images/index/clear.png"></image>
+    <image bindtap="changePage_perform" class='sale' src="https://resource.pureh2b.com/wechat-look-start-platform/image/sale.png"></image>
+    <image bindtap="gotoProfit" class='profit' src="https://resource.pureh2b.com/wechat-look-start-platform/image/profit.png"></image>
+    <image bindtap="changIcon" class='add' src="https://resource.pureh2b.com/wechat-look-start-platform/image/clear.png"></image>
   </view>
 </view>
 <view class='bottom_bg'>

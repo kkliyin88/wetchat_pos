@@ -13,12 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let token_time = wx.getStorageSync('token_time');
-    let now_time = new Date().getTime();
-    if (token_time && now_time - token_time<518400000){
-      wx.redirectTo({
-        url: '/pages/index/index'
-      })
-    }
+   
   },
 })

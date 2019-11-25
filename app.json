@@ -1,14 +1,56 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/index/index",
+    "pages/login/index",
     "pages/home/index",
     "pages/logout/index",
     "pages/top/index",
     "pages/shopPerformance/index",
     "pages/personPerform/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+	"pages/main/index",
+	"pages/topAnalyze/index",
+	"pages/offLine/index",
+	"pages/electronicBusiness/index",
+	"pages/budget/index",
+	"pages/line/index"
   ],
+  "tabBar": {
+    "color": "#CCCCCC",
+    "selectedColor": "#5E73F5",
+    "list": [
+      {
+        "iconPath": "images/tabbar/zongti.png",
+        "selectedIconPath": "images/tabbar/zongti1.png",
+        "pagePath": "pages/index/index",
+        "text": "总体"
+      },
+      {
+        "iconPath": "images/tabbar/xianxia.png",
+        "selectedIconPath": "images/tabbar/xianxia1.png",
+        "pagePath": "pages/offLine/index",
+        "text":"线下"
+      },
+      {
+        "iconPath": "images/tabbar/dianshang.png",
+        "selectedIconPath": "images/tabbar/dianshang1.png",
+        "pagePath": "pages/electronicBusiness/index",
+        "text": "电商"
+      },
+      {
+        "iconPath": "images/tabbar/topAnalyze.png",
+        "selectedIconPath": "images/tabbar/topAnalyze.png",
+        "pagePath": "pages/topAnalyze/index",
+        "text": "Top分析"
+      },
+      { 
+        "iconPath": "images/tabbar/yusuan.png",
+        "selectedIconPath": "images/tabbar/yusuan1.png",
+        "pagePath": "pages/line/index",
+        "text": "line"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationStyle": "custom",

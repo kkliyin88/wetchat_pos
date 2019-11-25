@@ -16,11 +16,8 @@ Page({
     userInfo: {},
     storeName: '',
     storeCode: '',
-    listAll1:[],
-    listAll2: [],
     titie: '',
     listAll: [],
-    rollCssArr: [],
     menberBrandList: [],
     statusBarHeight:0,
     currentIndex: 0,
@@ -29,8 +26,6 @@ Page({
     swiperParams: {
       indicatorDots: true,
       autoplay: false,
-      interval: 3000,
-      duration: 500,
       vertical: true,
       current: 0,
       indicatorcolor: '#9EA8FF',
@@ -38,7 +33,6 @@ Page({
     }
   },
   logout() {
-    wx.clearStorageSync('token_time')
     wx.redirectTo({
       url: '/pages/logout/index'
     })
@@ -69,7 +63,7 @@ Page({
   },
   gototop() {
     let roles = app.globalData.userInfo.roles
-    if (roles.length < 1 || (roles.length == 1 && roles[0].name == '店员')) {
+    if (app.globalData.roleLevel == 3) {
       wx.showToast({
         title: '您没有权限查看该页面,如有需要请联系管理员!',
         icon: 'none',
@@ -93,7 +87,9 @@ Page({
   },
    changeswiper(e){
      this.getPageData(e);
-    
+    setTimeout(()=>{
+      this.getPageData(e);
+    },300)
    },
   getShopList() {
     let params = {
@@ -130,11 +126,14 @@ Page({
     }
   },
   gotoProfit() {
-    wx.showToast({
-      title: '页面待开发',
-      icon: 'none',
-      duration: 2000
+    wx.redirectTo({
+      url: '/pages/main/index'
     })
+    // wx.showToast({
+    //   title: '页面待开发',
+    //   icon: 'none',
+    //   duration: 2000
+    // })
   },
   getAreaList() {
     let params = {
@@ -146,13 +145,7 @@ Page({
           item.text = item.regionName;
           item.value = item.regionCode
         })
-        let manageFlag = false;
-        app.globalData.userInfo.roles.map((item) => {
-          if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('Superman') != -1) {
-            manageFlag = true;
-          }
-        })
-        if (manageFlag) {
+        if (app.globalData.roleLevel==1) {
           res.data.data.unshift({
             text: '全国',
             value: '',
@@ -165,33 +158,46 @@ Page({
       console.log('err'.err)
     })
   },
-  getUserMsg() { //获取用户信息
+  getUserInfo() { //获取用户信息
     let params = {
       url: '/sso/user/info',
       server: loginServer
     }
     http(params).then((res) => {
+      
       this.setData({
         userInfo: res.data
       })
       app.globalData.userInfo = res.data;
-      app.globalData.userInfo.roles.map((item) => { //高层才能看品牌
-        if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('Superman') != -1) {
-          this.getMenberList();
-        } else {
-          this.setData({
-            menberBrandList: [{
-              id: '',
-              desc: '今日销售额'
-            }]
-          })
-          app.globalData.currentMenberBrandIndex = 0;
-          app.globalData.menberBrandList = [{
+      //设置全局的权限
+
+      let roleStr= ''
+      app.globalData.userInfo.roles.map((item)=>{
+        roleStr = roleStr + item.name
+      })
+      if (roleStr.indexOf('超级') != -1 || roleStr.indexOf('高层') != -1 || roleStr.indexOf('Superman') != -1){
+        app.globalData.roleLevel = 1;
+      } else if (roleStr.indexOf('区域') != -1 || roleStr.indexOf('经理') != -1){
+        app.globalData.roleLevel = 2;
+      } else if (roleStr.indexOf('店员') != -1 || roleStr.indexOf('导购') != -1){
+        app.globalData.roleLevel = 3;
+      }else{
+        app.globalData.roleLevel = 4;
+      }
+      if (app.globalData.roleLevel==1){
+        this.getMenberList();
+      }else{
+        this.setData({
+          menberBrandList: [{
             id: '',
             desc: '今日销售额'
           }]
-        }
-      })
+        })
+        app.globalData.menberBrandList = [{
+          id: '',
+          desc: '今日销售额'
+        }]
+      }
     }).catch((err) => {
       console.log('err'.err)
     })
@@ -213,18 +219,16 @@ Page({
         let prevArray = prevArray0.toString().split("")
         let nextArray0 = res.data.data.netSalesAmt.toFixed(2); 
         let nextArray = nextArray0.toString().split("")
+
         if (nextArray.length > prevArray.length) {
           let temp = nextArray.length - prevArray.length
-          
           let filterarr = new Array(temp).fill('0')
-          prevArray.splice(prevArray.length - 3, 0, ...filterarr)
+          prevArray.splice(0, 0, ...filterarr)
         } else if (nextArray.length < prevArray.length){
           let temp = prevArray.length - nextArray.length
           let filterarr = new Array(temp).fill('0')
-          nextArray.splice(1, 0, ...filterarr)
+          nextArray.splice(0, 0, ...filterarr)
         }
-        console.log('prevArray', prevArray)
-        console.log('nextArray', nextArray)
         let listAll = [];
         for (let i = 0; i < nextArray.length; i++) {
           let prevNumber = Number(prevArray[i]);
@@ -235,9 +239,9 @@ Page({
             if (listInit[j] === prevNumber) {
               start = j;
             }
-            if (prevArray[i] - nextArray[i] > 0) {
-              end = j;
-            }
+            // if (prevArray[i] - nextArray[i] > 0) {
+            //   end = j;
+            // }
             if (start !== -1 && listInit[j] === nextNumber) {
               end = j;
               break;
@@ -245,7 +249,6 @@ Page({
           }
           listAll.push(listInit.slice(start, end + 1));
         }
-        console.log('listAll',listAll)
         this.setData({
           pageData: res.data.data,
           listAll: listAll,
@@ -259,6 +262,7 @@ Page({
         })
       }
     }).catch((err) => {
+      console.log('err', err)
       wx.hideLoading()
     })
   },
@@ -303,10 +307,9 @@ Page({
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
-      wx.setStorageSync('token_time', new Date().getTime());
     }
     app.globalData.currentMenberBrandIndex = 0
-    this.getUserMsg();
+    this.getUserInfo();
     this.getAreaList();
     this.getShopList();
     if (app.globalData.userInfo) {
@@ -327,11 +330,5 @@ Page({
   onUnload() {
     clearInterval(this.data.time);
   },
-  onPullDownRefresh: function() {
-    wx.stopPullDownRefresh(); //这句也很重要
-    setTimeout(() => {
-      this.getPageData();
-      this.getUserMsg();
-    }, 500)
-  },
+  
 })

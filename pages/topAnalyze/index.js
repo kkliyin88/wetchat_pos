@@ -93,51 +93,27 @@ Page({
 		monthFlag:false,
 		sumFlag:false,
 		sameCompareFlag:false,
-		budgetFlag:false
+		budgetFlag:false,
+		popFlag:false,
 	},
 	ec: {
 	  onInit: initChart
 	},
    listData:[
-     {"code":"收入","text":"text1","type":"type1",name:'DW'},
-     {"code":"成本","text":"text2","type":"type2",name:'DW'},
-     {"code":"毛利","text":"text3","type":"type3",name:'DW'},
-     {"code":'费用',"text":"text4","type":"type4",name:'DW'},
-     {"code":"利润","text":"text5","type":"type5",name:'DW'},
-    
+     {"code":"01","text":"text1","type":"type1"},
+     {"code":"02","text":"text2","type":"type2"},
+     {"code":"03","text":"text3","type":"type3"},
+     {"code":"04","text":"text4","type":"type4"},
+     {"code":"05","text":"text5","type":"type5"},
+     {"code":"06","text":"text6","type":"type6"},
+     {"code":"07","text":"text7","type":"type7"}
    ],
-  //  columns:[
-	//    {},
-	//    {title:'2017年',key:'yearone'},
-	//    {title:'2018年',key:'yeartwo'},
-	//    {title:'2019年',key:'yearthree'},
-  //  ],
-    columns: [
-      {
-        title: '',
-        key: 'code',
-        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-        width: '110rpx'
-      },
-      {
-      title: '2017年',
-        key: 'text',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-      // width: '110rpx'
-    },
-    {
-      title: '2018年',
-      key: 'type',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
-      width: '110rpx'
-    },
-    {
-      title: '2019年',
-      // width: '110rpx',
-      key: 'name',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
-    }
-    ]
+   columns:[
+	   {},
+	   {title:'2017年',key:'yearone'},
+	   {title:'2018年',key:'yeartwo'},
+	   {title:'2019年',key:'yearthree'},
+   ]
   },
   
   changeCondition(e){

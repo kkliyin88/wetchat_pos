@@ -10,13 +10,13 @@
       <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
     </view>
   </view>
-  <scroll-view scroll-y="true" style="max-height:{{windowHeight-150}}px">
+  <scroll-view scroll-y="true" style="max-height:{{windowHeight-150}}px;border-radious:10rpx">
     <view class='li_box' wx:for='{{pageData}}' wx:key='index' data-store-code='{{item.storeCode}}' data-store-name='{{item.storeName}}' bindtap='gotoPersonPerform'>
       <view class="title">{{item.storeName}}</view>
       <view class="sale_box">
         <text>销售额:</text>
         <text> {{item.netSalesAmt}}元</text>
-        <image src='/images/shopPerform/arrows.png'></image>
+        <image src='https://resource.pureh2b.com/wechat-look-start-platform/image/arrows.png'></image>
       </view>
       <view class='progress'>
         <progress class="progress" percent='{{item.netSalesAmt/300}}' showInfo='{{true}}' ourterRadious='10rpx' activeRadious='10rpx'></progress>

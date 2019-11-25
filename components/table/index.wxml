@@ -3,9 +3,9 @@
   <view class="tr header">
     <view class="th" wx:for="{{columns}}" wx:key="{{key}}" style='{{item.style}};width:{{item.width}}'>{{item.title}}</view>
   </view>
-  <block  wx:for="{{listData}}" wx:key="{{code}}" wx:for-item="item">
+  <block  wx:for="{{listData}}" wx:key="{{code}}"  wx:for-item="item">
     <view class="tr">
-      <view wx:for="{{columns}}" wx:for-item="colunmItem" class="td" style='width:{{colunmItem.width}}'>
+      <view wx:for="{{columns}}" wx:for-item="colunmItem" wx:key='colunmItem.key' class="td" style='width:{{colunmItem.width}}'>
         <image src='{{item[colunmItem.key]}}' wx:if='{{colunmItem.key=="picUrl"}}'></image>
         <text wx:else > {{item[colunmItem.key]}}</text>
       </view>

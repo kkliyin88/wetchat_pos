@@ -3,6 +3,7 @@
 <view class='wrap'>
   <view class='title_box'>
     <view class='title'>终端赢利监控</view>
+	
     <view class='condition_box'>
       <view class='condition'>
         <text wx:if="{{condition.month}}" bindtap="changeCondition" data-type='monthFlag' class='emptycircle'></text>
@@ -27,11 +28,13 @@
         <text class='text'>达成</text>
       </view>
     </view >
+		<cover-view> 12312121</cover-view>
+	<!-- <button  type="default" bindtap="popflag">点击弹窗</button> -->
 	<view class= 'conten_wrap'>
 		<view class='content conten1' style='background: linear-gradient(#8F81F7,#4E6EF5);'>
 			<view class='line line1' >
 				<view class='text_box white'><text>收入</text></view>
-				<view class='text_box' ><image src='https://resource.pureh2b.com/wechat-look-start-platform/image/up.png'></image><text class='percent_text'>23%</text></view> 
+				<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
 			</view>
 			<view class='line line2'>
 				<view class='text_box white'><text>988</text></view>
@@ -41,7 +44,7 @@
 		<view class='content conten2'>
 			<view class='line line1' >
 				<view class='text_box color_six'><text>毛利</text></view>
-				<view class='text_box' ><image src='https://resource.pureh2b.com/wechat-look-start-platform/image/up.png'></image><text class='percent_text'>23%</text></view>
+				<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view>
 			</view>
 			<view class='line line2'>
 				<view class='text_box'><text>988</text></view>
@@ -54,7 +57,7 @@
   	<view class='content conten1'>
   		<view class='line line1' >
   			<view class='text_box '><text>费用</text></view>
-  			<view class='text_box' ><image src='https://resource.pureh2b.com/wechat-look-start-platform/image/up.png'></image><text class='percent_text'>23%</text></view> 
+  			<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
   		</view>
   		<view class='line line2'>
   			<view class='text_box '><text>988</text></view>
@@ -64,7 +67,7 @@
   	<view class='content conten2'>
   		<view class='line line1' >
   			<view class='text_box color_six'><text>利润</text></view>
-  			<view class='text_box' ><image src='https://resource.pureh2b.com/wechat-look-start-platform/image/up.png'></image><text class='percent_text'>23%</text></view> 
+  			<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
   		</view>
   		<view class='line line2'>
   			<view class='text_box'><text>988</text></view>
@@ -78,7 +81,6 @@
    
 	<view class='container3'>
 		<table listData='{{listData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
-    <!-- <table columns='{{columns}}' listData="{{pageData}}"></table> -->
 	</view>
 	
 </view>

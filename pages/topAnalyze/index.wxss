@@ -113,6 +113,7 @@ ec-canvas {
   background: #FFF;
   border-radius: 20rpx;
   margin: 0 25rpx;
+  
 }
 .table_title text{
   color: #666;
@@ -127,4 +128,30 @@ ec-canvas {
 	border-radius: 20rpx;
 	margin-top: 50rpx;
 	padding: 0 10rpx;
+}
+
+
+.cover-view {
+  position: absolute;
+  top: calc(50% - 150rpx);
+  left: calc(50% - 300rpx);
+  /* opacity: .7; */
+}
+
+.flex-wrp{
+  display:flex;
+}
+
+.flex-item{
+  width: 200rpx;
+  height: 300rpx;
+  font-size: 26rpx;
+}
+
+.demo-text-1 {
+  background: rgba(26, 173, 25, 0.7);
+}
+
+.demo-text-2 {
+  background: rgba(39, 130, 215, 0.7);
 }
