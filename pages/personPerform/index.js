@@ -27,14 +27,8 @@ Page({
     },
   },
   goback() {
-    let flag = false; //如果为店员的话直接返回首页
-    app.globalData.userInfo.roles.map((item) => {
-      if (item.name.indexOf('高层') != -1 || item.name.indexOf('超级') != -1 || item.name.indexOf('区域') != -1 || item.name.indexOf('Superman') != -1) {
-        flag = true
-      }
-    })
     wx.redirectTo({
-      url: flag ? '/pages/shopPerformance/index?dateType=' + this.data.query.dateType + '&regionCode='+this.data.shopRegionCode:'/pages/index/index'
+      url: app.globalData.roleLevel == 3 ? '/pages/shopPerformance/index?dateType=' + this.data.query.dateType + '&regionCode='+this.data.shopRegionCode:'/pages/index/index'
     })
   },
   change(targer) {

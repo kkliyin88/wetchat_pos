@@ -1,5 +1,10 @@
 //https://lanhuapp.com/url/qe5u1-E9Ks3
 import * as echarts from '../../common/ec-canvas/echarts';
+import {
+  http
+} from '../../utils/http.js';
+var loginServer = require('../../utils/loginServer');
+const app = getApp()
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -89,6 +94,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight:20,
 	condition:{
 		monthFlag:false,
 		sumFlag:false,
@@ -145,12 +151,18 @@ Page({
 	  this.setData({[temp]:true});
 	  console.log('condition',this.data.condition);
   },
-  
+  goback() {
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      statusBarHeight: app.globalData.systemInfo.statusBarHeight
+    })
   },
 
   /**
@@ -167,38 +179,5 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

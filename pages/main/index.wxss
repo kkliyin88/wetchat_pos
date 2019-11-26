@@ -5,7 +5,6 @@ page{
 }
 .title_box{
   height: 360rpx;
-  border: 1rpx solid green;
   background:linear-gradient(#8F81F7,#4E6EF5);
   border-radius: 0 0 30rpx 30rpx;
 }
@@ -19,6 +18,7 @@ page{
   display: flex;
   flex-direction: row;
   justify-content:center;
+  margin-top: 47rpx;
 }
 .condition{
   display: inline-block;
@@ -62,11 +62,11 @@ page{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+  margin-top: 30rpx;
 }
 .content{
 	height: 140rpx;
 	width: 250rpx;
-	display: inline-block;
 	border-radius: 20rpx;
 	padding:25rpx 30rpx;
 	display: flex;
@@ -109,10 +109,9 @@ ec-canvas {
  
 }
 .container3{
-  margin-top: 200rpx;
   background: #FFF;
   border-radius: 20rpx;
-  margin: 0 25rpx;
+  margin: 30rpx 25rpx;
 }
 .table_title text{
   color: #666;

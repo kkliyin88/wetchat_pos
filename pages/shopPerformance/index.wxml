@@ -1,6 +1,5 @@
 <view class='container1'>
   <top title='店铺业绩' bind:goback='goback'></top>
-
 </view>
 <view class='container2'>
   <view class='condition_wrap'>

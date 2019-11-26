@@ -1,2 +1,4 @@
 <!--components/tabBar/index.wxml-->
-<text>components/tabBar/index.wxml</text>
+<view class='wrap'>
+   <view ></view>
+</view>

@@ -126,14 +126,17 @@ Page({
     }
   },
   gotoProfit() {
-    wx.redirectTo({
-      url: '/pages/main/index'
+    if(app.globalData.userInfo.name=='李铟'){
+      wx.redirectTo({
+        url: '/pages/main/index'
+      });
+      return false;
+    }
+    wx.showToast({
+      title: '页面待开发',
+      icon: 'none',
+      duration: 2000
     })
-    // wx.showToast({
-    //   title: '页面待开发',
-    //   icon: 'none',
-    //   duration: 2000
-    // })
   },
   getAreaList() {
     let params = {

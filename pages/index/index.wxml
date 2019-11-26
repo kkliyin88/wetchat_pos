@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <!-- <view class='wrap'> -->
-<view class='container1' style="height:{{statusBarHeight+560+'rpx'}}">
+<view class='container1' style="height:{{statusBarHeight+340+'rpx'}}">
   <top title='观星台' backflag='{{false}}'></top>
   <view class='condition'>
     <view class='text'>{{userInfo.name}}，欢迎您</view>
@@ -64,7 +64,7 @@
   </view>
 </view>
 <view class='top' bindtap="gototop">
-  <image src='https://resource.pureh2b.com/wechat-look-start-platform/image/top.png'></image>
+  <image src='https://resource.pureh2b.com/wechat-look-start-platform/image/top_index.png'></image>
   <text>畅销商品排行</text>
 </view>
 <view wx:if='{{addFlag}}' class='add_wrap'>

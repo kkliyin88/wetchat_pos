@@ -60,5 +60,39 @@ App({
       "text": '本月'
     }
     ],
+	tabBarData:{
+		list:[
+			{
+			  "iconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/zongti.png",
+			  "selectedIconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/zongti1.png",
+			  "pagePath": "pages/main/index",
+			  "text": "总体"
+			},
+			{
+			  "iconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/xianxia.png",
+			  "selectedIconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/xianxia1.png",
+			  "pagePath": "pages/offLine/index",
+			  "text":"线下"
+			},
+			{
+			  "iconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/dianshang.png",
+			  "selectedIconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/dianshang1.png",
+			  "pagePath": "pages/electronicBusiness/index",
+			  "text": "电商"
+			},
+			{
+			  "iconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/top.png",
+			  "selectedIconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/top1.png",
+			  "pagePath": "pages/top/index",
+			  "text": "Top分析"
+			},
+			{ 
+			  "iconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/yusuan.png",
+			  "selectedIconPath": "https://resource.pureh2b.com/wechat-look-start-platform/image/tabbar/yusuan1.png",
+			  "pagePath": "pages/line/index",
+			  "text": "line"
+			}
+		]
+	}
   }
 })

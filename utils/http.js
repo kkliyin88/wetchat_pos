@@ -7,7 +7,6 @@ const http = (params) => {
   return new Promise((resolve, reject) => { //返回promise 对象
     try {
       var token = wx.getStorageSync('token');
-      console.log('token', token);
       if (token) {
         wx.request({
           url: url,
@@ -17,23 +16,24 @@ const http = (params) => {
           },
           method: params.method || 'POST',
           success: function(res) {
-            console.log('res_succed',res)
-            resolve(res)
-          },
-          fail: function(e) {
-            console.log('fail_e', e)
-            if (e.statusCode == 401) {
+            if (res.statusCode == 401 && getCurrentPages().slice(-1)[0].route !='pages/login/index') {
               wx.navigateTo({
                 url: '/pages/login/index'
               })
             }
+            resolve(res)
+          },
+          fail: function(e) {
+            
             reject(e)
           }
         })
       }else{
-        wx.navigateTo({
-          url: '/pages/login/index'
-        })
+        if (getCurrentPages().slice(-1)[0].route != 'pages/login/index'){
+          wx.navigateTo({
+            url: '/pages/login/index'
+          })
+        }
       }
     } catch (e) {
       wx.showToast({
