@@ -41,6 +41,8 @@ App({
   },
   globalData: {
     userInfo: {},
+    token:'',
+    token_type:'',
     roleLevel:null, // 1 是高层super 2 区域经理 3 店员 4 无权限
     systemInfo:{},
     menberBrandList: [{id:'',desc:'今日销售额'}],//会员品牌列表

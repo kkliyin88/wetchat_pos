@@ -275,9 +275,10 @@ Page({
         app.globalData.systemInfo = res;
       }
     });
+    
     this.setData({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight
-    })
+    });
   },
   getMenberList() {
     let params = {
@@ -310,6 +311,8 @@ Page({
     if (options.access_token) {
       wx.setStorageSync('token', options.access_token);
       wx.setStorageSync('token_type', options.token_type);
+      app.globalData.token = options.access_token;
+      app.globalData.token_type = options.token_type;
     }
     app.globalData.currentMenberBrandIndex = 0
     this.getUserInfo();

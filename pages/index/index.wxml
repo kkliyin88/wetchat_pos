@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <!-- <view class='wrap'> -->
-<view class='container1' style="height:{{statusBarHeight+340+'rpx'}}">
+<view class='container1' style="height:{{statusBarHeight+560+'rpx'}}">
   <top title='观星台' backflag='{{false}}'></top>
   <view class='condition'>
     <view class='text'>{{userInfo.name}}，欢迎您</view>
@@ -12,7 +12,6 @@
           <view class='title2' >{{item.desc}}</view>
           <view class='container_content' bindtap="changePage_perform">
             <view class='actual_data'>
-            <!-- {{pageData.netSalesAmt}} -->
                <view  class='text_block' wx:for='{{listAll}}'  wx:for-item="initListArr"  wx:key='{{item.index}}' > 
                   <block wx:if='{{initListArr.length>0}}'> 
                     <view class='roll roll_{{initListArr.length-1}}' >
@@ -39,7 +38,6 @@
           </view>
         </swiper-item>
       </swiper>
-     
   </view>
 </view>
 <view class='flex_box' style="margin-top: -20rpx;">

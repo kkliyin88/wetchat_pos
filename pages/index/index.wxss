@@ -53,6 +53,7 @@ page {
 }
 .swiper_box,swiper {
   height: 340rpx;
+  position: relative;
 }
 .title2 {
   height: 60rpx;
@@ -77,6 +78,7 @@ page {
   justify-content: space-around;
 }
 .content_box .content .text {
+  height: 120rpx;
   text-align: center;
   color: #fff;
   font-size: 30rpx;
@@ -403,7 +405,6 @@ page {
 }
 
 .container1 {
-  height: 561rpx;
   width: 100%;
   background: url('https://resource.pureh2b.com/wechat-look-start-platform/image/wave.png');
   background-size: cover;
