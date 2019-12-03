@@ -1,4 +1,9 @@
 <!--components/tabBar/index.wxml-->
 <view class='wrap'>
-   <view ></view>
+   <view class='box'>
+    <view class='listItem'  bindtap="changeTab" wx:for='{{tabbar.list}}' wx:key='{{item.index}}' data-index='{{item.index}}' data-url='{{item.url}}'> 
+      <view class="image"><image src='{{item.index==activeIndex?item.pic1:item.pic}}'></image></view>
+      <view class="{{item.index==activeIndex?'text1':'text'}}">  {{item.name}}</view>
+    </view>
+   </view>
 </view>

@@ -11,145 +11,183 @@ function initChart(canvas, width, height) {
     height: height
   });
   canvas.setChart(chart);
-  var option = {
-    title: {
-      text: '业务趋势-收入',
-      left: 20,
-      textStyle:{
-        color:'#666',
-        fontSize:15,
-        height:30,
-        lineHeight:30
-      }
-    },
-    grid: {
-      containLabel: false,
-      left:30,
-      top:40,
-      right:20,
-      bottom:40
-    },
-    tooltip: {
-      show: false,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false, //从0开始
-      data: ['17年', '18年', '19年'],
-      show: true,
-      nameTextStyle:{
-        color:'green',
-        fontSize:15,
-      },
-      axisLine:{
-        show:false,//是否显示x轴线
-      },
-      axisTic:{
-        show:false
-      },
-      splitLine:{
-        show:false
-      }
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      show: false,
-    },
-    series: [{
-      name: 'A',
-      type: 'line',
-      symbol:'circle',//拐点样式
-      symbolColor:'green',
-      symbolSize: 8,//拐点大小
-      lineStyle:{
-        color: '#27C69B', //改变折线颜色
-        shadowColor: '#27C69B',//阴影
-        shadowBlur: 10, //模糊度
-        width:3,//线条宽度
-      },
-      itemStyle:{
-        normal:{ //拐点显示数值
-          color: '#27C69B', //拐点颜色
-          label:{
-            show:true,
-            color:'gray',//拐点文字样式
-            fontSize:15,
-          }
-        }
-      },
-      smooth: true,
-      data: [700,800,988]
-    }]
-  };
-
-  chart.setOption(option);
+  chart.setOption(app.globalData.echartOption1);
   return chart;
 }
-
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    statusBarHeight:20,
-	condition:{
-		monthFlag:false,
-		sumFlag:false,
-		sameCompareFlag:false,
-		budgetFlag:false
-	},
-	ec: {
-	  onInit: initChart
-	},
-   listData:[
-     {"code":"收入","text":"text1","type":"type1",name:'DW'},
-     {"code":"成本","text":"text2","type":"type2",name:'DW'},
-     {"code":"毛利","text":"text3","type":"type3",name:'DW'},
-     {"code":'费用',"text":"text4","type":"type4",name:'DW'},
-     {"code":"利润","text":"text5","type":"type5",name:'DW'},
-    
-   ],
-  //  columns:[
-	//    {},
-	//    {title:'2017年',key:'yearone'},
-	//    {title:'2018年',key:'yeartwo'},
-	//    {title:'2019年',key:'yearthree'},
-  //  ],
-    columns: [
+    statusBarHeight: 20,
+    condition: {
+      monthFlag: false,
+      dateType: false,
+      sameCompareFlag: false,
+      budgetFlag: false
+    },
+    activeIndex: 0,
+    imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
+    contentList1: [],
+    content2Arr:[],
+    ecOne: {
+      lazyLoad: true
+    },
+    listData: [{
+        "code": "收入",
+        "text": "text1",
+        "type": "type1",
+        name: 'DW'
+      },
       {
+        "code": "成本",
+        "text": "text2",
+        "type": "type2",
+        name: 'DW'
+      },
+      {
+        "code": "毛利",
+        "text": "text3",
+        "type": "type3",
+        name: 'DW'
+      },
+      {
+        "code": '费用',
+        "text": "text4",
+        "type": "type4",
+        name: 'DW'
+      },
+      {
+        "code": "利润",
+        "text": "text5",
+        "type": "type5",
+        name: 'DW'
+      },
+
+    ],
+    columns: [{
         title: '',
         key: 'code',
         style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
         width: '110rpx'
       },
       {
-      title: '2017年',
+        title: '2017年',
         key: 'text',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-      // width: '110rpx'
-    },
-    {
-      title: '2018年',
-      key: 'type',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
-      width: '110rpx'
-    },
-    {
-      title: '2019年',
-      // width: '110rpx',
-      key: 'name',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
-    }
+        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+      },
+      {
+        title: '2018年',
+        key: 'type',
+        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
+        width: '110rpx'
+      },
+      {
+        title: '2019年',
+        key: 'name',
+        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
+      }
     ]
   },
-  
-  changeCondition(e){
-	  let temp= this.data.condition.monthFlag;
-	  this.setData({[temp]:true});
-	  console.log('condition',this.data.condition);
+  init_echartOne(xdata, ydata) {
+    this.oneComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      chart.setOption(app.globalData.echartOption1);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  changeDateType() {
+    let temp = this.data.condition.dateType;
+    this.setData({
+      'condition.dateType': !this.data.condition.dateType
+    });
+    this.getContent1Data();
+    this.getechart1Data();
+  },
+  changeActiveIndex(e) {
+    this.setData({
+      activeIndex: e.currentTarget.dataset.index
+    })
+    app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
+    app.globalData.echartOption1.title.text = '业务趋势-' + app.globalData.contentList1[this.data.activeIndex].name
+    this.init_echartOne();
+  },
+  getContent1Data() {
+    let params = {
+      url: 'behaviorapi/mini/sap/getTerminalProfitInfo',
+      data: {
+        dateType: this.data.condition.dateType ? 1 : 2 //本月为1,本年2
+      }
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    http(params).then((res) => {
+      wx.hideLoading()
+      if (res.data.code != 200) {
+        return false ;
+      }
+      let contentList1 = app.globalData.contentList1;
+      contentList1.map((item, i) => {
+        if (i == 0) { //收入
+          item.value = (res.data.data.zsr / 10000).toFixed(2);
+          item.samePercentage = res.data.data.zsrtb || ''
+        } else if (i == 1) { //毛利
+          item.value = (res.data.data.zml / 10000).toFixed(2);
+          item.samePercentage = res.data.data.zmltb || ''
+        } else if (i == 2) { //费用
+          item.value = (res.data.data.zfy / 10000).toFixed(2);
+          item.samePercentage = res.data.data.zfytb || ''
+        } else if (i == 3) { //利润
+          item.value = (res.data.data.zlr / 10000).toFixed(2);
+          item.samePercentage = res.data.data.zlrtb || ''
+        }
+      })
+      this.setData({
+        contentList1: contentList1
+      })
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
+  getechart1Data(i) { //三年赢利图数据
+    let params = {
+      url: '/behaviorapi/mini/sap/getTerminalProfitYearList',
+      data: {
+        dateType: this.data.condition.dateType ? 1 : 2 //本月为1,本年2
+      }
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    http(params).then((res) => {
+      wx.hideLoading()
+      if (res.data.code != 200) {
+        return false;
+      }
+      let list = res.data.data.list;
+      let echartDataArr = [];
+      app.globalData.echartOption1.xAxis.data = [];
+      list.map((item)=>{ //
+        app.globalData.echartOption1.xAxis.data.push(item.ryear)
+      })
+       app.globalData.contentList1.map((item,index)=>{
+         item.threeyearValue = [];
+         list.map((item2,index2)=>{
+           if (index == 0) item.threeyearValue.push(item2.zsr==0?0:(item2.zsr/10000).toFixed(2));
+           if (index == 1) item.threeyearValue.push(item2.zml==0?0:(item2.zml / 10000).toFixed(2));
+           if (index == 2) item.threeyearValue.push(item2.zfy == 0 ? 0 :(item2.zfy / 10000).toFixed(2));
+           if (index == 3) item.threeyearValue.push(item2.zlr == 0 ? 0 :(item2.zlr / 10000).toFixed(2));
+         })
+       })
+      app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
+    }).catch((err) => {
+      wx.hideLoading()
+    })
   },
   goback() {
     wx.redirectTo({
@@ -159,25 +197,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight
-    })
+    });
+    this.getContent1Data();
+    this.getechart1Data();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
+  onReady: function() {
+    this.oneComponent = this.selectComponent('#mychart-one'); 
+    this.init_echartOne();
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
-  
+
 })

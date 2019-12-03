@@ -11,7 +11,7 @@ Page({
     pageData: {
       netSalesAmt: 0
     },
-    addFlag: true,
+    addFlag: false,
     areaList: [],
     userInfo: {},
     storeName: '',
@@ -242,9 +242,6 @@ Page({
             if (listInit[j] === prevNumber) {
               start = j;
             }
-            // if (prevArray[i] - nextArray[i] > 0) {
-            //   end = j;
-            // }
             if (start !== -1 && listInit[j] === nextNumber) {
               end = j;
               break;
@@ -330,8 +327,14 @@ Page({
     this.setData({
       time: setInterval(() => {
         this.getPageData();
-      }, 5000)
+      }, 3000)
     })
+  },
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh(); //这句也很重要
+    setTimeout(() => {
+      this.getPageData();
+    }, 500)
   },
   onUnload() {
     clearInterval(this.data.time);

@@ -61,13 +61,25 @@ page{
 }
 .conten_wrap{
 	width: 100%;
-	height: 140rpx;
+	height: 330rpx;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-  margin-top: 30rpx;
+  flex-wrap: wrap;
 }
-.content{
+
+.content1{
+	height: 140rpx;
+	width: 250rpx;
+	border-radius: 20rpx;
+	padding:25rpx 30rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 20rpx;
+	background: linear-gradient(#8F81F7,#4E6EF5);
+}
+.content2{
 	height: 140rpx;
 	width: 250rpx;
 	border-radius: 20rpx;
@@ -78,6 +90,7 @@ page{
 	margin-top: 20rpx;
 	background: #FFF;
 }
+
 .text_box{
 	position: relative;
 }
@@ -86,14 +99,27 @@ page{
 	flex-direction: row;
 	justify-content:space-between ;
 }
-.line1{
+.content1 .line1{
 	font-size: 30rpx;
 	color: #666;
 }
-.line2{
+.content1 .line1:nth-child(1){
+	font-size: 30rpx;
+	color: #FFF;
+}
+.content1 .line2{
+	font-size: 44rpx;
+	color:#FFF ;
+}
+.content2 .line1{
+	font-size: 30rpx;
+	color: #666;
+}
+.content2 .line2{
 	font-size: 44rpx;
 	color:#828BF0 ;
 }
+
 .white{
 	color: #FFF;
 }
@@ -109,7 +135,6 @@ ec-canvas {
 	margin-top: 100rpx;
   background: #FFF;
 	border-radius:20rpx;
- 
 }
 .container3{
   background: #FFF;
