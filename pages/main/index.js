@@ -30,64 +30,14 @@ Page({
     imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
     contentList1: [],
     content2Arr:[],
-    ecOne: {
+    econe: {
       lazyLoad: true
     },
-    listData: [{
-        "code": "收入",
-        "text": "text1",
-        "type": "type1",
-        name: 'DW'
-      },
-      {
-        "code": "成本",
-        "text": "text2",
-        "type": "type2",
-        name: 'DW'
-      },
-      {
-        "code": "毛利",
-        "text": "text3",
-        "type": "type3",
-        name: 'DW'
-      },
-      {
-        "code": '费用',
-        "text": "text4",
-        "type": "type4",
-        name: 'DW'
-      },
-      {
-        "code": "利润",
-        "text": "text5",
-        "type": "type5",
-        name: 'DW'
-      },
-
-    ],
-    columns: [{
-        title: '',
-        key: 'code',
-        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-        width: '110rpx'
-      },
-      {
-        title: '2017年',
-        key: 'text',
-        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-      },
-      {
-        title: '2018年',
-        key: 'type',
-        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
-        width: '110rpx'
-      },
-      {
-        title: '2019年',
-        key: 'name',
-        style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
-      }
-    ]
+    ectwo: {
+      lazyLoad: true
+    },
+    tableData:[],
+    columns: [],
   },
   init_echartOne(xdata, ydata) {
     this.oneComponent.init((canvas, width, height) => {
@@ -96,6 +46,17 @@ Page({
         height: height
       });
       chart.setOption(app.globalData.echartOption1);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  init_echartTwo(xdata, ydata) {
+    this.twoComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      chart.setOption(app.globalData.echartoption2);
       this.chart = chart;
       return chart;
     });
@@ -131,7 +92,9 @@ Page({
       if (res.data.code != 200) {
         return false ;
       }
+      let obj = res.data.data;
       let contentList1 = app.globalData.contentList1;
+      app.globalData.echartoption2.series[1].data
       contentList1.map((item, i) => {
         if (i == 0) { //收入
           item.value = (res.data.data.zsr / 10000).toFixed(2);
@@ -150,9 +113,53 @@ Page({
       this.setData({
         contentList1: contentList1
       })
+
+      //******组装echart2的数据开始******
+      console.log('obj', obj);
+      //将对象转换为数组
+      let arr = [];
+      for (let i in obj) {
+        let o = {};
+        o[i] = obj[i];
+        arr.push(o)
+      }
+      let echart2Data = arr.filter((item)=>{
+        return  Object.keys(item)[0].indexOf('yl')>-1
+      });
+      
+      echart2Data.map((item,i)=>{
+        if (Object.keys(item)[0].indexOf('zsryl') != -1) {
+          item.name = '收入'; item.index = 0; item.value = item.zsryl;
+        } else if (Object.keys(item)[0].indexOf('zcbyl') != -1) {
+          item.name = '成本'; item.index = 1; item.value = item.zcbyl;
+        } else if (Object.keys(item)[0].indexOf('zfyyl') != -1) {
+          item.name = '费用'; item.index = 2; item.value = item.zfyyl;
+        } else if (Object.keys(item)[0].indexOf('zlryl') != -1) {
+          item.name = '利润'; item.index = 3; item.value = item.zlryl;
+        } 
+      });
+      echart2Data.sort(this.compare('index')); //数组排序;
+      app.globalData.echartoption2.xAxis.data = echart2Data.map((item)=>{
+        return item.name
+      })
+      app.globalData.echartoption2.series[1].data = echart2Data.map((item) => {
+        return Number(item.value.replace('%', ''));
+      })
+      app.globalData.echartoption2.series[0].data = [0,0,0,0];
+      app.globalData.echartoption2.series[0].data[2] = app.globalData.echartoption2.series[1].data[3];
+      app.globalData.echartoption2.series[0].data[1] = app.globalData.echartoption2.series[1].data[2] + app.globalData.echartoption2.series[1].data[3];
+      console.log(app.globalData.echartoption2.series[0].data)
+     //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()
     })
+  },
+  compare(property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value1 - value2;
+    }
   },
   getechart1Data(i) { //三年赢利图数据
     let params = {
@@ -170,6 +177,7 @@ Page({
         return false;
       }
       let list = res.data.data.list;
+     //*******组装echart1的数据*******
       let echartDataArr = [];
       app.globalData.echartOption1.xAxis.data = [];
       list.map((item)=>{ //
@@ -185,6 +193,36 @@ Page({
          })
        })
       app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
+    
+    //******组装echart1的数据结束******
+   
+    //******组装table 的数据开始******
+      list.map((item, i) => {  //table头部colunms
+        app.globalData.columns[i+1].title = item.ryear +'年';
+        app.globalData.columns[i + 1].key = item.ryear;
+      })
+      this.setData({
+        columns: app.globalData.columns
+      })
+      //组装表格内容收入 毛利 费用 利润
+      app.globalData.tableData = [];
+      app.globalData.contentList1.map((item,i)=>{
+         item.tableData = {code:item.name};
+         item.threeyearValue.map((item2,i2)=>{
+           item.tableData[app.globalData.columns[i2+1].key] = item2
+         })
+        app.globalData.tableData.push(item.tableData);
+      })
+      //单独插入成本这一项
+      let chengben = { code: '成本' }
+      list.map((item, i) => {
+        chengben[item.ryear] = item.zcb
+      })
+      app.globalData.tableData.splice(1,0,chengben)
+      this.setData({
+       tableData: app.globalData.tableData
+      })
+
     }).catch((err) => {
       wx.hideLoading()
     })
@@ -209,8 +247,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.oneComponent = this.selectComponent('#mychart-one'); 
+    this.oneComponent = this.selectComponent('#mychart-one');
+    this.twoComponent = this.selectComponent('#mychart-two');
     this.init_echartOne();
+    this.init_echartTwo();
   },
   /**
    * 生命周期函数--监听页面显示

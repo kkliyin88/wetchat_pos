@@ -51,6 +51,28 @@ App({
       desc: '今日销售额'
     }], //会员品牌列表
     currentMenberBrandIndex: 0,
+    tableData:[
+
+    ],
+    columns: [{
+      title: '',
+      key: 'code',
+      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+      width: '110rpx'
+    },
+    {
+      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+    },
+    {
+    
+      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
+      width: '110rpx'
+    },
+    {
+   
+      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
+    }
+    ],
     dateTypeList: [{
         "id": "1",
         "text": '当天',
@@ -157,9 +179,7 @@ App({
     },
     echartoption2:{
       title: {
-        text: '深圳月最低生活费组成（单位:元）',
-        subtext: 'From ExcelHome',
-        sublink: 'http://e.weibo.com/1341556070/AjQH99che'
+        text: '赢利结构(百分比%)',
       },
       tooltip: {
         trigger: 'axis',
@@ -180,10 +200,22 @@ App({
       xAxis: {
         type: 'category',
         splitLine: { show: false },
-        data: ['总费用', '房租', '水电费', '交通费', '伙食费', '日用品数']
+        boundaryGap: false, //从0开始
+        axisTic: {
+          show: false
+        },
+        // axisLine: {
+        //   show: false, //是否显示x轴线
+        // },
+        splitLine: {
+          show: false
+        },
+        data: []
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        x: 'center',
+        show: false,
       },
       series: [
         {
@@ -200,7 +232,7 @@ App({
               color: 'rgba(0,0,0,0)'
             }
           },
-          data: [0, 1700, 1400, 1200, 300, 0]
+          data: []
         },
         {
           name: '生活费',
@@ -212,7 +244,7 @@ App({
               position: 'inside'
             }
           },
-          data: [2900, 1200, 300, 200, 900, 300]
+          data: []
         }
       ]
     }

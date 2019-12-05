@@ -126,7 +126,7 @@ Page({
     }
   },
   gotoProfit() {
-    if(app.globalData.userInfo.name=='李铟'){
+    if (app.globalData.userInfo.name == '李铟' || app.globalData.userInfo.name == '谭艳'){
       wx.redirectTo({
         url: '/pages/main/index'
       });
