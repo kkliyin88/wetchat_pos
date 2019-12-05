@@ -154,6 +154,7 @@ ec-canvas {
   margin-top:30rpx; 
   background: #FFF;
 	border-radius:20rpx;
+  border: 1px solid green;
 }
 .table_box{
   background: #FFF;

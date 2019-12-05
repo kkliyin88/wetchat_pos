@@ -81,7 +81,7 @@ Page({
     let params = {
       url: 'behaviorapi/mini/sap/getTerminalProfitInfo',
       data: {
-        dateType: this.data.condition.dateType ? 1 : 2 //本月为1,本年2
+        dateType: this.data.condition.dateType ? 2 : 1 //本月为1,本年2
       }
     }
     wx.showLoading({
