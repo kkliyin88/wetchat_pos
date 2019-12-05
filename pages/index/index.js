@@ -264,7 +264,6 @@ Page({
         app.globalData.systemInfo = res;
       }
     });
-    
     this.setData({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight
     });

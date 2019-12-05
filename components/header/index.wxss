@@ -1,0 +1,75 @@
+.header {
+  position: fixed;
+  top: 0;
+  background: linear-gradient(#8f81f7, #4e6ef5);
+  border-radius: 0 0 30rpx 30rpx;
+  width: 100%;
+  border: 1px solid green;
+}
+.condition_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 47rpx;
+}
+.condition {
+  display: inline-block;
+}
+.condition_be {
+  margin-left: 180rpx;
+}
+.condition_box_be {
+  margin-top: 40rpx;
+}
+.emptycircle {
+  display: inline-block;
+  height: 20rpx;
+  width: 20rpx;
+  background: #6e77f6;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+}
+.dotcircle {
+  display: inline-block;
+  height: 35rpx;
+  width: 35rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.condition_box .text {
+  color: #fff;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.text_box image {
+  height: 23rpx;
+  width: 23rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+
+.container{
+  width: 100%;
+}
+.empty{
+  height: 55rpx;
+  width: 100%;
+}
+.title {
+  text-align: center;
+  font-size: 36rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #FFF;
+  position: relative;
+}
+.goback{
+  height: 50rpx;
+  width: 150rpx;
+  position: absolute;
+  left:0rpx;
+  padding-left: 20rpx;
+  text-align: left;
+}

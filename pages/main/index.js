@@ -1,5 +1,7 @@
 //https://lanhuapp.com/url/qe5u1-E9Ks3
 import * as echarts from '../../common/ec-canvas/echarts';
+var wxCharts = require('../../utils/wxcharts.js');
+var lineChart = null;
 import {
   http
 } from '../../utils/http.js';
@@ -20,11 +22,9 @@ Page({
    */
   data: {
     statusBarHeight: 20,
+    windowHeight:736,
     condition: {
-      monthFlag: false,
-      dateType: false,
-      sameCompareFlag: false,
-      budgetFlag: false
+      dateType: true,
     },
     activeIndex: 0,
     imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
@@ -61,13 +61,13 @@ Page({
       return chart;
     });
   },
-  changeDateType() {
-    let temp = this.data.condition.dateType;
+  changeCondition(e) { 
     this.setData({
-      'condition.dateType': !this.data.condition.dateType
-    });
+      condition: e.detail //子组件传回来的参数
+    })
     this.getContent1Data();
     this.getechart1Data();
+   
   },
   changeActiveIndex(e) {
     this.setData({
@@ -115,7 +115,6 @@ Page({
       })
 
       //******组装echart2的数据开始******
-      console.log('obj', obj);
       //将对象转换为数组
       let arr = [];
       for (let i in obj) {
@@ -165,7 +164,7 @@ Page({
     let params = {
       url: '/behaviorapi/mini/sap/getTerminalProfitYearList',
       data: {
-        dateType: this.data.condition.dateType ? 1 : 2 //本月为1,本年2
+        dateType: this.data.condition.dateType ? 2 : 1 //本月为1,本年2
       }
     }
     wx.showLoading({
@@ -222,7 +221,8 @@ Page({
       this.setData({
        tableData: app.globalData.tableData
       })
-
+      this.init_echartOne();
+      this.init_echartTwo();
     }).catch((err) => {
       wx.hideLoading()
     })
@@ -237,10 +237,12 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      statusBarHeight: app.globalData.systemInfo.statusBarHeight
+      statusBarHeight: app.globalData.systemInfo.statusBarHeight,
+      windowHeight: app.globalData.systemInfo.windowHeight
     });
     this.getContent1Data();
     this.getechart1Data();
+   
   },
 
   /**
@@ -256,7 +258,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
 

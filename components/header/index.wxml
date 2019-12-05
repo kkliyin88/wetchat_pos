@@ -1,0 +1,27 @@
+<!--components/header/index.wxml-->
+<view class='header' style="height:{{statusBarHeight+360+'rpx'}}">
+  <!-- <top title='终端盈利监控' bind:goback='goback'></top> -->
+  <top title='{{title}}' bind:goback="goback"> </top>
+  <view class='condition_box'>
+    <view class='condition'>
+      <text bindtap="changeDateType" class="{{condition.dateType?'dotcircle':'emptycircle'}}"></text>
+      <text class='text'>本月</text>
+    </view>
+    <view class='condition condition_be'>
+      <text bindtap="changeDateType" class="{{condition.dateType?'emptycircle':'dotcircle'}}"></text>
+      <text class='text'>累计</text>
+    </view>
+  </view>
+  <view class='condition_box condition_box_be'>
+    <view class='condition'>
+      <text wx:if="{{condition.sameCompareFlag}}" class='emptycircle'></text>
+      <text wx:else class='dotcircle'></text>
+      <text class='text'>同比</text>
+    </view>
+    <view class='condition condition_be'>
+      <text wx:if="{{condition.budgetFlag}}" class='emptycircle'></text>
+      <text wx:else class='dotcircle'></text>
+      <text class='text'>达成</text>
+    </view>
+  </view>
+</view>

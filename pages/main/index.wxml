@@ -1,92 +1,41 @@
 <!--pages/main/index.wxml-->
-<view class='header' style="height:{{statusBarHeight+360+'rpx'}}">
-  <top title='终端盈利监控' bind:goback='goback'></top>
-  <view class='condition_box'>
-    <view class='condition'>
-      <text bindtap="changeDateType" class="{{condition.dateType?'dotcircle':'emptycircle'}}"></text>
-      <text class='text'>本月</text>
-    </view>
-    <view class='condition condition_be'>
-      <text bindtap="changeDateType" class="{{condition.dateType?'emptycircle':'dotcircle'}}"></text>
-      <text class='text'>累计</text>
-    </view>
-  </view>
-  <view class='condition_box condition_box_be'>
-    <view class='condition'>
-      <text wx:if="{{condition.sameCompareFlag}}" class='emptycircle'></text>
-      <text wx:else class='dotcircle'></text>
-      <text class='text'>同比</text>
-    </view>
-    <view class='condition condition_be'>
-      <text wx:if="{{condition.budgetFlag}}" class='emptycircle'></text>
-      <text wx:else class='dotcircle'></text>
-      <text class='text'>达成</text>
-    </view>
-  </view>
-</view>
-
-<view class='header2' style="top:{{statusBarHeight+300+'rpx'}}">
-  <view class="{{activeIndex==item.index?'content1':'content2'}} 'box'" bindtap='changeActiveIndex' wx:for='{{contentList1}}' wx:key='{{item.index}}' data-index='{{item.index}}'>
-    <view class='line line1'>
-      <view class='text_box'>
-        <text>{{item.name}}</text>
+<view class='wrap'>
+  <header title='终端赢利监控' condition="{{condition}}" bind:changeCondition='changeCondition'></header>
+   <view class='header2' style="margin-top:{{statusBarHeight+360+'rpx'}}">
+    <view class="{{activeIndex==item.index?'content1':'content2'}} 'box'" bindtap='changeActiveIndex' wx:for='{{contentList1}}' wx:key='{{item.index}}' data-index='{{item.index}}'>
+      <view class='line line1'>
+        <view class='text_box'>
+          <text>{{item.name}}</text>
+        </view>
+        <view class='text_box'>
+          <image wx:if='{{item.samePercentage}}' src="{{imgBaseUrl+'/up.png'}}"></image>
+          <text class='percent_text'>{{item.samePercentage}}</text>
+        </view>
       </view>
-      <view class='text_box'>
-        <image wx:if='{{item.samePercentage}}' src="{{imgBaseUrl+'/up.png'}}"></image>
-        <text class='percent_text'>{{item.samePercentage}}</text>
-      </view>
-    </view>
-    <view class='line line2'>
-      <view class='text_box'>
-        <text>{{item.value}}</text>
-      </view>
-      <view class='text_box'>
-        <text>万</text>
+      <view class='line line2'>
+        <view class='text_box'>
+          <text>{{item.value}}</text>
+        </view>
+        <view class='text_box'>
+          <text>万</text>
+        </view>
       </view>
     </view>
   </view>
-</view>
-
-<view class='middle' style="top:{{statusBarHeight+360+370+'rpx'}}">
-  <scroll-view scroll-y="true" class='scroll_box'>
-     <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>#######</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>22222222</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>3333333</view>
-     <view>121212</view>
-       <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>#######</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>22222222</view>
-     <view>121212</view>
-     <view>121212</view>
-     <view>3333333</view>
-     <view>121212</view>
-     <view class="echart_box">
-      <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{econe}}"></ec-canvas>
-    </view>
-   <view class="echart_box">
-      <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ectwo}}"></ec-canvas>
-    </view>
-    <view class='table_box'>
-      <table listData='{{tableData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
-    </view>
-  </scroll-view>
-</view>
-
-<view class='footer'>
-  <tabbar></tabbar>
+  <view class='middle'>
+    <scroll-view scroll-y="true"  class='scroll_box'>
+      <view class="echart_box">
+        <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{econe}}"></ec-canvas>
+      </view>
+      <view class="echart_box">
+        <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ectwo}}"></ec-canvas>
+      </view>
+      <view class='table_box'>
+        <table listData='{{tableData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='footer'>
+    <tabbar></tabbar>
+  </view>
 </view>
