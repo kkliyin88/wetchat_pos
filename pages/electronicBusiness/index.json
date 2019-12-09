@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+	   "ec-canvas": "../../common/ec-canvas/ec-canvas",
+      "top": "../../components/top/index",
+	    "table": "../../components/table/index",
+      "tabbar": "../../components/tabBar/index",
+      "header": "../../components/header/index",
+      "content": "../../components/content/index"
+  }
 }

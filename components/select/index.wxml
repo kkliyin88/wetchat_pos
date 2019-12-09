@@ -1,10 +1,10 @@
-<view class='com-selectBox' style='min-width:{{width}}'>
-  <view class='com-sContent' bindtap='selectToggle'>
-    <view wx:if='{{nowText==""}}' class='placeholder-sTxt'>{{placeholder}}</view>
-    <view class='com-sTxt' wx:else>{{nowText}}</view>
-    <view class='com-sImg'></view>
-  </view>
-  <view class='com-sList' wx:if="{{selectShow}}">
-    <view wx:for="{{propArray}}" style='min-width:{{width}}' data-index="{{index}}" data-value="{{value}}" wx:key='{{index}}' class='com-sItem' bindtap='setText'>{{item.text}}</view>
-  </view>
-</view>
+<cover-view class='com-selectBox' style='min-width:{{width}}'>
+  <cover-view class='com-sContent' bindtap='selectToggle'>
+    <cover-view wx:if='{{nowText==""}}' class='placeholder-sTxt'>{{placeholder}}</cover-view>
+    <cover-view class='com-sTxt' wx:else>{{nowText}}</cover-view>
+    <cover-view class='com-sImg'></cover-view>
+  </cover-view>
+  <cover-view class='com-sList' wx:if="{{selectShow}}">
+    <cover-view wx:for="{{propArray}}" style='min-width:{{width}}' data-index="{{index}}" data-value="{{value}}" wx:key='{{index}}' class='com-sItem' bindtap='setText'>{{item.text}}</cover-view>
+  </cover-view>
+</cover-view>

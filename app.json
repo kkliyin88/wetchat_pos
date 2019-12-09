@@ -10,18 +10,17 @@
     "pages/logs/logs",
 	"pages/main/index",
 	"pages/topAnalyze/index",
-	"pages/offLine/index",
-	"pages/electronicBusiness/index",
+  "pages/xianxia/index",
+	"pages/dianshang/index",
 	"pages/budget/index",
 	"pages/line/index"
   ],
  
   "window": {
     "backgroundTextStyle": "light",
-    "navigationStyle": "custom",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#4e6ef5",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json"
 }

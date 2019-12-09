@@ -1,18 +1,18 @@
-// pages/offLine/index.js
+// pages/xianxia/index.js
+const app = getApp();
+var token = app.globalData.token || wx.getStorageSync('token');
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    url: ' http://172.20.10.4:8080/#/xianxia?token=' + token, 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('url',this.data.url)
   },
 
   /**

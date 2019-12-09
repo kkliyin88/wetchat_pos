@@ -1,7 +1,5 @@
 //https://lanhuapp.com/url/qe5u1-E9Ks3
 import * as echarts from '../../common/ec-canvas/echarts';
-var wxCharts = require('../../utils/wxcharts.js');
-var lineChart = null;
 import {
   http
 } from '../../utils/http.js';
@@ -69,12 +67,7 @@ Page({
     this.getechart1Data();
    
   },
-  changeActiveIndex(e) {
-    this.setData({
-      activeIndex: e.currentTarget.dataset.index
-    })
-    app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
-    app.globalData.echartOption1.title.text = '业务趋势-' + app.globalData.contentList1[this.data.activeIndex].name
+  changeIndex(){
     this.init_echartOne();
   },
   getContent1Data() {
@@ -125,7 +118,6 @@ Page({
       let echart2Data = arr.filter((item)=>{
         return  Object.keys(item)[0].indexOf('yl')>-1
       });
-      
       echart2Data.map((item,i)=>{
         if (Object.keys(item)[0].indexOf('zsryl') != -1) {
           item.name = '收入'; item.index = 0; item.value = item.zsryl;
@@ -194,7 +186,6 @@ Page({
       app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
     
     //******组装echart1的数据结束******
-   
     //******组装table 的数据开始******
       list.map((item, i) => {  //table头部colunms
         app.globalData.columns[i+1].title = item.ryear +'年';
@@ -227,11 +218,7 @@ Page({
       wx.hideLoading()
     })
   },
-  goback() {
-    wx.redirectTo({
-      url: '/pages/index/index'
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -244,7 +231,6 @@ Page({
     this.getechart1Data();
    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -257,9 +243,5 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    
-  },
-
 
 })

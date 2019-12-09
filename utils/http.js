@@ -24,7 +24,6 @@ const http = (params) => {
             resolve(res)
           },
           fail: function(e) {
-            
             reject(e)
           }
         })

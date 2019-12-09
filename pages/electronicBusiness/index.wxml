@@ -1,2 +1,21 @@
-<!--pages/electronicBusiness/index.wxml-->
-<text>pages/electronicBusiness/index.wxml</text>
+<!--pages/main/index.wxml-->
+<view class='wrap'>
+  <header title='终端赢利监控' condition="{{condition}}" bind:changeCondition='changeCondition'></header>
+  <content list='{{contentList1}}' bind:changeIndex='changeIndex'></content>
+  <view class='middle'>
+    <scroll-view scroll-y="true"  class='scroll_box'>
+      <view class='table_box'>
+        <table listData='{{tableData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+      </view>
+      <view class="echart_box">
+        <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{econe}}"></ec-canvas>
+      </view>
+      <view class="echart_box">
+        <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ectwo}}"></ec-canvas>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='footer'>
+    <tabbar></tabbar>
+  </view>
+</view>

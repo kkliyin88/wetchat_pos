@@ -1,0 +1,22 @@
+
+ <cover-view class='header2' style="top:{{statusBarHeight+300+'rpx'}}" > 
+    <cover-view class="{{activeIndex==item.index?'content1':'content2'}} 'box'" bindtap='changeActiveIndex' wx:for='{{list}}' wx:key='{{item.index}}' data-index='{{item.index}}'>
+      <cover-view class='line line1'>
+        <cover-view class='cover-view_box'>
+          <cover-view>{{item.name}}</cover-view>
+        </cover-view>
+        <cover-view class='cover-view_box'>
+          <cover-image wx:if='{{item.samePercentage}}' src="{{imgBaseUrl+'/up.png'}}"></cover-image>
+          <cover-view class='percent_cover-view'>{{item.samePercentage}}</cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view class='line line2'>
+        <cover-view class='cover-view_box'>
+          <cover-view>{{item.value}}</cover-view>
+        </cover-view>
+        <cover-view class='cover-view_box'>
+          <cover-view>万</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>

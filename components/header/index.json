@@ -1,6 +1,9 @@
 {
   "component": true,
   "usingComponents": {
-    "top": "..//top/index"
+    "top": "../top/index",
+    "plaform": "../plaform/index",
+    "select": "../select/index",
+    "content": "../content/index"
   }
 }

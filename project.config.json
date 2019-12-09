@@ -94,6 +94,20 @@
 					"id": -1,
 					"name": "pages/main/index",
 					"pathName": "pages/main/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/dianshang/index",
+					"pathName": "pages/dianshang/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/xianxia/index",
+					"pathName": "pages/xianxia/index",
 					"scene": null
 				}
 			]

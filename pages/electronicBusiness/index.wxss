@@ -1,1 +1,91 @@
-/* pages/electronicBusiness/index.wxss */
+page {
+  background: #f4f6ff;
+}
+
+.wrap {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  background: linear-gradient(#8f81f7, #4e6ef5);
+  border-radius: 0 0 30rpx 30rpx;
+  width: 100%;
+}
+
+.header2 {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.middle {
+  width: 100%;
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.footer {
+  height: 98rpx;
+}
+
+.title {
+  text-align: center;
+  margin-top: 62rpx;
+  color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.condition_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 47rpx;
+}
+
+.condition {
+  display: inline-block;
+}
+
+.condition_be {
+  margin-left: 180rpx;
+}
+
+.condition_box_be {
+  margin-top: 40rpx;
+}
+
+
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.echart_box {
+  height: 350rpx;
+  position: relative;
+  margin: 0 25rpx;
+  margin-top: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.table_box {
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 30rpx 25rpx;
+}
+
+.table_title text {
+  color: #666;
+  font-size: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}

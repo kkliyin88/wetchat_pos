@@ -27,7 +27,7 @@ Component({
           name: '线下',
           pic: base_url + '/tabbar/xianxia.png',
           pic1: base_url + '/tabbar/xianxia1.png',
-          url: '/pages/xianxia/index',
+          url: '/pages/offLine/index',
           index: 1
         },
         {

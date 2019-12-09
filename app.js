@@ -1,5 +1,6 @@
 //app.js
 const base_url = 'https://resource.pureh2b.com/wechat-look-start-platform/image';
+import * as echarts from './common/ec-canvas/echarts';
 App({
   onLaunch: function() {
     const updateManager = wx.getUpdateManager();
@@ -51,9 +52,8 @@ App({
       desc: '今日销售额'
     }], //会员品牌列表
     currentMenberBrandIndex: 0,
-    tableData:[
-
-    ],
+    tabActiveIndex:0,
+    tableData: [],
     columns: [{
       title: '',
       key: 'code',
@@ -204,9 +204,9 @@ App({
         axisTic: {
           show: false
         },
-        // axisLine: {
-        //   show: false, //是否显示x轴线
-        // },
+        axisLine: {
+          show: false, //是否显示x轴线
+        },
         splitLine: {
           show: false
         },
@@ -223,6 +223,7 @@ App({
           type: 'bar',
           stack: '总量',
           itemStyle: {
+            barWidth: 20,
             normal: {
               barBorderColor: 'rgba(0,0,0,0)',
               color: 'rgba(0,0,0,0)'
@@ -243,6 +244,23 @@ App({
               show: true,
               position: 'inside'
             }
+          },
+          itemStyle: {
+            barWidth : 20,
+            normal: {
+              barBorderColor: 'rgba(0,0,0,0)',
+              barBorderRadius:10,
+              
+              color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [ 
+                  { offset: 0, color: '#8F81F7' },
+                  { offset: 1, color: '#4E6EF5' },
+                 
+                ]
+              )
+            },
+
           },
           data: []
         }

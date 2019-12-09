@@ -78,6 +78,7 @@ Component({
   },
   attached() {
      // 默认选项
+    console.log('propArray', this.data.propArray)
    setTimeout(()=>{
      this.data.propArray.map((item) => {
        if (item.value == this.data.value) {

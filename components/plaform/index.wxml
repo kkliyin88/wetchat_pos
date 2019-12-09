@@ -1,0 +1,1 @@
+<select prop-array='{{list}}' bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='选择店铺'></select>

@@ -1,0 +1,7 @@
+<!--components/pop/index.wxml-->
+<text>components/pop/index.wxml</text>
+<cover-view class='wrap'>
+   <cover-view wx:for='{{list}}'>
+   {{item}}
+   </cover-view>
+</cover-view>
