@@ -1,12 +1,12 @@
 <cover-view class='wrap'>
-  <cover-view class='title_box'>
+  <cover-view class='header'>
     <cover-view class='title'>{{title}}</cover-view>
     <cover-view bindtap='close' class='close'>X</cover-view>
   </cover-view>
   <cover-view class='main'>
-    <cover-view wx:for='{{list}}' class='item'> {{item.text}} </cover-view>
+    <cover-view bindtap='select'  data-item='{{item}}' wx:for='{{list}}' class="{{item.value==selectItem.value?'active':'item'}}"> {{item.text}} </cover-view>
   </cover-view>
   <cover-view class='footer'>
-    <cover-view class='btn'> 确定</cover-view>
+    <cover-view bindtap='sumit' class='btn'> 确定</cover-view>
   </cover-view>
 </cover-view>

@@ -87,12 +87,11 @@
   height: 80rpx;
   line-height: 80rpx;
   justify-content: center;
-  /* border: 1px solid green; */
 }
-/* .slotItem{
- width: 50%;
- border: 1px solid red;
-} */
+.slotItem{
+ color: #FFF;
+ font-size: 30rpx;
+}
 .slotItem:nth-child(2){
   margin-left: 180rpx;
 }

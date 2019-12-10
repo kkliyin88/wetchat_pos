@@ -22,9 +22,13 @@ Page({
     statusBarHeight: 20,
     windowHeight:736,
     popFlag:false,
+	platformItem:{},
+	shopItem:{},
     condition: {
       dateType: '2',
-      platform:'2'
+      platform:'2',
+	  pttype:'',
+	  werks:''
     },
     selectList:[], //弹窗数据
 	popTitle:'',
@@ -43,13 +47,50 @@ Page({
     tableData:[],
     columns: [],
   },
+  sumitSelect(e){
+	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+	  		 return false
+	  };
+	  if(e.detail.type=='pttype'){
+		  this.selectPlatform(e)
+	  }else if(e.detail.type=='werks'){
+		  this.selectShop(e)
+	  }
+  },
+  selectPlatform(e){
+	
+    this.setData({
+		platformItem:e.detail,
+		'condition.pttype':e.detail.value
+	});
+	this.getShopList(e.detail.value)
+	this.getContent1Data();
+	this.getechart1Data();
+  },
   openPlatformPop(){
     this.setData({
       selectList: this.data.plafromList,
 	  popTitle:'选择平台'
     });
-	
     this.openPop();
+  },
+  openShopPop(){
+	 this.setData({
+	   selectList: this.data.shopList,
+	   popTitle:'选择店铺'
+	 });
+	 this.openPop(); 
+  },
+  selectShop(e){
+	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+	  	 return false
+	   }
+	  this.setData({
+	  	shopItem:e.detail,
+	  	'condition.werks':e.detail.value
+	  });
+	  this.getContent1Data();
+	  this.getechart1Data();
   },
   openPop() {
     this.setData({
@@ -244,12 +285,12 @@ Page({
         res.data.data.list.map((item) => {
           item.text = item.zpt;
           item.value = item.pttype;
+		  item.type= 'pttype'
         })
         this.setData({
           plafromList: res.data.data.list
         })
       }
-	  console.log('plafromList',this.data.plafromList)
     }).catch((err) => {
       wx.hideLoading()
     })
@@ -266,9 +307,9 @@ Page({
       if (res.data.code == 200) {
         res.data.data.list.map((item) => {
           item.text = item.storeName;
-          item.value = item.type;
+          item.value = item.werks;
+		    item.type= 'werks'
         });
-
         this.setData({
           shopList: res.data.data.list
         })
@@ -285,7 +326,6 @@ Page({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight,
       windowHeight: app.globalData.systemInfo.windowHeight
     });
-	
     this.getContent1Data();
     this.getechart1Data();
     this.getPlaformList();
