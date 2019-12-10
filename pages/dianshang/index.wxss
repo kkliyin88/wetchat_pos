@@ -90,8 +90,6 @@ ec-canvas {
 
 /* 头部 */
 
-
-
 .condition_box {
   display: flex;
   flex-direction: row;
@@ -157,4 +155,8 @@ ec-canvas {
   line-height: 60rpx;
   color: #fff;
   position: relative;
+}
+.selectBox{
+	color: #FFF;
+	font-size: 30rpx;
 }
