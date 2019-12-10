@@ -57,7 +57,7 @@ Page({
     ]
   },
   goback() {
-    console.log('触发点击事件')
+   
     wx.redirectTo({
       url: '/pages/index/index'
     })

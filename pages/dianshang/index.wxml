@@ -1,7 +1,6 @@
 <!--pages/main/index.wxml-->
-<!-- <view class='page_wrap'> -->
 <cover-view class='head_wrap' style="height:{{statusBarHeight+340+30+'rpx'}}">
-  <top title="终端赢利监控_电商" class='top_wrap'></top>
+  <top title="终端赢利监控_电商" class='top_wrap' bind:goback='goback'></top>
   <cover-view class='condition_box'>
     <cover-view class='condition condition1'>
       <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'dotcircle':'emptycircle'}}"></cover-view>
@@ -17,7 +16,7 @@
       <cover-view wx:if='{{condition.pttype}}' class='selectBox'>{{platformItem.text}}</cover-view>
       <cover-view wx:else class='selectBox'>选择平台</cover-view>
     </cover-view>
-    <cover-view class='condition condition2' bindtap='openShopPop'>
+    <cover-view class='condition' style='margin-left: 50rpx;' bindtap='openShopPop'>
       <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}}</cover-view>
       <cover-view  wx:else class='selectBox'>选择店铺</cover-view>
     </cover-view>
@@ -43,4 +42,3 @@
 <view class='footer'>
   <tabbar></tabbar>
 </view>
-<!-- </view> -->

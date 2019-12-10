@@ -108,7 +108,7 @@ App({
     echartOption1: {
       title: {
         text: '业务趋势-收入',
-        left: 20,
+        left: 10,
         textStyle: {
           color: '#666',
           fontSize: 15,
@@ -178,9 +178,16 @@ App({
       }]
     },
     echartoption2:{
-      title: {
-        text: '赢利结构(百分比%)',
-      },
+     title: {
+       text: '赢利结构(百分比%)',
+       left: 10,
+       textStyle: {
+         color: '#666',
+         fontSize: 15,
+         height: 30,
+         lineHeight: 30
+       }
+     },
       tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -192,10 +199,11 @@ App({
         }
       },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
+        containLabel: false,
+        left: 30,
+        top: 40,
+        right: 20,
+        bottom: 40
       },
       xAxis: {
         type: 'category',

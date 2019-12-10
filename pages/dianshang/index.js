@@ -47,8 +47,23 @@ Page({
     tableData:[],
     columns: [],
   },
+  goback(){
+	 wx.redirectTo({
+	   url: '/pages/index/index'
+	 }) 
+  },
   changeDateType(){
-	  
+	  if(this.data.condition.dateType=='1'){
+		  this.setData({
+			  'condition.dateType':'2'
+		  })
+	  }else if(this.data.condition.dateType=='2'){
+		  this.setData({
+			  'condition.dateType':'1'
+		  })
+	  }
+	  this.getContent1Data();
+	  this.getechart1Data();
   },
   sumitSelect(e){
 	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
@@ -61,7 +76,6 @@ Page({
 	  }
   },
   selectPlatform(e){
-	
     this.setData({
 		platformItem:e.detail,
 		'condition.pttype':e.detail.value
@@ -303,7 +317,7 @@ Page({
       url: 'behaviorapi/mini/sap/getZPTStoreList',
       data: {
         platform: this.data.condition.platform,
-        pttype: pttype
+        pttype: pttype||''
       }
     }
     http(params).then((res) => {
@@ -332,6 +346,7 @@ Page({
     this.getContent1Data();
     this.getechart1Data();
     this.getPlaformList();
+	this.getShopList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,4 +1,5 @@
 // components/top/index.js
+
 Component({
   /**
    * 组件的属性列表
@@ -19,6 +20,7 @@ Component({
   },
   data: {
     statusBarHeight:'',
+	base_url:'https://resource.pureh2b.com/wechat-look-start-platform/image/'
   },
 
   /**

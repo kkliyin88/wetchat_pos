@@ -1,5 +1,6 @@
 
- <cover-view class='header2' style="top:{{statusBarHeight+300+'rpx'}}" > 
+ <cover-view class='header2' style="top:{{statusBarHeight+280+'rpx'}}" > 
+  <!-- <cover-view class='empty_wrap'></cover-view> -->
     <cover-view class="{{activeIndex==item.index?'content1':'content2'}} 'box'" bindtap='changeActiveIndex' wx:for='{{list}}' wx:key='{{item.index}}' data-index='{{item.index}}'>
       <cover-view class='line line1'>
         <cover-view class='cover-view_box'>

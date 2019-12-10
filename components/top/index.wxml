@@ -2,7 +2,7 @@
 <cover-view class='container'>
   <cover-view class='title'  style='padding-top:{{statusBarHeight+70+"rpx"}}'>
     <cover-view wx:if='{{backflag}}' class='goback' bindtap='goback'>
-      <van-icon name="arrow-left" />
+     <cover-image src="{{base_url+'close.png'}}" class='left'></cover-image>
     </cover-view>
     <cover-view>{{title}}</cover-view>
   </cover-view>

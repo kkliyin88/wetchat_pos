@@ -16,9 +16,13 @@
 }
 .goback{
   height: 50rpx;
-  width: 150rpx;
+  width: 100rpx;
   position: absolute;
   left:0rpx;
-  padding-left: 20rpx;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }

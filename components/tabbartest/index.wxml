@@ -1,9 +1,0 @@
-<!--components/tabBar/index.wxml-->
-<cover-view class='wrap'>
-   <cover-view class='box'>
-    <cover-view class='listItem'  bindtap="changeTab" wx:for='{{tabBar.list}}' wx:key='{{item.index}}' data-index='{{item.index}}' data-url='{{item.url}}'> 
-      <cover-view class="image"><cover-image src='{{item.index==activeIndex?item.pic1:item.pic}}'></cover-image></cover-view>
-      <cover-view class="{{item.index==activeIndex?'text1':'text'}}">  {{item.name}}</cover-view>
-    </cover-view>
-   </cover-view>
-</cover-view>
