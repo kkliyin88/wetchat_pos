@@ -47,6 +47,9 @@ Page({
     tableData:[],
     columns: [],
   },
+  changeDateType(){
+	  
+  },
   sumitSelect(e){
 	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
 	  		 return false

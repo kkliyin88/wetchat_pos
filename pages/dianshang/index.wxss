@@ -1,14 +1,32 @@
 page {
   background: #f4f6ff;
-}
-
-.wrap {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-  height: 100vh;
+ height: 100%;
   width: 100%;
 }
+
+.page_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  border: 1px solid green;
+
+}
+.head_wrap {
+  position: fixed;
+  top: -30rpx;
+  background: #4e6ef5;
+  border-radius: 30rpx;
+  height: 360rpx;
+  width: 100%;
+  z-index: 999;
+}
+.content_wrap {
+  border: 1px solid green;
+  height: 300rpx;
+}
+
 .middle {
   width: 100%;
   flex: 1;
@@ -17,6 +35,9 @@ page {
 
 .footer {
   height: 98rpx;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
 }
 
 .title {
@@ -30,7 +51,6 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 47rpx;
 }
 
 .condition {
@@ -40,12 +60,6 @@ page {
 .condition_be {
   margin-left: 180rpx;
 }
-
-.condition_box_be {
-  margin-top: 40rpx;
-}
-
-
 
 ec-canvas {
   width: 100%;
@@ -72,4 +86,75 @@ ec-canvas {
   font-size: 30rpx;
   height: 50rpx;
   line-height: 50rpx;
+}
+
+/* 头部 */
+
+
+
+.condition_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 80rpx;
+  margin-top: 0;
+}
+
+.condition {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.condition2 {
+  margin-left: 180rpx;
+}
+
+.emptycircle {
+  display: inline-block;
+  height: 20rpx;
+  width: 20rpx;
+  background: #6e77f6;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+}
+
+.dotcircle {
+  display: inline-block;
+  height: 35rpx;
+  width: 35rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.condition_box .text {
+  color: #fff;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.text_box image {
+  height: 23rpx;
+  width: 23rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+
+.container {
+  width: 100%;
+}
+
+.empty {
+  height: 55rpx;
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: 36rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #fff;
+  position: relative;
 }

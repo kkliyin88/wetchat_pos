@@ -1,4 +1,4 @@
-.wrap{
+.head_wrap{
   position: fixed;
   top: -30rpx;
  background: #4E6EF5 ;
@@ -13,6 +13,7 @@
   justify-content: center;
   margin-top: 47rpx;
   margin-bottom: 20rpx;
+  border: 1px solid green;
 }
 .condition {
   display: inline-block;
@@ -67,14 +68,7 @@
   color: #FFF;
   position: relative;
 }
-.goback{
-  height: 50rpx;
-  width: 150rpx;
-  position: absolute;
-  left:0rpx;
-  padding-left: 20rpx;
-  text-align: left;
-}
+
 .select_box {
   margin: 0 10rpx;
   background: rgb(153, 165, 243);
