@@ -23,10 +23,6 @@
       <cover-view class='text'>达成</cover-view>
     </cover-view>
   </cover-view> 
-  <cover-view class='slot'>
-    <cover-view class='slotItem'> <slot name="left"></slot></cover-view>
-    <cover-view class='slotItem'> <slot name="right"></slot></cover-view>
-  </cover-view>
  
    <!-- <cover-view  wx:if="{{type=='dianshang'}}" class='condition_box'>
     <select prop-array='{{plafromList}}' bind:change-select='changePlaform' nowText='{{condition.pttype}}' class='select_box' placeholder='选择平台'></select>

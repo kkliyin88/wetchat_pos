@@ -3,15 +3,17 @@
 <view class='head' style="height:{{statusBarHeight+360+'rpx'}}">
  <header bind:openPop='openPop' title='终端赢利监控-电商' type="dianshang" content-list="{{contentList1}}" condition="{{condition}}" bind:changeCondition='changeCondition'>
  <cover-view slot='left' bindtap='openPlatformPop'>
-    <cover-view wx:if='{{condition.pttype}}' class='selectBox'>{{platformItem.text}}</cover-view>
-    <cover-view wx:else class='selectBox'>选择平台</cover-view>
+    <cover-view wx:if='{{condition.pttype}}' class='selectBox'>{{platformItem.text}}</cover-view> 
+    <cover-view  class='selectBox'>选择平台</cover-view>
  </cover-view>
   <cover-view slot='right' bindtap='openShopPop'>
-	    <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}}</cover-view>
-     <cover-view  wx:else class='selectBox'>选择店铺</cover-view>
+	     <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}}</cover-view> 
+     <cover-view   class='selectBox'>选择店铺</cover-view>
   </cover-view>
  </header>
 </view>
+
+
 <view class='content'>
 	<content list='{{contentList1}}' bind:changeIndex='changeIndex'></content>
 </view>
@@ -28,7 +30,9 @@
 	  </view>
     </scroll-view>
   </view>
+
   <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect'  wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
+
  <view class='footer'>
     <tabbar ></tabbar>
  </view>

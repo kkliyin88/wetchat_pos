@@ -50,7 +50,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: 20rpx;
-  background: linear-gradient(#8f81f7, #4e6ef5);
+  background: #8f81f7;
 }
 
 .content2 {

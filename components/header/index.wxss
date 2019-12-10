@@ -1,7 +1,7 @@
 .wrap{
   position: fixed;
   top: -30rpx;
-  background: #4E6EF5 ;
+ background: #4E6EF5 ;
   border-radius: 30rpx;
   width: 100%;
   z-index: 999;
@@ -87,6 +87,7 @@
   height: 80rpx;
   line-height: 80rpx;
   justify-content: center;
+  z-index:1001 ;
 }
 .slotItem{
  color: #FFF;

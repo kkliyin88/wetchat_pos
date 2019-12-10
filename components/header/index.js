@@ -50,83 +50,10 @@ Component({
       })
     },
    
-    changeDateType(e) {
-      let temp = this.data.condition.dateType;
-      this.setData({
-        'condition.dateType': this.data.condition.dateType=='1'?'2':'1'
-      });
-      this.triggerEvent('changeCondition', this.data.condition) //修改父组件的条件
-    },
-    changePlaform(e){ //选择平台
-    this.getShopList(e.detail.value);
-	  this.setData({
-	    'condition.pttype': e.detail.value,
-      'condition.werks': '',
-	  });
-   
-	  this.triggerEvent('changeCondition', this.data.condition) //修改父组件的条件
-    },
-	changeShop(e){ //选择门店
-	  this.setData({
-	    'condition.werks': e.detail.value
-	  });
-	  this.triggerEvent('changeCondition', this.data.condition) //修改父组件的条件
-	},
-    getPlaformList() {
-      let params = {
-        url: 'behaviorapi/mini/sap/getZPTList',
-        data:{
-          platform: this.data.condition.platform
-        }
-      }
-      http(params).then((res) => {
-        if (res.data.code == 200) {
-          res.data.data.list.map((item) => {
-            item.text = item.zpt;
-            item.value = item.pttype;
-          })
-          this.setData({
-            plafromList: res.data.data.list
-          })
-        }
-      }).catch((err) => {
-        wx.hideLoading()
-      })
-    },
-    getShopList(pttype) {
-      let params = {
-        url: 'behaviorapi/mini/sap/getZPTStoreList',
-        data: {
-          platform: this.data.condition.platform,
-          pttype: pttype 
-        }
-      }
-      http(params).then((res) => {
-        if (res.data.code == 200) {
-          res.data.data.list.map((item) => {
-            item.text = item.storeName;
-            item.value = item.type;
-          });
-		  
-          this.setData({
-            shopList: res.data.data.list
-          })
-        }
-      }).catch((err) => {
-        wx.hideLoading()
-      })
-    },
+    
   },
   attached() {
-    if(this.data.type=='dianshang'){
-      this.setData({
-       'condition.platform':'2'
-      })
-    } else if (this.data.type == 'offline'){
-      this.setData({
-        'condition.platform': '1'
-      })
-    }
+    
     let that = this
     wx.getSystemInfo({
       success: function(res) {
@@ -135,7 +62,6 @@ Component({
         })
       }
     });
-    this.getPlaformList();
-    this.getShopList();
+   
   }
 })
