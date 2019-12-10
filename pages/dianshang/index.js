@@ -26,6 +26,10 @@ Page({
       dateType: '2',
       platform:'2'
     },
+    selectList:[], //弹窗数据
+	popTitle:'',
+    plafromList: [], //平台
+    shopList:[], //店铺
     activeIndex: 0,
     imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
     contentList1: [],
@@ -39,12 +43,18 @@ Page({
     tableData:[],
     columns: [],
   },
+  openPlatformPop(){
+    this.setData({
+      selectList: this.data.plafromList,
+	  popTitle:'选择平台'
+    });
+	
+    this.openPop();
+  },
   openPop() {
-    console.log(1111)
     this.setData({
       popFlag: !this.data.popFlag
     })
-    console.log('popFlag', this.data.popFlag)
   },
   init_echartOne(xdata, ydata) {
     this.oneComponent.init((canvas, width, height) => {
@@ -222,7 +232,51 @@ Page({
       wx.hideLoading()
     })
   },
-  
+  getPlaformList() {
+    let params = {
+      url: 'behaviorapi/mini/sap/getZPTList',
+      data: {
+        platform: this.data.condition.platform
+      }
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        res.data.data.list.map((item) => {
+          item.text = item.zpt;
+          item.value = item.pttype;
+        })
+        this.setData({
+          plafromList: res.data.data.list
+        })
+      }
+	  console.log('plafromList',this.data.plafromList)
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
+  getShopList(pttype) {
+    let params = {
+      url: 'behaviorapi/mini/sap/getZPTStoreList',
+      data: {
+        platform: this.data.condition.platform,
+        pttype: pttype
+      }
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        res.data.data.list.map((item) => {
+          item.text = item.storeName;
+          item.value = item.type;
+        });
+
+        this.setData({
+          shopList: res.data.data.list
+        })
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -231,9 +285,10 @@ Page({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight,
       windowHeight: app.globalData.systemInfo.windowHeight
     });
+	
     this.getContent1Data();
     this.getechart1Data();
-   
+    this.getPlaformList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

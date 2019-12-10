@@ -18,6 +18,7 @@
  
   "window": {
     "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#4e6ef5",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "white"

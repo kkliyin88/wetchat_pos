@@ -9,6 +9,9 @@ Component({
   /**
    * 组件的属性列表
    */
+  options: {
+    multipleSlots: true
+  },
   properties: {
     title: {
       type: String,
@@ -31,8 +34,9 @@ Component({
     shopList: [],
     condition: {
       dateType: '2',
-      pttype: '',
-      werks: '',
+      pttype: '', //电商中的平台母婴 电商服装 官网店铺
+      werks: '',  //店铺
+      platform:2, //实体 电商
     },
   },
 
@@ -45,9 +49,7 @@ Component({
         url: '/pages/index/index'
       })
     },
-    openPop(){
-      this.triggerEvent('openPop') //修改父组件的条件
-    },
+   
     changeDateType(e) {
       let temp = this.data.condition.dateType;
       this.setData({
