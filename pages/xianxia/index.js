@@ -29,6 +29,8 @@ Page({
 	  pttype:'',
 	  werks:''
     },
+	echartOption1:{},
+	echartOption2:{},
     selectList:[], //弹窗数据
 	popTitle:'',
     shopList:[], //店铺
@@ -306,7 +308,9 @@ Page({
   onLoad: function(options) {
 	 this.setData({
 		 columns:JSON.parse(JSON.stringify(app.globalData.columns)),
-		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList))
+		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList)),
+		 echartOption1:app.globalData.echartOption1,
+		 echartOption2:app.globalData.echartOption2
 	 })
 	 this.oneComponent = this.selectComponent('#mychart-one');
 	 this.twoComponent = this.selectComponent('#mychart-two');

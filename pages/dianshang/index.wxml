@@ -23,7 +23,7 @@
   </cover-view>
 </cover-view>
 <view class='content_wrap'>
-  <content list='{{contentList1}}' bind:changeIndex='changeIndex'></content>
+  <content list='{{contentList}}' bind:changeIndex='changeIndex'></content>
 </view>
 <view class='middle' style="margin-top: 360rpx;margin-bottom: 120rpx;">
   <scroll-view scroll-y="true" class='scroll_box'>

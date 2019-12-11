@@ -177,7 +177,7 @@ App({
         data: []
       }]
     },
-    echartoption2:{
+    echartOption2:{
      title: {
        text: '赢利结构(百分比%)',
        left: 10,
@@ -226,7 +226,6 @@ App({
         show: false,
       },
       series: [
-   
         {
           name: '',
           type: 'bar',

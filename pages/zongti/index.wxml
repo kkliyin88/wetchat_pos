@@ -14,7 +14,7 @@
  
 </cover-view>
 <view class='content_wrap'>
-  <content list='{{contentList1}}' bind:changeIndex='changeIndex'></content>
+  <content list='{{contentList}}' bind:changeIndex='changeIndex'></content>
 </view>
 <view class='middle' style="margin-top: 360rpx;margin-bottom: 120rpx;">
   <scroll-view scroll-y="true" class='scroll_box'>
@@ -34,6 +34,4 @@
   </scroll-view>
 </view>
 <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
-<!-- <view class='footer'>
-  <tabbar></tabbar>
-</view> -->
+

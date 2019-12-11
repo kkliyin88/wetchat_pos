@@ -11,7 +11,7 @@ function initChart(canvas, width, height) {
     height: height
   });
   canvas.setChart(chart);
-  chart.setOption(app.globalData.echartOption1);
+  chart.setOption(this.data.echartOption1);
   return chart;
 }
 Page({
@@ -25,7 +25,10 @@ Page({
 	shopItem:{},
     condition: {
       dateType: '2',
+	  werks:''
     },
+	echartOption1:{},
+	echartOption2:{},
     selectList:[], //弹窗数据
 	popTitle:'',
     shopList:[], //店铺
@@ -60,13 +63,46 @@ Page({
 	  this.getContent1Data();
 	  this.getechart1Data();
   },
+  sumitSelect(e){
+	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+	  		 return false
+	  };
+	  if(e.detail.type=='pttype'){
+		  this.selectPlatform(e)
+	  }else if(e.detail.type=='werks'){
+		  this.selectShop(e)
+	  }
+  },
+  openShopPop(){
+	 this.setData({
+	   selectList: this.data.shopList,
+	   popTitle:'选择店铺'
+	 });
+	 this.openPop(); 
+  },
+  selectShop(e){
+	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+	  	 return false
+	   }
+	  this.setData({
+	  	shopItem:e.detail,
+	  	'condition.werks':e.detail.value
+	  });
+	  this.getContent1Data();
+	  this.getechart1Data();
+  },
+  openPop() {
+    this.setData({
+      popFlag: !this.data.popFlag
+    })
+  },
   init_echartOne(xdata, ydata) {
     this.oneComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      chart.setOption(app.globalData.echartOption1);
+      chart.setOption(this.data.echartOption1);
       this.chart = chart;
       return chart;
     });
@@ -77,12 +113,18 @@ Page({
         width: width,
         height: height
       });
-      chart.setOption(app.globalData.echartoption2);
+      chart.setOption(this.data.echartOption2);
       this.chart = chart;
       return chart;
     });
   },
-
+  changeCondition(condition) { 
+    this.setData({
+      condition: condition.detail //子组件传回来的参数
+    })
+    this.getContent1Data(condition.detail);
+    this.getechart1Data(condition.detail);
+  },
   changeIndex(){
     this.init_echartOne();
   },
@@ -100,9 +142,11 @@ Page({
         return false ;
       }
       let obj = res.data.data;
-      let contentList1 = app.globalData.contentList1;
-      app.globalData.echartoption2.series[1].data
-      contentList1.map((item, i) => {
+      let contentList = this.data.contentList;
+	  // let echartOption2Data = this.data.echartOption2.series[0].data;
+   //    echartOption2Data =
+      contentList.map((item, i) => {
+		  console.log(i,item)
         if (i == 0) { //收入
           item.value = (res.data.data.zsr / 10000).toFixed(2);
           item.samePercentage = res.data.data.zsrtb || ''
@@ -118,8 +162,9 @@ Page({
         }
       })
       this.setData({
-        contentList1: contentList1
+        contentList: contentList,
       })
+	  console.log('data2',this.data.echartOption2.series[0].data)
       //******组装echart2的数据开始******
       //将对象转换为数组
       let arr = [];
@@ -131,6 +176,7 @@ Page({
       let echart2Data = arr.filter((item)=>{
         return  Object.keys(item)[0].indexOf('yl')>-1
       });
+	  console.log('echart2Data',echart2Data)
       echart2Data.map((item,i)=>{
         if (Object.keys(item)[0].indexOf('zsryl') != -1) {
           item.name = '收入'; item.index = 0; item.value = item.zsryl;
@@ -142,16 +188,21 @@ Page({
           item.name = '利润'; item.index = 3; item.value = item.zlryl;
         } 
       });
+	   console.log('echart2Data22',echart2Data)
       echart2Data.sort(this.compare('index')); //数组排序;
-      app.globalData.echartoption2.xAxis.data = echart2Data.map((item)=>{
+	  let echart2DataName = [];
+	  let echart2DataData = [];
+      echart2DataName = echart2Data.map((item)=>{
         return item.name
-      })
-      app.globalData.echartoption2.series[0].data = echart2Data.map((item) => {
+      });
+     echart2DataData = echart2Data.map((item) => {
         return Number(item.value.replace('%', ''));
       })
-      // app.globalData.echartoption2.series[0].data = [0,0,0,0];
-      // app.globalData.echartoption2.series[0].data[2] = app.globalData.echartoption2.series[1].data[3];
-      // app.globalData.echartoption2.series[0].data[1] = app.globalData.echartoption2.series[1].data[2] + app.globalData.echartoption2.series[1].data[3];
+	  this.setData({
+		  'echartOption2.xAxis.data':echart2DataName,
+		 'echartOption2.series[0].data':echart2DataData
+	  })
+	  console.log('echartOption2',this.data.echartOption2);
      //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()
@@ -172,6 +223,9 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
+	let columns = this.data.columns;
+	let contentList = this.data.contentList;
+	let tableData =[];
     http(params).then((res) => {
       wx.hideLoading()
       if (res.data.code != 200) {
@@ -180,11 +234,11 @@ Page({
       let list = res.data.data.list;
      //*******组装echart1的数据*******
       let echartDataArr = [];
-      app.globalData.echartOption1.xAxis.data = [];
+      this.data.echartOption1.xAxis.data = [];
       list.map((item)=>{ //
-        app.globalData.echartOption1.xAxis.data.push(item.ryear)
+        this.data.echartOption1.xAxis.data.push(item.ryear)
       })
-       app.globalData.contentList1.map((item,index)=>{
+       contentList.map((item,index)=>{
          item.threeyearValue = [];
          list.map((item2,index2)=>{
            if (index == 0) item.threeyearValue.push(item2.zsr==0?0:(item2.zsr/10000).toFixed(2));
@@ -193,39 +247,66 @@ Page({
            if (index == 3) item.threeyearValue.push(item2.zlr == 0 ? 0 :(item2.zlr / 10000).toFixed(2));
          })
        })
-      app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
+    this.data.echartOption1.series[0].data = contentList[this.data.activeIndex].threeyearValue;
     
     //******组装echart1的数据结束******
     //******组装table 的数据开始******
       list.map((item, i) => {  //table头部colunms
-        app.globalData.columns[i+1].title = item.ryear +'年';
-        app.globalData.columns[i + 1].key = item.ryear;
+	    columns[i+1].title = item.ryear +'年';
+		columns[i+1].key = item.ryear
       })
-      this.setData({
-        columns: app.globalData.columns
-      })
+	  this.setData({
+	  	columns: columns
+	  })
       //组装表格内容收入 毛利 费用 利润
-      app.globalData.tableData = [];
-      app.globalData.contentList1.map((item,i)=>{
+      contentList.map((item,i)=>{
          item.tableData = {code:item.name};
          item.threeyearValue.map((item2,i2)=>{
-           item.tableData[app.globalData.columns[i2+1].key] = item2
+           item.tableData[this.data.columns[i2+1].key] = item2
          })
-        app.globalData.tableData.push(item.tableData);
+         tableData.push(item.tableData);
       })
       //单独插入成本这一项
       let chengben = { code: '成本' }
       list.map((item, i) => {
-        chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0
+         chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0;
       })
-      app.globalData.tableData.splice(1,0,chengben)
+     tableData.splice(1,0,chengben)
       this.setData({
-       tableData: app.globalData.tableData
-      })
+       tableData: tableData,
+	   contentList:contentList
+      });
       this.init_echartOne();
 	  setTimeout(()=>{
-		 this.init_echartTwo(); 
+	  	this.init_echartTwo(); 
 	  },1000)
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
+ 
+  getShopList(pttype) {
+    let params = {
+      url: 'behaviorapi/mini/sap/getZPTStoreList',
+      data: {
+        platform: this.data.condition.platform,
+        pttype: pttype||''
+      }
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        res.data.data.list.map((item) => {
+          item.text = item.storeName;
+          item.value = item.werks;
+		  delete item.werks;
+		  delete item.storeName;
+		  delete item.pttype;
+		  item.type= 'werks';
+        });
+        this.setData({
+          shopList: res.data.data.list
+        })
+      }
     }).catch((err) => {
       wx.hideLoading()
     })
@@ -234,21 +315,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-	this.oneComponent = this.selectComponent('#mychart-one');
-	this.twoComponent = this.selectComponent('#mychart-two');
+	 this.setData({
+		 columns:JSON.parse(JSON.stringify(app.globalData.columns)),
+		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList)),
+		 echartOption1:app.globalData.echartOption1,
+		 echartOption2:app.globalData.echartOption2
+	 })
+	 console.log('echartOption2000',this.data.echartOption2)
+	 this.oneComponent = this.selectComponent('#mychart-one');
+	 this.twoComponent = this.selectComponent('#mychart-two');
     this.setData({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight,
       windowHeight: app.globalData.systemInfo.windowHeight
     });
     this.getContent1Data();
-	this.getechart1Data();
+    this.getechart1Data();
+	this.getShopList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    // this.oneComponent = this.selectComponent('#mychart-one');
-    // this.twoComponent = this.selectComponent('#mychart-two');
+  
+    // this.init_echartOne();
+    // this.init_echartTwo();
   },
   /**
    * 生命周期函数--监听页面显示
