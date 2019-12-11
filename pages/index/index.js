@@ -126,9 +126,7 @@ Page({
     }
   },
   gotoProfit() {
-      wx.redirectTo({
-        url: '/pages/zongti/index'
-      });
+	  wx.switchTab({url:'/pages/zongti/index'})
   },
   getAreaList() {
     let params = {

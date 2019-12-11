@@ -1,31 +1,32 @@
 <!--components/header/index.wxml-->
-<cover-view class='head_wrap' style="height:{{statusBarHeight+360+30+'rpx'}}">
-	<top title="{{title}}"></top>
-  <cover-view class='condition_box'>
-    <cover-view class='condition'>
-      <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'dotcircle':'emptycircle'}}"></cover-view>
-      <cover-view class='text'>本月</cover-view>
-    </cover-view>
-    <cover-view class='condition condition_be'>
-      <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'emptycircle':'dotcircle'}}"></cover-view>
-      <cover-view class='text'>累计</cover-view>
-    </cover-view>
-  </cover-view>
-  <cover-view wx:if="{{type=='zongti'}}" class='condition_box condition_box_be' >
-    <cover-view class='condition'>
-      <cover-view wx:if="{{condition.sameCompareFlag}}" class='emptycircle'></cover-view>
-      <cover-view wx:else class='dotcircle'></cover-view>
-      <cover-view class='text'>同比</cover-view>
-    </cover-view>
-    <cover-view class='condition condition_be'>
-      <cover-view wx:if="{{condition.budgetFlag}}" class='emptycircle'></cover-view>
-      <cover-view wx:else class='dotcircle'></cover-view>
-      <cover-view class='text'>达成</cover-view>
-    </cover-view>
-  </cover-view> 
- 
-   <!-- <cover-view  wx:if="{{type=='dianshang'}}" class='condition_box'>
-    <select prop-array='{{plafromList}}' bind:change-select='changePlaform' nowText='{{condition.pttype}}' class='select_box' placeholder='选择平台'></select>
-    <select prop-array='{{shopList}}' bind:change-select='changeShop' nowText='{{condition.werks}}' class='select_box' placeholder='选择店铺'></select>
-  </cover-view> -->
-</cover-view>
+<view class='header' style="height:{{statusBarHeight+360+'rpx'}}">
+    <!-- <top title='终端盈利监控' bind:goback='goback'></top> -->
+     <view class='title'  style='padding-top:{{statusBarHeight+40+"rpx"}}'>
+    <iview wx:if='{{backflag}}' class='goback' bindtap='goback'>
+      <van-icon name="arrow-left" />
+    </iview>
+    <iview>{{title}}</iview>
+  </view>
+    <view class='condition_box'>
+      <view class='condition'>
+        <text bindtap="changeDateType" class="{{condition.dateType?'dotcircle':'emptycircle'}}"></text>
+        <text class='text'>本月</text>
+      </view>
+      <view class='condition condition_be'>
+        <text bindtap="changeDateType" class="{{condition.dateType?'emptycircle':'dotcircle'}}"></text>
+        <text class='text'>累计</text>
+      </view>
+    </view>
+    <view class='condition_box condition_box_be'>
+      <view class='condition'>
+        <text wx:if="{{condition.sameCompareFlag}}" class='emptycircle'></text>
+        <text wx:else class='dotcircle'></text>
+        <text class='text'>同比</text>
+      </view>
+      <view class='condition condition_be'>
+        <text wx:if="{{condition.budgetFlag}}" class='emptycircle'></text>
+        <text wx:else class='dotcircle'></text>
+        <text class='text'>达成</text>
+      </view>
+    </view>
+  </view>

@@ -228,11 +228,11 @@ App({
       },
       series: [
         {
-          name: '辅助',
+          name: '',
           type: 'bar',
           stack: '总量',
+		  barWidth: 20,
           itemStyle: {
-            barWidth: 20,
             normal: {
               barBorderColor: 'rgba(0,0,0,0)',
               color: 'rgba(0,0,0,0)'
@@ -245,21 +245,28 @@ App({
           data: []
         },
         {
-          name: '生活费',
+          name: '',
           type: 'bar',
           stack: '总量',
+		  barWidth : 20,
           label: {
             normal: {
               show: true,
-              position: 'inside'
+              position: 'top'
             }
           },
           itemStyle: {
-            barWidth : 20,
             normal: {
               barBorderColor: 'rgba(0,0,0,0)',
-              barBorderRadius:10,
-              
+              barBorderRadius:5,
+			  label:{
+				  show:true,
+				  position:'top',
+				  textStyle:{
+					  color:'#999999',
+					  fontSize:16,
+				  }
+			  },
               color: new echarts.graphic.LinearGradient(
                 0, 0, 0, 1,
                 [ 

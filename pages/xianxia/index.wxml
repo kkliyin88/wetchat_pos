@@ -13,10 +13,8 @@
   </cover-view>
   <cover-view class='condition_box'>
     <cover-view class='condition'  bindtap='openShopPop'>
-      <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}} </cover-view>
-      <cover-view  wx:else class='selectBox'>
-		  选择店铺 
-		  </cover-view>
+      <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}} ▼  </cover-view>
+      <cover-view  wx:else class='selectBox'> 选择店铺 ▼ </cover-view>
     </cover-view>
   </cover-view>
 </cover-view>
@@ -41,6 +39,6 @@
   </scroll-view>
 </view>
 <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
-<view class='footer'>
+<!-- <view class='footer'>
   <tabbar></tabbar>
-</view>
+</view> -->

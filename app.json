@@ -10,11 +10,42 @@
     "pages/logs/logs",
     "pages/zongti/index",
 	"pages/topAnalyze/index",
-  "pages/xianxia/index",
+   "pages/xianxia/index",
 	"pages/dianshang/index",
 	"pages/budget/index"
 	
   ],
+  "tabBar": {
+    "color": "#CCCCCC",
+    "selectedColor": "#5E73F5",
+    "list": [
+      {
+        "iconPath": "images/tabbar/zongti.png",
+        "selectedIconPath": "images/tabbar/zongti1.png",
+        "pagePath": "pages/zongti/index",
+        "text": "总体"
+      },
+      {
+        "iconPath": "images/tabbar/xianxia.png",
+        "selectedIconPath": "images/tabbar/xianxia1.png",
+        "pagePath": "pages/xianxia/index",
+        "text":"线下"
+      },
+      {
+        "iconPath": "images/tabbar/dianshang.png",
+        "selectedIconPath": "images/tabbar/dianshang1.png",
+        "pagePath": "pages/dianshang/index",
+        "text": "电商"
+      },
+      {
+        "iconPath": "images/tabbar/top.png",
+        "selectedIconPath": "images/tabbar/top1.png",
+        "pagePath": "pages/top/index",
+        "text": "Top分析"
+      }
+     
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationStyle": "custom",

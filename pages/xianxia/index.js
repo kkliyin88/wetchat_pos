@@ -267,7 +267,9 @@ Page({
        tableData: app.globalData.tableData
       })
       this.init_echartOne();
-      this.init_echartTwo();
+	  setTimeout(()=>{
+	  	this.init_echartTwo(); 
+	  },1000)
     }).catch((err) => {
       wx.hideLoading()
     })
@@ -303,6 +305,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+	 this.oneComponent = this.selectComponent('#mychart-one');
+	 this.twoComponent = this.selectComponent('#mychart-two');
     this.setData({
       statusBarHeight: app.globalData.systemInfo.statusBarHeight,
       windowHeight: app.globalData.systemInfo.windowHeight
@@ -315,10 +319,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.oneComponent = this.selectComponent('#mychart-one');
-    this.twoComponent = this.selectComponent('#mychart-two');
-    this.init_echartOne();
-    this.init_echartTwo();
+  
+    // this.init_echartOne();
+    // this.init_echartTwo();
   },
   /**
    * 生命周期函数--监听页面显示

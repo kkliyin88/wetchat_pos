@@ -44,6 +44,6 @@
   </scroll-view>
 </view>
 <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
-<view class='footer'>
+<!-- <view class='footer'>
   <tabbar></tabbar>
-</view>
+</view> -->

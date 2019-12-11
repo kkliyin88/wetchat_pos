@@ -7,7 +7,6 @@
     line-height: 40rpx;
     background: rgb(153, 165,243);
     border-radius:8rpx; 
-	z-index: 10001;
 }
 .com-sImg{
     position: absolute;
@@ -29,8 +28,7 @@
     font-size: 24rpx;
     color: lightgray;
     display: inline-block;
-    position: relative;
-    	z-index: 10001;
+    position: relative
 }
 .com-sTxt{
     overflow: hidden;
@@ -40,21 +38,20 @@
     white-space: nowrap;
     font-size: 24rpx;
     display: inline-block;
-    position: relative;
-  	z-index: 10001;
+    position: relative
 }
 .com-sList{
     background: white;
     width: inherit;
+    position: absolute;
     border-top: none;
     box-sizing: border-box;
     max-height: 180rpx;
     overflow: auto;
     color:#FFF;
     background: rgb(153, 165,243);
-    z-index: 10001;
+    z-index: 1000;
     border-radius: 0 0 8rpx 8rpx;
-    position: fixed;
 }
 .com-sItem{
     height: 50rpx;
@@ -64,7 +61,7 @@
     white-space: nowrap;
     font-size: 24rpx;
     text-align: center;
-   z-index: 10001;
+    z-index: 1000;
 }
 .com-sItem:first-child{
     border-top: none;
