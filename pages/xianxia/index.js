@@ -11,7 +11,7 @@ function initChart(canvas, width, height) {
     height: height
   });
   canvas.setChart(chart);
-  chart.setOption(app.globalData.echartOption1);
+  chart.setOption(this.data.echartOption1);
   return chart;
 }
 Page({
@@ -104,7 +104,7 @@ Page({
         width: width,
         height: height
       });
-      chart.setOption(app.globalData.echartOption1);
+      chart.setOption(this.data.echartOption1);
       this.chart = chart;
       return chart;
     });
@@ -115,7 +115,7 @@ Page({
         width: width,
         height: height
       });
-      chart.setOption(app.globalData.echartoption2);
+      chart.setOption(this.data.echartOption2);
       this.chart = chart;
       return chart;
     });
@@ -145,9 +145,7 @@ Page({
       }
       let obj = res.data.data;
       let contentList = this.data.contentList;
-      app.globalData.echartoption2.series[0].data=
       contentList.map((item, i) => {
-		  console.log(i,item)
         if (i == 0) { //收入
           item.value = (res.data.data.zsr / 10000).toFixed(2);
           item.samePercentage = res.data.data.zsrtb || ''
@@ -163,7 +161,7 @@ Page({
         }
       })
       this.setData({
-        contentList: contentList
+        contentList: contentList,
       })
       //******组装echart2的数据开始******
       //将对象转换为数组
@@ -188,12 +186,18 @@ Page({
         } 
       });
       echart2Data.sort(this.compare('index')); //数组排序;
-      app.globalData.echartoption2.xAxis.data = echart2Data.map((item)=>{
+	  let echart2DataName = [];
+	  let echart2DataData = [];
+      echart2DataName = echart2Data.map((item)=>{
         return item.name
-      })
-      app.globalData.echartoption2.series[0].data = echart2Data.map((item) => {
+      });
+     echart2DataData = echart2Data.map((item) => {
         return Number(item.value.replace('%', ''));
       })
+	  this.setData({
+		  'echartOption2.xAxis.data':echart2DataName,
+		 'echartOption2.series[0].data':echart2DataData
+	  })
      //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()
@@ -225,9 +229,9 @@ Page({
       let list = res.data.data.list;
      //*******组装echart1的数据*******
       let echartDataArr = [];
-      app.globalData.echartOption1.xAxis.data = [];
+      this.data.echartOption1.xAxis.data = [];
       list.map((item)=>{ //
-        app.globalData.echartOption1.xAxis.data.push(item.ryear)
+        this.data.echartOption1.xAxis.data.push(item.ryear)
       })
        contentList.map((item,index)=>{
          item.threeyearValue = [];
@@ -238,7 +242,7 @@ Page({
            if (index == 3) item.threeyearValue.push(item2.zlr == 0 ? 0 :(item2.zlr / 10000).toFixed(2));
          })
        })
-      app.globalData.echartOption1.series[0].data = contentList[this.data.activeIndex].threeyearValue;
+    this.data.echartOption1.series[0].data = contentList[this.data.activeIndex].threeyearValue;
     
     //******组装echart1的数据结束******
     //******组装table 的数据开始******
