@@ -1,2 +1,46 @@
-<!--pages/xianxia/index.wxml-->
-<web-view src="{{url}}"></web-view>
+<!--pages/main/index.wxml-->
+<cover-view class='head_wrap' style="height:{{statusBarHeight+340+30+'rpx'}}">
+  <top title="终端赢利监控" class='top_wrap' bind:goback='goback'></top>
+  <cover-view class='condition_box'>
+    <cover-view class='condition condition1'>
+      <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'dotcircle':'emptycircle'}}"></cover-view>
+      <cover-view class='text'>本月</cover-view>
+    </cover-view>
+    <cover-view class='condition condition2'>
+      <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'emptycircle':'dotcircle'}}"></cover-view>
+      <cover-view class='text'>累计</cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view class='condition_box'>
+    <cover-view class='condition'  bindtap='openShopPop'>
+      <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}} </cover-view>
+      <cover-view  wx:else class='selectBox'>
+		  选择店铺 
+		  </cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+<view class='content_wrap'>
+  <content list='{{contentList1}}' bind:changeIndex='changeIndex'></content>
+</view>
+<view class='middle' style="margin-top: 360rpx;margin-bottom: 120rpx;">
+  <scroll-view scroll-y="true" class='scroll_box'>
+    <view class="echart_box">
+		<cover-view class='echart_cover'></cover-view>
+      <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{econe}}"></ec-canvas>
+    </view>
+
+    <view class="echart_box">
+		<cover-view class='echart_cover'></cover-view>
+      <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ectwo}}"></ec-canvas>
+	  
+    </view>
+    <view class='table_box'>
+      <table listData='{{tableData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+    </view>
+  </scroll-view>
+</view>
+<pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
+<view class='footer'>
+  <tabbar></tabbar>
+</view>

@@ -127,7 +127,7 @@ Page({
   },
   gotoProfit() {
       wx.redirectTo({
-        url: '/pages/main/index'
+        url: '/pages/zongti/index'
       });
   },
   getAreaList() {

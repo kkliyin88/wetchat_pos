@@ -116,6 +116,7 @@ App({
           lineHeight: 30
         }
       },
+      
       grid: {
         containLabel: false,
         left: 30,

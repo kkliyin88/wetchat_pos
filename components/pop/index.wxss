@@ -1,8 +1,27 @@
 /* components/pop/index.wxss */
-
+.container_pop{
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	/* background: #666; */
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid green;
+}
+.cover_pop{
+	position: fixed;
+	top: 0;
+	opacity: 0.6;
+	height: 70%;
+	width: 100%;
+	background: #000;
+	z-index: 10000;
+}
 .wrap{
+  flex: 1;
   width: 100%;
-  height: 650rpx;
+  height: 30%;
   position: fixed;
   bottom: 0;
   z-index: 10000;
@@ -10,6 +29,15 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+   animation: move 1s 1;
+}
+@keyframes move{
+   0% {
+   bottom:-500rpx;
+  }
+  100% {
+   bottom:0;
+  }
 }
 .header{
 	height: 100rpx;

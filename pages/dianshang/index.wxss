@@ -31,6 +31,7 @@ page {
   width: 100%;
   flex: 1;
   overflow-y: scroll;
+  margin-bottom: 120rpx;
 }
 
 .footer {
@@ -73,7 +74,12 @@ ec-canvas {
   background: #fff;
   border-radius: 20rpx;
 }
-
+.echart_cover{
+	height: 350rpx;
+	width: 100%;
+	position: absolute;
+	z-index: 1000;
+}
 .table_box {
   background: #fff;
   border-radius: 20rpx;

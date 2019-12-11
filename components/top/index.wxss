@@ -26,3 +26,7 @@
   align-content: center;
   align-items: center;
 }
+cover-image{
+	width: 18rpx;
+	height: 30rpx;
+}

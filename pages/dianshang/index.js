@@ -278,7 +278,7 @@ Page({
       //单独插入成本这一项
       let chengben = { code: '成本' }
       list.map((item, i) => {
-        chengben[item.ryear] = item.zcb
+        chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0;
       })
       app.globalData.tableData.splice(1,0,chengben)
       this.setData({
@@ -325,6 +325,9 @@ Page({
         res.data.data.list.map((item) => {
           item.text = item.storeName;
           item.value = item.werks;
+		  delete item.werks;
+		  delete item.storeName;
+		  delete item.pttype;
 		    item.type= 'werks'
         });
         this.setData({

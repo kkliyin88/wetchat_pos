@@ -20,7 +20,7 @@ Component({
           name:'总体',
           pic: base_url+'/tabbar/zongti.png',
           pic1: base_url + '/tabbar/zongti1.png',
-          url:'/pages/main/index',
+          url:'/pages/zongti/index',
           index:0
         },
         {
@@ -60,10 +60,15 @@ Component({
    */
   methods: {
     changeTab(e){
-      console.log('e',e)
-      app.globalData.activeIndex = e.currentTarget.dataset.index
-      console.log('app.globalData.activeIndex', app.globalData.activeIndex);
-      console.log('tabBar.list', this.data.tabBar.list[app.globalData.activeIndex].url)
+      app.globalData.activeIndex = e.currentTarget.dataset.index;
+      if (app.globalData.activeIndex>2){
+        wx.showToast({
+          title: '页面开发中',
+          icon: 'none',
+          duration: 2000
+        })
+        return 
+      }
       wx.redirectTo({
         url: this.data.tabBar.list[app.globalData.activeIndex].url
       });

@@ -8,14 +8,13 @@
     "pages/shopPerformance/index",
     "pages/personPerform/index",
     "pages/logs/logs",
-	"pages/main/index",
+    "pages/zongti/index",
 	"pages/topAnalyze/index",
   "pages/xianxia/index",
 	"pages/dianshang/index",
-	"pages/budget/index",
-	"pages/line/index"
+	"pages/budget/index"
+	
   ],
- 
   "window": {
     "backgroundTextStyle": "light",
     "navigationStyle": "custom",

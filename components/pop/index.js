@@ -17,6 +17,7 @@ Component({
    */
   data: {
     selectItem:{},
+	left:'<',
 	base_url:'https://resource.pureh2b.com/wechat-look-start-platform/image/'
   },
 

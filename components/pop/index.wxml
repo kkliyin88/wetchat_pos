@@ -1,12 +1,15 @@
-<cover-view class='wrap'>
-  <cover-view class='header'>
-    <cover-view class='title'>{{title}}</cover-view>
-     <cover-image  bindtap='close' class='close' src="{{base_url+'close.png'}}"></cover-image>
-  </cover-view>
-  <cover-view class='main'>
-    <cover-view bindtap='select'  data-item='{{item}}' wx:for='{{list}}' class="{{item.value==selectItem.value?'active':'item'}}"> {{item.text}} </cover-view>
-  </cover-view>
-  <cover-view class='footer'>
-    <cover-view bindtap='sumit' class='btn'> 确定</cover-view>
-  </cover-view>
-</cover-view>
+<cover-view class='container_pop'>
+	<cover-view bindtap='close' class='cover_pop'></cover-view>
+	<cover-view class='wrap'>
+	  <cover-view class='header'>
+		<cover-view class='title'>{{title}}</cover-view>
+		 <cover-image  bindtap='close' class='close' src="{{base_url+'close.png'}}"></cover-image>
+	  </cover-view>
+	  <cover-view class='main'>
+		<cover-view bindtap='select'  data-item='{{item}}' wx:for='{{list}}' wx:key='{{item.value}}' class="{{item.value==selectItem.value?'active':'item'}}"> {{item.text}} </cover-view>
+	  </cover-view>
+	  <cover-view class='footer'>
+		<cover-view bindtap='sumit' class='btn'> 确定</cover-view>
+	  </cover-view>
+	</cover-view>
+</cover-view >

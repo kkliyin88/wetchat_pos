@@ -20,7 +20,8 @@ Component({
   },
   data: {
     statusBarHeight:'',
-	base_url:'https://resource.pureh2b.com/wechat-look-start-platform/image/'
+	base_url:'https://resource.pureh2b.com/wechat-look-start-platform/image/',
+	left:'<'
   },
 
   /**
