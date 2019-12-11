@@ -143,8 +143,6 @@ Page({
       }
       let obj = res.data.data;
       let contentList = this.data.contentList;
-	  // let echartOption2Data = this.data.echartOption2.series[0].data;
-   //    echartOption2Data =
       contentList.map((item, i) => {
 		  console.log(i,item)
         if (i == 0) { //收入
