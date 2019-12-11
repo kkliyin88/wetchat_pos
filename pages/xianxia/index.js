@@ -65,6 +65,22 @@ Page({
 	  this.getContent1Data();
 	  this.getechart1Data();
   },
+  selectPlatform(e){
+    this.setData({
+  	platformItem:e.detail,
+  	'condition.pttype':e.detail.value
+  });
+  this.getShopList(e.detail.value)
+  this.getContent1Data();
+  this.getechart1Data();
+  },
+  openPlatformPop(){
+    this.setData({
+      selectList: this.data.plafromList,
+    popTitle:'选择平台'
+    });
+    this.openPop();
+  },
   sumitSelect(e){
 	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
 	  		 return false
@@ -279,6 +295,7 @@ Page({
       wx.hideLoading()
     })
   },
+  
  
   getShopList(pttype) {
     let params = {
