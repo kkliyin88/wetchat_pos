@@ -144,7 +144,6 @@ Page({
       let obj = res.data.data;
       let contentList = this.data.contentList;
       contentList.map((item, i) => {
-		  console.log(i,item)
         if (i == 0) { //收入
           item.value = (res.data.data.zsr / 10000).toFixed(2);
           item.samePercentage = res.data.data.zsrtb || ''
@@ -162,7 +161,6 @@ Page({
       this.setData({
         contentList: contentList,
       })
-	  console.log('data2',this.data.echartOption2.series[0].data)
       //******组装echart2的数据开始******
       //将对象转换为数组
       let arr = [];
@@ -174,7 +172,6 @@ Page({
       let echart2Data = arr.filter((item)=>{
         return  Object.keys(item)[0].indexOf('yl')>-1
       });
-	  console.log('echart2Data',echart2Data)
       echart2Data.map((item,i)=>{
         if (Object.keys(item)[0].indexOf('zsryl') != -1) {
           item.name = '收入'; item.index = 0; item.value = item.zsryl;
@@ -186,7 +183,6 @@ Page({
           item.name = '利润'; item.index = 3; item.value = item.zlryl;
         } 
       });
-	   console.log('echart2Data22',echart2Data)
       echart2Data.sort(this.compare('index')); //数组排序;
 	  let echart2DataName = [];
 	  let echart2DataData = [];
@@ -200,7 +196,6 @@ Page({
 		  'echartOption2.xAxis.data':echart2DataName,
 		 'echartOption2.series[0].data':echart2DataData
 	  })
-	  console.log('echartOption2',this.data.echartOption2);
      //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()
@@ -319,7 +314,6 @@ Page({
 		 echartOption1:app.globalData.echartOption1,
 		 echartOption2:app.globalData.echartOption2
 	 })
-	 console.log('echartOption2000',this.data.echartOption2)
 	 this.oneComponent = this.selectComponent('#mychart-one');
 	 this.twoComponent = this.selectComponent('#mychart-two');
     this.setData({
