@@ -26,8 +26,8 @@ Component({
       this.setData({
         activeIndex: e.currentTarget.dataset.index
       })
-      app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
-      app.globalData.echartOption1.title.text = '业务趋势-' + app.globalData.contentList1[this.data.activeIndex].name
+      app.globalData.echartOption1.series[0].data = this.data.list[this.data.activeIndex].threeyearValue;
+      app.globalData.echartOption1.title.text = '业务趋势-' + this.data.list[this.data.activeIndex].name
       this.triggerEvent('changeIndex')
     },
   },

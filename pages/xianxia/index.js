@@ -142,9 +142,10 @@ Page({
         return false ;
       }
       let obj = res.data.data;
-      let contentList1 = app.globalData.contentList1;
-      app.globalData.echartoption2.series[1].data
-      contentList1.map((item, i) => {
+      let contentList = this.data.contentList;
+      app.globalData.echartoption2.series[0].data=
+      contentList.map((item, i) => {
+		  console.log(i,item)
         if (i == 0) { //收入
           item.value = (res.data.data.zsr / 10000).toFixed(2);
           item.samePercentage = res.data.data.zsrtb || ''
@@ -160,9 +161,8 @@ Page({
         }
       })
       this.setData({
-        contentList1: contentList1
+        contentList: contentList
       })
-
       //******组装echart2的数据开始******
       //将对象转换为数组
       let arr = [];
@@ -189,13 +189,9 @@ Page({
       app.globalData.echartoption2.xAxis.data = echart2Data.map((item)=>{
         return item.name
       })
-      app.globalData.echartoption2.series[1].data = echart2Data.map((item) => {
+      app.globalData.echartoption2.series[0].data = echart2Data.map((item) => {
         return Number(item.value.replace('%', ''));
       })
-      app.globalData.echartoption2.series[0].data = [0,0,0,0];
-      app.globalData.echartoption2.series[0].data[2] = app.globalData.echartoption2.series[1].data[3];
-      app.globalData.echartoption2.series[0].data[1] = app.globalData.echartoption2.series[1].data[2] + app.globalData.echartoption2.series[1].data[3];
-      console.log(app.globalData.echartoption2.series[0].data)
      //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()
@@ -216,6 +212,9 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
+	let columns = this.data.columns;
+	let contentList = this.data.contentList;
+	let tableData =[];
     http(params).then((res) => {
       wx.hideLoading()
       if (res.data.code != 200) {
@@ -228,7 +227,7 @@ Page({
       list.map((item)=>{ //
         app.globalData.echartOption1.xAxis.data.push(item.ryear)
       })
-       app.globalData.contentList1.map((item,index)=>{
+       contentList.map((item,index)=>{
          item.threeyearValue = [];
          list.map((item2,index2)=>{
            if (index == 0) item.threeyearValue.push(item2.zsr==0?0:(item2.zsr/10000).toFixed(2));
@@ -237,35 +236,35 @@ Page({
            if (index == 3) item.threeyearValue.push(item2.zlr == 0 ? 0 :(item2.zlr / 10000).toFixed(2));
          })
        })
-      app.globalData.echartOption1.series[0].data = app.globalData.contentList1[this.data.activeIndex].threeyearValue;
+      app.globalData.echartOption1.series[0].data = contentList[this.data.activeIndex].threeyearValue;
     
     //******组装echart1的数据结束******
     //******组装table 的数据开始******
       list.map((item, i) => {  //table头部colunms
-        app.globalData.columns[i+1].title = item.ryear +'年';
-        app.globalData.columns[i + 1].key = item.ryear;
+	    columns[i+1].title = item.ryear +'年';
+		columns[i+1].key = item.ryear
       })
-      this.setData({
-        columns: app.globalData.columns
-      })
+	  this.setData({
+	  	columns: columns
+	  })
       //组装表格内容收入 毛利 费用 利润
-      app.globalData.tableData = [];
-      app.globalData.contentList1.map((item,i)=>{
+      contentList.map((item,i)=>{
          item.tableData = {code:item.name};
          item.threeyearValue.map((item2,i2)=>{
-           item.tableData[app.globalData.columns[i2+1].key] = item2
+           item.tableData[this.data.columns[i2+1].key] = item2
          })
-        app.globalData.tableData.push(item.tableData);
+         tableData.push(item.tableData);
       })
       //单独插入成本这一项
       let chengben = { code: '成本' }
       list.map((item, i) => {
          chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0;
       })
-      app.globalData.tableData.splice(1,0,chengben)
+     tableData.splice(1,0,chengben)
       this.setData({
-       tableData: app.globalData.tableData
-      })
+       tableData: tableData,
+	   contentList:contentList
+      });
       this.init_echartOne();
 	  setTimeout(()=>{
 	  	this.init_echartTwo(); 
@@ -305,6 +304,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+	 this.setData({
+		 columns:JSON.parse(JSON.stringify(app.globalData.columns)),
+		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList))
+	 })
 	 this.oneComponent = this.selectComponent('#mychart-one');
 	 this.twoComponent = this.selectComponent('#mychart-two');
     this.setData({

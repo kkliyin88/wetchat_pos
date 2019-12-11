@@ -53,7 +53,7 @@ App({
     }], //会员品牌列表
     currentMenberBrandIndex: 0,
     tabActiveIndex:0,
-    tableData: [],
+    // tableData: [],
     columns: [{
       title: '',
       key: 'code',
@@ -88,7 +88,7 @@ App({
         "text": '本月'
       }
     ],
-    contentList1: [{
+    contentList: [{
         name: '收入',
         index: 0
       },
@@ -116,14 +116,13 @@ App({
           lineHeight: 30
         }
       },
-      
-      grid: {
-        containLabel: false,
-        left: 30,
-        top: 40,
-        right: 20,
-        bottom: 40
-      },
+     grid: {
+       containLabel: false,
+       left: 40,
+       top: 40,
+       right: 40,
+       bottom: 40
+     },
       tooltip: {
         show: false,
         trigger: 'axis'
@@ -201,9 +200,9 @@ App({
       },
       grid: {
         containLabel: false,
-        left: 30,
+        left: 40,
         top: 40,
-        right: 20,
+        right: 40,
         bottom: 40
       },
       xAxis: {
@@ -214,7 +213,7 @@ App({
           show: false
         },
         axisLine: {
-          show: false, //是否显示x轴线
+          show: true, //是否显示x轴线
         },
         splitLine: {
           show: false
@@ -227,23 +226,7 @@ App({
         show: false,
       },
       series: [
-        {
-          name: '',
-          type: 'bar',
-          stack: '总量',
-		  barWidth: 20,
-          itemStyle: {
-            normal: {
-              barBorderColor: 'rgba(0,0,0,0)',
-              color: 'rgba(0,0,0,0)'
-            },
-            emphasis: {
-              barBorderColor: 'rgba(0,0,0,0)',
-              color: 'rgba(0,0,0,0)'
-            }
-          },
-          data: []
-        },
+   
         {
           name: '',
           type: 'bar',
@@ -272,11 +255,9 @@ App({
                 [ 
                   { offset: 0, color: '#8F81F7' },
                   { offset: 1, color: '#4E6EF5' },
-                 
                 ]
               )
             },
-
           },
           data: []
         }

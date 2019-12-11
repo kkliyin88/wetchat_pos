@@ -120,7 +120,6 @@ Page({
       this.setData({
         contentList1: contentList1
       })
-
       //******组装echart2的数据开始******
       //将对象转换为数组
       let arr = [];
@@ -147,12 +146,12 @@ Page({
       app.globalData.echartoption2.xAxis.data = echart2Data.map((item)=>{
         return item.name
       })
-      app.globalData.echartoption2.series[1].data = echart2Data.map((item) => {
+      app.globalData.echartoption2.series[0].data = echart2Data.map((item) => {
         return Number(item.value.replace('%', ''));
       })
-      app.globalData.echartoption2.series[0].data = [0,0,0,0];
-      app.globalData.echartoption2.series[0].data[2] = app.globalData.echartoption2.series[1].data[3];
-      app.globalData.echartoption2.series[0].data[1] = app.globalData.echartoption2.series[1].data[2] + app.globalData.echartoption2.series[1].data[3];
+      // app.globalData.echartoption2.series[0].data = [0,0,0,0];
+      // app.globalData.echartoption2.series[0].data[2] = app.globalData.echartoption2.series[1].data[3];
+      // app.globalData.echartoption2.series[0].data[1] = app.globalData.echartoption2.series[1].data[2] + app.globalData.echartoption2.series[1].data[3];
      //******组装echart2的数据结束******
     }).catch((err) => {
       wx.hideLoading()

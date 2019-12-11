@@ -87,14 +87,14 @@ Page({
   },
    changeswiper(e){
      this.getPageData(e);
-    setTimeout(()=>{
-      this.getPageData(e);
-    },300)
+      setTimeout(()=>{
+        this.getPageData(e);
+      },300)
    },
   getShopList() {
     let params = {
       url: 'behaviorapi/mini/fegin/listStore',
-    }
+    };
     http(params).then((res) => {
       if (res.data.code == 200) {
         this.setData({
