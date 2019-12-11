@@ -21,9 +21,14 @@ Page({
   data: {
     statusBarHeight: 20,
     windowHeight:736,
+    popFlag:false,
+	shopItem:{},
     condition: {
-      dateType: true,
+      dateType: '2',
     },
+    selectList:[], //弹窗数据
+	popTitle:'',
+    shopList:[], //店铺
     activeIndex: 0,
     imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
     contentList1: [],
@@ -36,6 +41,24 @@ Page({
     },
     tableData:[],
     columns: [],
+  },
+  goback(){
+	 wx.redirectTo({
+	   url: '/pages/index/index'
+	 }) 
+  },
+  changeDateType(){
+	  if(this.data.condition.dateType=='1'){
+		  this.setData({
+			  'condition.dateType':'2'
+		  })
+	  }else if(this.data.condition.dateType=='2'){
+		  this.setData({
+			  'condition.dateType':'1'
+		  })
+	  }
+	  this.getContent1Data();
+	  this.getechart1Data();
   },
   init_echartOne(xdata, ydata) {
     this.oneComponent.init((canvas, width, height) => {
@@ -59,23 +82,14 @@ Page({
       return chart;
     });
   },
-  changeCondition(e) { 
-    this.setData({
-      condition: e.detail //子组件传回来的参数
-    })
-    this.getContent1Data();
-    this.getechart1Data();
-   
-  },
+
   changeIndex(){
     this.init_echartOne();
   },
-  getContent1Data() {
+  getContent1Data(condition) {
     let params = {
       url: 'behaviorapi/mini/sap/getTerminalProfitInfo',
-      data: {
-        dateType: this.data.condition.dateType ? 2 : 1 //本月为1,本年2
-      }
+      data: condition ? condition : this.data.condition
     }
     wx.showLoading({
       title: '加载中'
@@ -152,12 +166,10 @@ Page({
       return value1 - value2;
     }
   },
-  getechart1Data(i) { //三年赢利图数据
+  getechart1Data(condition) { //三年赢利图数据
     let params = {
       url: '/behaviorapi/mini/sap/getTerminalProfitYearList',
-      data: {
-        dateType: this.data.condition.dateType ? 2 : 1 //本月为1,本年2
-      }
+      data:  condition? condition : this.data.condition
     }
     wx.showLoading({
       title: '加载中'
@@ -206,7 +218,7 @@ Page({
       //单独插入成本这一项
       let chengben = { code: '成本' }
       list.map((item, i) => {
-        chengben[item.ryear] = item.zcb
+        chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0
       })
       app.globalData.tableData.splice(1,0,chengben)
       this.setData({
@@ -218,6 +230,7 @@ Page({
       wx.hideLoading()
     })
   },
+ 
   
   /**
    * 生命周期函数--监听页面加载
@@ -229,7 +242,7 @@ Page({
     });
     this.getContent1Data();
     this.getechart1Data();
-   
+	
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
