@@ -43,13 +43,12 @@
         "pagePath": "pages/top/index",
         "text": "Top分析"
       }
-     
     ]
   },
   "window": {
     "backgroundTextStyle": "light",
     "navigationStyle": "custom",
-    "navigationBarBackgroundColor": "#4e6ef5",
+    "navigationBarBackgroundColor": "#71BBF5",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "white"
   },

@@ -315,6 +315,7 @@ Page({
 		  delete item.pttype;
 		  item.type= 'werks';
         });
+		res.data.data.list.unshift({text:'全部店铺',value:'',type:'werks'})
         this.setData({
           shopList: res.data.data.list
         })
@@ -330,8 +331,13 @@ Page({
 	 this.setData({
 		 columns:JSON.parse(JSON.stringify(app.globalData.columns)),
 		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList)),
-		 echartOption1:app.globalData.echartOption1,
-		 echartOption2:app.globalData.echartOption2
+		echartOption1:JSON.parse(JSON.stringify(app.globalData.echartOption1)),
+		echartOption2:app.globalData.echartOption2
+	 })
+	 this.setData({
+		 'echartOption1.series[0].lineStyle.color':'#9984F3',
+		  'echartOption1.series[0].lineStyle.shadowColor':'#9984F3',
+		  'echartOption1.series[0].itemStyle.normal.color': '#9984F3',
 	 })
 	 this.oneComponent = this.selectComponent('#mychart-one');
 	 this.twoComponent = this.selectComponent('#mychart-two');

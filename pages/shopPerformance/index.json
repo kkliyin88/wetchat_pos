@@ -1,7 +1,8 @@
 {
   "usingComponents": 
   {
-    "top": "/components/top/index",
+   
+	 "title": "/components/title/index",
     "select": "/components/select/index",
     "progress": "/components/progress/index"
   },

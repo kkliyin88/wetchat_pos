@@ -1,5 +1,5 @@
 <view class='container1' id='con1'>
-  <top title='导购员业绩' bind:goback='goback'></top>
+  <title title='导购员业绩' bind:goback='goback'></title>
   <view class='condition_wrap'>
     <view class='condition'>
       <view class='perform_title'>{{storeName}}</view>

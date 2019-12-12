@@ -264,7 +264,7 @@ Page({
       list.map((item, i) => {
          chengben[item.ryear] = item.zcb?(item.zcb/10000).toFixed(2):0;
       })
-     tableData.splice(1,0,chengben)
+     tableData.splice(1,0,chengben);
       this.setData({
        tableData: tableData,
 	   contentList:contentList
@@ -313,6 +313,9 @@ Page({
 		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList)),
 		 echartOption1:app.globalData.echartOption1,
 		 echartOption2:app.globalData.echartOption2
+	 })
+	 this.setData({
+		 'echartOption1.series[0].itemStyle.normal.color': '#27C69B'
 	 })
 	 this.oneComponent = this.selectComponent('#mychart-one');
 	 this.twoComponent = this.selectComponent('#mychart-two');

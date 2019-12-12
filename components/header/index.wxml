@@ -2,9 +2,9 @@
 <view class='header' style="height:{{statusBarHeight+360+'rpx'}}">
     <!-- <top title='终端盈利监控' bind:goback='goback'></top> -->
      <view class='title'  style='padding-top:{{statusBarHeight+40+"rpx"}}'>
-    <iview wx:if='{{backflag}}' class='goback' bindtap='goback'>
+    <view wx:if='{{backflag}}' class='goback' bindtap='goback'>
       <van-icon name="arrow-left" />
-    </iview>
+    </view>
     <iview>{{title}}</iview>
   </view>
     <view class='condition_box'>

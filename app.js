@@ -57,20 +57,18 @@ App({
     columns: [{
       title: '',
       key: 'code',
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
-      width: '110rpx'
+      style: 'textalign:center;color:#666;fontsize:30rpx;background:#FFF',
     },
     {
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2',
+      style: 'textalign:center;color:#666;fontsize:30rpx;background:#FAFBFF',
     },
     {
     
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2;',
-      width: '110rpx'
+      style: 'textalign:center;color:#666;fontsize:30rpx;background:#FFF;',
+    
     },
     {
-   
-      style: 'textalign:center;color:#FFF;fontsize:30rpx;background:#7886F2'
+      style: 'textalign:center;color:#666;fontsize:30rpx;background:#FAFBFF'
     }
     ],
     dateTypeList: [{
@@ -112,6 +110,7 @@ App({
         textStyle: {
           color: '#666',
           fontSize: 15,
+		  fontWeight:'bold',
           height: 30,
           lineHeight: 30
         }
@@ -119,32 +118,33 @@ App({
      grid: {
        containLabel: false,
        left: 40,
-       top: 40,
+       top: 60,
        right: 40,
        bottom: 40
      },
-      tooltip: {
-        show: false,
-        trigger: 'axis'
-      },
       xAxis: {
         type: 'category',
         boundaryGap: false, //从0开始
         data: [],
-        show: true,
         nameTextStyle: {
           color: 'green',
           fontSize: 15,
         },
+		axisLabel:{
+			show:true,
+			color:'#999',
+			fontWeight:'bold',
+			fontSize:15
+		},
+        axisTick: {
+          show: false
+        },
         axisLine: {
           show: false, //是否显示x轴线
         },
-        axisTic: {
-          show: false
-        },
         splitLine: {
           show: false
-        }
+        },
       },
       yAxis: {
         x: 'center',
@@ -165,13 +165,15 @@ App({
         },
         itemStyle: {
           normal: { //拐点显示数值
-            color: '#27C69B', //拐点颜色
+            color: '#999', //拐点颜色
             label: {
               show: true,
-              color: 'gray', //拐点文字样式
-              fontSize: 15,
+              color: '#999', //拐点文字样式
+              fontSize: 13,
+			  formatter:'{c}万'
             }
-          }
+          },
+		 
         },
         smooth: true,
         data: []
@@ -184,36 +186,33 @@ App({
        textStyle: {
          color: '#666',
          fontSize: 15,
+		 fontWeight:'bold',
          height: 30,
          lineHeight: 30
        }
      },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        },
-        formatter: function (params) {
-          var tar = params[1];
-          return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
-        }
-      },
+     
       grid: {
         containLabel: false,
         left: 40,
-        top: 40,
-        right: 40,
+        top: 60,
+        right: 0,
         bottom: 40
       },
       xAxis: {
         type: 'category',
-        splitLine: { show: false },
-        boundaryGap: false, //从0开始
-        axisTic: {
+        boundaryGap: true, //从0开始
+		axisLabel:{
+			show:true,
+			color:'#999',
+			fontWeight:'bold',
+			fontSize:15
+		},
+        axisTick: {
           show: false
         },
         axisLine: {
-          show: true, //是否显示x轴线
+          show: false, //是否显示x轴线
         },
         splitLine: {
           show: false
@@ -223,13 +222,26 @@ App({
       yAxis: {
         type: 'value',
         x: 'center',
-        show: false,
+		axisLine: {
+		  show: false, 
+		},
+		axisTick: {
+		  show: false
+		},
+		splitLine: {
+		  show: false
+		},
+		axisLabel:{
+			show:true,
+			color:'#999',
+			fontSize:15
+		},
       },
       series: [
         {
           name: '',
           type: 'bar',
-          stack: '总量',
+          stack: '',
 		  barWidth : 20,
           label: {
             normal: {
@@ -246,16 +258,29 @@ App({
 				  position:'top',
 				  textStyle:{
 					  color:'#999999',
-					  fontSize:16,
+					  fontSize:13,
 				  }
 			  },
-              color: new echarts.graphic.LinearGradient(
-                0, 0, 0, 1,
-                [ 
-                  { offset: 0, color: '#8F81F7' },
-                  { offset: 1, color: '#4E6EF5' },
-                ]
-              )
+			  color:function(params){
+				  if(params.value>0){
+					  return new echarts.graphic.LinearGradient(
+						0, 0, 0, 1,
+						[ 
+						  { offset: 0, color: '#8F81F7' },
+						  { offset: 1, color: '#4E6EF5' },
+						]
+					  )
+				  }
+				  else{
+					  return new echarts.graphic.LinearGradient(
+							0, 0, 0, 1,
+							[ 
+							  { offset: 1, color: '#F9AF6D' },
+							  { offset: 0, color: '#FF8989' },
+							]
+					  )
+				  }
+			  },
             },
           },
           data: []

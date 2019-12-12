@@ -108,6 +108,13 @@
 					"id": -1,
 					"name": "pages/xianxia/index",
 					"pathName": "pages/xianxia/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/shopPerformance/index",
+					"pathName": "pages/shopPerformance/index",
 					"scene": null
 				}
 			]

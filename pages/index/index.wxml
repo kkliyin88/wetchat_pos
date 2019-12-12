@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <!-- <view class='wrap'> -->
 <view class='container1' style="height:{{statusBarHeight+560+'rpx'}}">
-  <top title='观星台' backflag='{{false}}'></top>
+  <title title='观星台' backflag='{{false}}'></title>
   <view class='condition'>
     <view class='text'>{{userInfo.name}}，欢迎您</view>
     <view class='text chang_acount' bindtap="logout">切换账号</view>

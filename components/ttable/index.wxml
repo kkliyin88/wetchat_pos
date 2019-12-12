@@ -5,7 +5,7 @@
   </view>
   <block  wx:for="{{listData}}" wx:key="{{code}}"  wx:for-item="item">
     <view class="tr">
-      <view wx:for="{{columns}}" wx:for-item="colunmItem" wx:key='colunmItem.key' class="td" >
+      <view wx:for="{{columns}}" wx:for-item="colunmItem" wx:for-index='i' wx:key='colunmItem.key' class="{{'td'+i+' '+'td' }}" >
         <image src='{{item[colunmItem.key]}}' wx:if='{{colunmItem.key=="picUrl"}}'></image>
         <view wx:else  > {{item[colunmItem.key]}}</view>
       </view>

@@ -1,0 +1,32 @@
+/* components/top/index.wxss */
+.container{
+  width: 100%;
+}
+.empty{
+  height: 55rpx;
+  width: 100%;
+}
+.title {
+  text-align: center;
+  font-size: 36rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #FFF;
+  position: relative;
+}
+.goback{
+  height: 50rpx;
+  width: 100rpx;
+  position: absolute;
+  left:0rpx;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+image.left{
+	width: 18rpx;
+	height: 30rpx;
+}
