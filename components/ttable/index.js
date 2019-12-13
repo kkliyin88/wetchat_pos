@@ -34,12 +34,10 @@ Component({
        colunmsArr.push(item.key)
      })
      this.setData({ columnsArr:colunmsArr});
-     console.log('columnsArr', this.data.columnsArr)
    },
   
   },
   attached(){
     this.ColunmstoArr();
-    console.log('listData',this.data.listData)
   }
 })

@@ -28,7 +28,7 @@ Component({
       })
       app.globalData.echartOption1.series[0].data = this.data.list[this.data.activeIndex].threeyearValue;
       app.globalData.echartOption1.title.text = '业务趋势-' + this.data.list[this.data.activeIndex].name
-      this.triggerEvent('changeIndex')
+      this.triggerEvent('changeIndex',this.data.activeIndex)
     },
   },
   attached() {

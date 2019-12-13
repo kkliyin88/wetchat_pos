@@ -29,7 +29,10 @@ Component({
    */
   methods: {
     goback() {
-      this.triggerEvent('goback') 
+     wx.showToast({          title: '返回首页',          icon: 'none',          duration: 3000        })
+      wx.navigateTo({
+        url: '/pages/index/index'
+      })
     }
   },
   attached() {

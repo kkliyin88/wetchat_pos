@@ -3,14 +3,20 @@ page {
  height: 100%;
   width: 100%;
 }
-
+.back{
+	height: 100rpx;
+	width: 100rpx;
+	position: fixed;
+	top: 60rpx;
+	z-index: 9999;
+}
 .page_wrap {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  border: 1px solid green;
+ 
 
 }
 .head_wrap {
@@ -23,7 +29,6 @@ page {
   z-index: 999;
 }
 .content_wrap {
-  border: 1px solid green;
   height: 300rpx;
 }
 
@@ -69,7 +74,7 @@ ec-canvas {
   height: 100%;
 }
 .echart_box {
-  height: 350rpx;
+  height: 450rpx;
   position: relative;
   margin: 0 25rpx;
   margin-top: 30rpx;
@@ -77,7 +82,7 @@ ec-canvas {
   border-radius: 20rpx;
 }
 .echart_cover{
-	height: 350rpx;
+	height: 450rpx;
 	width: 100%;
 	position: absolute;
 	z-index: 1000;

@@ -1,10 +1,10 @@
-
- <cover-view class='header2' style="top:{{statusBarHeight+280+'rpx'}}" > 
-  <!-- <cover-view class='empty_wrap'></cover-view> -->
+<cover-view class='content_wrap' style="top:{{statusBarHeight+270+'rpx'}}">
+<cover-view class='empty_wrap'>123123</cover-view>
+  <cover-view class='header2' >
     <cover-view class="{{activeIndex==item.index?'content1':'content2'}} 'box'" bindtap='changeActiveIndex' wx:for='{{list}}' wx:key='{{item.index}}' data-index='{{item.index}}'>
       <cover-view class='line line1'>
         <cover-view class='cover-view_box'>
-          <cover-view>{{item.name}}</cover-view>
+          <cover-view style='font-weight: 800;font-size: 30rpx;'>{{item.name}}</cover-view>
         </cover-view>
         <cover-view class='cover-view_box'>
           <cover-image wx:if='{{item.samePercentage}}' src="{{imgBaseUrl+'/up.png'}}"></cover-image>
@@ -21,3 +21,4 @@
       </cover-view>
     </cover-view>
   </cover-view>
+</cover-view>

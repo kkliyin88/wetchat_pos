@@ -1,5 +1,5 @@
-<!-- <cover-view class='container_pop'>
-	<cover-view bindtap='close' class='cover_pop'></cover-view> -->
+
+<cover-view bindtap='close' class='cover_pop'></cover-view>
 <cover-view class='wrap'>
   <cover-view class='header'>
     <cover-view class='title'>{{title}}</cover-view>
@@ -12,4 +12,3 @@
     <cover-view bindtap='sumit' class='btn'> 确定</cover-view>
   </cover-view>
 </cover-view>
-<!-- </cover-view > -->

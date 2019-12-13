@@ -1,8 +1,8 @@
 <!--components/top/index.wxml-->
-<cover-view class='container'>
+<cover-view class='container' >
   <cover-view class='title'  style='padding-top:{{statusBarHeight+70+"rpx"}}'>
-    <cover-view wx:if='{{backflag}}' class='goback' bindtap='goback'>
-    <cover-image class='fanhui' src="{{base_url+'fanhui.png'}}" class='left'></cover-image>
+    <cover-view wx:if='{{backflag}}' class='goback' >
+    <cover-image class='fanhui'  src="{{base_url+'fanhui.png'}}" class='left'></cover-image>
     </cover-view>
     <cover-view>{{title}}</cover-view>
   </cover-view>

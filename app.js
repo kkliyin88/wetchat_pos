@@ -105,15 +105,15 @@ App({
     ],
     echartOption1: {
       title: {
-        text: '业务趋势-收入',
         left: 10,
-        textStyle: {
-          color: '#666',
-          fontSize: 15,
-		  fontWeight:'bold',
-          height: 30,
-          lineHeight: 30
-        }
+       textStyle: {
+         color: '#666',
+         fontSize: 16,
+       	 fontWeight:'bold',
+         height: 30,
+         lineHeight: 30
+        },
+		 text: '业务趋势-收入',
       },
      grid: {
        containLabel: false,
@@ -128,7 +128,7 @@ App({
         data: [],
         nameTextStyle: {
           color: 'green',
-          fontSize: 15,
+          fontSize: 16,
         },
 		axisLabel:{
 			show:true,
@@ -185,7 +185,7 @@ App({
        left: 10,
        textStyle: {
          color: '#666',
-         fontSize: 15,
+         fontSize: 16,
 		 fontWeight:'bold',
          height: 30,
          lineHeight: 30

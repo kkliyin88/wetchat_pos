@@ -33,7 +33,7 @@
 }
 .td0{
 	color:#666666;
-	fontWeight:'bold';
+	fontWeight:600;
 	background: #FFF;
 }
 .td1{
@@ -61,6 +61,7 @@
   justify-content: center;
   display: flex;
   height: 3rem;
+  font-weight: 600;
   align-items: center;
 }
 image{

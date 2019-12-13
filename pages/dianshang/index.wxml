@@ -1,6 +1,7 @@
 <!--pages/main/index.wxml-->
+<cover-view class='back' bindtap='goback' style="top:{{statusBarHeight+20+'rpx'}}"></cover-view>
 <cover-view class='head_wrap' style="height:{{statusBarHeight+340+30+'rpx'}}">
-  <top title="终端赢利监控" class='top_wrap' bind:goback='goback'></top>
+  <top title="终端赢利监控" class='top_wrap' ></top>
   <cover-view class='condition_box'>
     <cover-view class='condition condition1'>
       <cover-view bindtap="changeDateType" class="{{condition.dateType =='2'?'dotcircle':'emptycircle'}}"></cover-view>
@@ -23,7 +24,7 @@
   </cover-view>
 </cover-view>
 <view class='content_wrap'>
-  <content list='{{contentList}}' bind:changeIndex='changeIndex'></content>
+  <content list='{{contentList}}'  bind:changeIndex='changeIndex'></content>
 </view>
 <view class='middle' style="margin-top: 360rpx;margin-bottom: 120rpx;">
   <scroll-view scroll-y="true" class='scroll_box'>
@@ -44,6 +45,4 @@
   </scroll-view>
 </view>
 <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
-<!-- <view class='footer'>
-  <tabbar></tabbar>
-</view> -->
+

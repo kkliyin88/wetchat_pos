@@ -103,7 +103,6 @@ Page({
         height: height
       });
       chart.setOption(this.data.echartOption1);
-      this.chart = chart;
       return chart;
     });
   },
@@ -114,18 +113,18 @@ Page({
         height: height
       });
       chart.setOption(this.data.echartOption2);
-      this.chart = chart;
       return chart;
     });
   },
-  changeCondition(condition) { 
-    this.setData({
-      condition: condition.detail //子组件传回来的参数
-    })
-    this.getContent1Data(condition.detail);
-    this.getechart1Data(condition.detail);
-  },
-  changeIndex(){
+  
+  changeIndex(e){
+	
+	this.setData({
+	     activeIndex:e.detail,
+		'echartOption1.series[0].data':this.data.contentList[e.detail].threeyearValue,
+		'echartOption1.title.text':'业务趋势-' + this.data.contentList[e.detail].name
+	})
+	console.log('echartOption1',this.data.echartOption1)
     this.init_echartOne();
   },
   getContent1Data(condition) {
@@ -226,11 +225,13 @@ Page({
       }
       let list = res.data.data.list;
      //*******组装echart1的数据*******
-      let echartDataArr = [];
-      this.data.echartOption1.xAxis.data = [];
+      let echart1NameArr = [];
       list.map((item)=>{ //
-        this.data.echartOption1.xAxis.data.push(item.ryear)
+		echart1NameArr.push(item.ryear);
       })
+	  this.setData({
+		  'echartOption1.xAxis.data':echart1NameArr
+	  })
        contentList.map((item,index)=>{
          item.threeyearValue = [];
          list.map((item2,index2)=>{
@@ -240,8 +241,9 @@ Page({
            if (index == 3) item.threeyearValue.push(item2.zlr == 0 ? 0 :(item2.zlr / 10000).toFixed(2));
          })
        })
-    this.data.echartOption1.series[0].data = contentList[this.data.activeIndex].threeyearValue;
-    
+    this.setData({
+	  'echartOption1.series[0].data':contentList[this.data.activeIndex].threeyearValue
+    })
     //******组装echart1的数据结束******
     //******组装table 的数据开始******
       list.map((item, i) => {  //table头部colunms
@@ -311,7 +313,7 @@ Page({
 	 this.setData({
 		 columns:JSON.parse(JSON.stringify(app.globalData.columns)),
 		 contentList:JSON.parse(JSON.stringify(app.globalData.contentList)),
-		 echartOption1:app.globalData.echartOption1,
+		 echartOption1:JSON.parse(JSON.stringify(app.globalData.echartOption1)),
 		 echartOption2:app.globalData.echartOption2
 	 })
 	 this.setData({
