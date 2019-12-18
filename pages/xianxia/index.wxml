@@ -13,7 +13,15 @@
     </cover-view>
   </cover-view>
   <cover-view class='condition_box'>
-    <cover-view class='condition'  bindtap='openShopPop'>
+     <cover-view class='condition'  bindtap='openAreaPop'>
+      <cover-view wx:if='{{condition.orgCode}}' class='selectBox'>{{areaItem.text}} ▼ </cover-view>
+      <cover-view  wx:else class='selectBox'>选择区域 ▼ </cover-view>
+    </cover-view>
+	<cover-view wx:if='{{condition.orgCode}}' class='condition' style='margin-left: 50rpx;' bindtap='openSmallAreaPop'>
+	  <cover-view wx:if='{{condition.regionCode}}' class='selectBox'>{{smallAreaItem.text}} ▼  </cover-view>
+	  <cover-view  wx:else class='selectBox'> 选择分区 ▼ </cover-view>
+	</cover-view>
+    <cover-view class='condition' style='margin-left: 50rpx;' bindtap='openShopPop'>
       <cover-view wx:if='{{condition.werks}}' class='selectBox'>{{shopItem.text}} ▼  </cover-view>
       <cover-view  wx:else class='selectBox'> 选择店铺 ▼ </cover-view>
     </cover-view>
@@ -40,6 +48,4 @@
   </scroll-view>
 </view>
 <pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='openPop'> </pop>
-<!-- <view class='footer'>
-  <tabbar></tabbar>
-</view> -->
+

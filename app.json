@@ -40,7 +40,7 @@
       {
         "iconPath": "images/tabbar/top.png",
         "selectedIconPath": "images/tabbar/top1.png",
-        "pagePath": "pages/top/index",
+        "pagePath": "pages/topAnalyze/index",
         "text": "Top分析"
       }
     ]

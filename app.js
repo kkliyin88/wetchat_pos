@@ -88,18 +88,26 @@ App({
     ],
     contentList: [{
         name: '收入',
-        index: 0
+		value:0.00,
+        index: 0,
+		samePercentage:0
       },
       {
         name: '毛利',
+		value:0.00,
+		samePercentage:0,
         index: 1
       },
       {
         name: '费用',
+		value:0.00,
+		samePercentage:0,
         index: 2
       },
       {
         name: '利润',
+		value:0.00,
+		samePercentage:0,
         index: 3
       },
     ],

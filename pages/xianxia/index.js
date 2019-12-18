@@ -25,15 +25,21 @@ Page({
 	shopItem:{},
     condition: {
       dateType: '2',
+	  orgCode:'',
+	  regionCode:'',
       platform:'1',
 	  pttype:'',
 	  werks:''
     },
 	echartOption1:{},
+	areaItem:{},
+	smallAreaItem:{},
 	echartOption2:{},
     selectList:[], //弹窗数据
 	popTitle:'',
-    shopList:[], //店铺
+    shopList:[], //店铺,
+    areaList:[],
+	smallAreaList:[],
     activeIndex: 0,
     imgBaseUrl: 'https://resource.pureh2b.com/wechat-look-start-platform/image',
     contentList1: [],
@@ -48,8 +54,6 @@ Page({
     columns: [],
   },
   goback(){
-	  wx.showToast({  title: '返回首页11', 
-	  icon: 'none', duration: 3000});
 	 wx.redirectTo({
 	   url: '/pages/index/index'
 	 }) 
@@ -67,31 +71,35 @@ Page({
 	  this.getContent1Data();
 	  this.getechart1Data();
   },
-  selectPlatform(e){
-    this.setData({
-  	platformItem:e.detail,
-  	'condition.pttype':e.detail.value
-  });
-  this.getShopList(e.detail.value)
-  this.getContent1Data();
-  this.getechart1Data();
-  },
-  openPlatformPop(){
-    this.setData({
-      selectList: this.data.plafromList,
-    popTitle:'选择平台'
-    });
-    this.openPop();
+  openSmallAreaPop(){
+	 this.data.areaList.map((item)=>{
+		if(item.value == this.data.condition.orgCode){
+			this.setData({
+			  selectList: item.list,
+			  popTitle: '选择分区'
+			});
+		}
+	 })
+	 this.openPop();
   },
   sumitSelect(e){
 	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
 	  		 return false
 	  };
-	  if(e.detail.type=='pttype'){
-		  this.selectPlatform(e)
+	  if(e.detail.type=='org'){
+		  this.selectArea(e);
 	  }else if(e.detail.type=='werks'){
-		  this.selectShop(e)
+		  this.selectShop(e);
+	  }else if(e.detail.type=='smallOrg'){
+		  this.selectSmallArea(e);
 	  }
+  },
+  openAreaPop(){
+    this.setData({
+      selectList: this.data.areaList,
+      popTitle: '选择区域'
+    });
+    this.openPop(); 
   },
   openShopPop(){
 	 this.setData({
@@ -110,6 +118,36 @@ Page({
 	  });
 	  this.getContent1Data();
 	  this.getechart1Data();
+  },
+  selectSmallArea(e){
+	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+	  	 return false
+	   }
+	  this.setData({
+	  	smallAreaItem:e.detail,
+		shopItem:{},
+	  	'condition.regionCode':e.detail.value,
+		'condition.werks':'',
+	  });
+	  this.getShopList();
+	  this.getContent1Data();
+	  this.getechart1Data();
+  },
+  selectArea(e){
+  	  if(Object.keys(e.detail).length==0){ //判断是否为空对象
+  	  	 return false
+  	   }
+  	  this.setData({
+  	  	areaItem:e.detail,
+  	  	'condition.orgCode':e.detail.value,
+		'condition.regionCode':'',
+		smallAreaItem:{},
+		shopItem:{},
+		'condition.werks':''
+  	  });
+	  this.getShopList();
+  	  this.getContent1Data();
+  	  this.getechart1Data();
   },
   openPop() {
     this.setData({
@@ -152,11 +190,17 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
+	this.setData({
+	   contentList:JSON.parse(JSON.stringify(app.globalData.contentList))
+	})
     http(params).then((res) => {
       wx.hideLoading()
       if (res.data.code != 200) {
         return false ;
       }
+	  if(res.data.data==null){
+		  return 
+	  }
       let obj = res.data.data;
       let contentList = this.data.contentList;
       contentList.map((item, i) => {
@@ -299,15 +343,42 @@ Page({
       wx.hideLoading()
     })
   },
-  
- 
+  getAreaList(){
+    let params = {
+      url: '/behaviorapi/mini/sap/getRegionDictTree',
+    }
+    http(params).then((res) => {
+      if (res.data.code == 200) {
+        res.data.data.list.map((item) => {
+          item.text = item.name;
+          item.value = item.code;
+          item.type = 'org';
+		  delete item.name ;
+		  delete item.code ;
+		 
+		  item.list.map((item2)=>{
+			   item2.text = item2.name;
+			   item2.value = item2.code;
+			   item2.type = 'smallOrg';
+			   delete item2.name ;
+			   delete item2.code ;
+		  })
+		   item.list.unshift({ text:'全部分区', value:'', type:'smallOrg' })
+        });
+        res.data.data.list.unshift({ text: '全部区域', value: '', type: 'org' })
+        this.setData({
+          areaList: res.data.data.list
+        });
+      }
+    }).catch((err) => {
+      wx.hideLoading()
+    })
+  },
   getShopList(pttype) {
+	  
     let params = {
       url: 'behaviorapi/mini/sap/getZPTStoreList',
-      data: {
-        platform: this.data.condition.platform,
-        pttype: pttype||''
-      }
+      data: this.data.condition
     }
     http(params).then((res) => {
       if (res.data.code == 200) {
@@ -351,7 +422,8 @@ Page({
     });
     this.getContent1Data();
     this.getechart1Data();
-	this.getShopList();
+    this.getAreaList();
+	  this.getShopList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

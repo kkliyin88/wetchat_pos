@@ -1,9 +1,11 @@
 /* components/top/index.wxss */
 .container{
   width: 100%;
+  position: fixed;
+  top: 0;
 }
 .empty{
-  height: 55rpx;
+ /* height: 100rpx; */
   width: 100%;
 }
 .title {

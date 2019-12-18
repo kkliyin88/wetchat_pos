@@ -41,6 +41,6 @@ Component({
     },
   },
   attached() {
-    console.log('list',this.data.list)
+   
   }
 })

@@ -104,6 +104,7 @@
 .content1 .line1 {
   font-size: 30rpx;
   color: #666;
+  
 }
 
 .content1 .line1:nth-child(1) {

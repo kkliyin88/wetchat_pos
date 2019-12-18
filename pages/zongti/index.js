@@ -135,11 +135,17 @@ Page({
     wx.showLoading({
       title: '加载中'
     })
+	this.setData({
+	   contentList:JSON.parse(JSON.stringify(app.globalData.contentList))
+	})
     http(params).then((res) => {
       wx.hideLoading()
       if (res.data.code != 200) {
         return false ;
       }
+	  if(res.data.data==null){
+	  		  return 
+	  }
       let obj = res.data.data;
       let contentList = this.data.contentList;
       contentList.map((item, i) => {

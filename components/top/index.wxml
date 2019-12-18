@@ -1,6 +1,7 @@
 <!--components/top/index.wxml-->
+<cover-view class='empty' style='height:{{statusBarHeight+140+"rpx"}}'></cover-view>
 <cover-view class='container' >
-  <cover-view class='title'  style='padding-top:{{statusBarHeight+70+"rpx"}}'>
+  <cover-view class='title'  style='padding-top:{{statusBarHeight+45+"rpx"}}'>
     <cover-view wx:if='{{backflag}}' class='goback' >
     <cover-image class='fanhui'  src="{{base_url+'fanhui.png'}}" class='left'></cover-image>
     </cover-view>

@@ -7,8 +7,8 @@
           <cover-view style='font-weight: 800;font-size: 30rpx;'>{{item.name}}</cover-view>
         </cover-view>
         <cover-view class='cover-view_box'>
-          <cover-image wx:if='{{item.samePercentage}}' src="{{imgBaseUrl+'/up.png'}}"></cover-image>
-          <cover-view class='percent_cover-view'>{{item.samePercentage}}</cover-view>
+          <cover-view wx:if="{{item.samePercentage>0}}" class='percent_cover-view'>{{item.samePercentage}} </cover-view>
+		  <cover-view wx:if="{{item.samePercentage<0}}" class='percent_cover-view'>{{item.samePercentage}} </cover-view>
         </cover-view>
       </cover-view>
       <cover-view class='line line2'>

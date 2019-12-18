@@ -1,86 +1,49 @@
-<!--pages/main/index.wxml-->
-
+<cover-view class='back' bindtap='goback' style="top:{{statusBarHeight+20+'rpx'}}"></cover-view>
 <view class='wrap'>
-  <view class='title_box'>
-    <view class='title'>终端赢利监控</view>
-	
-    <view class='condition_box'>
-      <view class='condition'>
-        <text wx:if="{{condition.month}}" bindtap="changeCondition" data-type='monthFlag' class='emptycircle'></text>
-        <text wx:else bindtap="changeCondition" data-type='monthFlag' class='dotcircle'></text>
-        <text class='text'>本月</text>
-      </view>
-      <view class='condition condition_be' >
-        <text wx:if="{{condition.sumFlag}}" bindtap="changeCondition" data-type='sumFlag' class='emptycircle'></text>
-        <text wx:else bindtap="changeCondition" data-type='sumFlag' class='dotcircle'></text>
-        <text class='text'>累计</text>
-      </view>
-    </view >
-    <view class='condition_box condition_box_be'>
-      <view class='condition'>
-        <text wx:if="{{condition.sameCompareFlag}}" class='emptycircle'></text>
-        <text  wx:else class='dotcircle'></text>
-        <text class='text'>同比</text>
-      </view>
-      <view class='condition condition_be' >
-        <text wx:if="{{condition.budgetFlag}}" class='emptycircle'></text>
-        <text  wx:else class='dotcircle'></text>
-        <text class='text'>达成</text>
-      </view>
-    </view >
-		<cover-view> 12312121</cover-view>
-	<!-- <button  type="default" bindtap="popflag">点击弹窗</button> -->
-	<view class= 'conten_wrap'>
-		<view class='content conten1' style='background: linear-gradient(#8F81F7,#4E6EF5);'>
-			<view class='line line1' >
-				<view class='text_box white'><text>收入</text></view>
-				<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
-			</view>
-			<view class='line line2'>
-				<view class='text_box white'><text>988</text></view>
-				<view class='text_box white' ><text >万</text></view>
-			</view>
+	<view class='head_wrap' style="height:{{statusBarHeight+340+30+'rpx'}}">
+		<view>
+			<top title='TOP分析'></top>
 		</view>
-		<view class='content conten2'>
-			<view class='line line1' >
-				<view class='text_box color_six'><text>毛利</text></view>
-				<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view>
+	    <view class='condition_box'>
+	    	<view class='topic_box' bindtap="changeTopic"  >{{topThemeArr[condition.topTheme-1].name}} ▼</view>
+			<view class='month_type'>
+				<view bindtap="changeDateType" wx:if="{{condition.dateType==1}}">当月  ▼</view>
+				<view bindtap="changeDateType" wx:if="{{condition.dateType==2}}" >本年  ▼</view>
 			</view>
-			<view class='line line2'>
-				<view class='text_box'><text>988</text></view>
-				<view class='text_box' ><text >万</text></view>
+	    </view>
+	</view>
+	<view class='empty' style="height:{{statusBarHeight+200+'rpx'}}"></view>
+	<view class='table_box'>
+		<view class='title_box'>
+			<view class='th th0'>排名</view>
+			<view  class='th th1'>店铺名称</view>
+			<view  class='th th2'>收入</view>
+		</view>
+		<view class='table_content' >
+			<view class="tr {{item.index%2==0?'tr0':'tr1'}} {{item.index<=3?'topThree':''}}" wx:for='{{pageData}}' wx:key='item.index' wx:item='item'>
+				<view wx:if="{{item.index>3}}" class='td td0'>{{item.index}}</view>
+				<view  wx:else class='td td0' align="center">
+					<image src="{{item.pic}}" style='width: 50rpx;height: 50rpx;margin-top: 20rpx;' >{{item.index}}</image>
+				</view>
+				
+				<view class='td td1'>{{item.name1}}</view>	
+				<view class='td td2'>￥{{item.zsr}}</view>
 			</view>
 		</view>
 	</view>
-  </view>
-  <view class= 'conten_wrap' style='margin-top: 120rpx;'>
-  	<view class='content conten1'>
-  		<view class='line line1' >
-  			<view class='text_box '><text>费用</text></view>
-  			<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
-  		</view>
-  		<view class='line line2'>
-  			<view class='text_box '><text>988</text></view>
-  			<view class='text_box ' ><text >万</text></view>
-  		</view>
-  	</view>
-  	<view class='content conten2'>
-  		<view class='line line1' >
-  			<view class='text_box color_six'><text>利润</text></view>
-  			<view class='text_box' ><image src='../../images/public/up.png'></image><text class='percent_text'>23%</text></view> 
-  		</view>
-  		<view class='line line2'>
-  			<view class='text_box'><text>988</text></view>
-  			<view class='text_box' ><text >万</text></view>
-  		</view>
-  	</view>
-  </view>
-    <view class="container1">
-    <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-  </view>
-   
-	<view class='container3'>
-		<table listData='{{listData}}' title='财务数据(单位:万)' columns='{{columns}}'></table>
+ 
+</view>
+
+<view class='pop' wx:if='{{popFlag}}'>
+	<view class='pop_head'>
+		<view class='pop_title'>
+			请选择你需要查看的TOP主题
+		</view>
 	</view>
-	
+	<view class='pop_content'>
+		<view bindtap='selectTopic' data-set='{{item.value}}' wx:for='{{topThemeArr}}' wx:key="{{item.value}}" class="{{condition.topTheme==item.value?'pop_content_text pop_content_text_active':'pop_content_text'}}">{{item.name}}</view>
+	</view>
+	<view class='pop_sumit'>
+		<view class='pop_btn' bindtap='popSumit' >确定</view>
+	</view>
 </view>

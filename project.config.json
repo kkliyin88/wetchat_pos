@@ -112,9 +112,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/shopPerformance/index",
-					"pathName": "pages/shopPerformance/index",
+					"id": 8,
+					"name": "pages/topAnalyze/index",
+					"pathName": "pages/topAnalyze/index",
+					"query": "",
 					"scene": null
 				}
 			]
