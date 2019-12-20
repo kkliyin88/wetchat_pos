@@ -1,13 +1,18 @@
 <view class="table">
   <view class='title' wx:if='{{title}}'>{{title}}</view>
   <view class="tr header">
-    <view class="th" wx:for="{{columns}}" wx:key="{{key}}" style='{{item.style}};width:{{item.width}}'>{{item.title}}</view>
+    <view class="th {{'th'+item.index}}" wx:for="{{columns}}" wx:key="{{key}}" style='{{item.style}};width:{{item.width}}'>{{item.title}}</view>
   </view>
-  <block  wx:for="{{listData}}" wx:key="{{code}}"  wx:for-item="item">
+  <block  wx:for="{{listData}}" wx:key="{{code}}"  wx:for-item="item"  wx:for-index="trIndex">
     <view class="tr">
-      <view wx:for="{{columns}}" wx:for-item="colunmItem" wx:key='colunmItem.key' class="td" >
+      <view wx:for="{{columns}}" wx:for-item="colunmItem"  wx:key='colunmItem.key' class="td td{{colunmItem.index}}" >
+		 <view wx:if="{{colunmItem.index==0&&trIndex<2}}">
+			  <image src='{{item.pic}}' ></image>
+		 </view>
+		<view wx:else>
         <image src='{{item[colunmItem.key]}}' wx:if='{{colunmItem.key=="picUrl"}}'></image>
-        <view wx:else  > {{item[colunmItem.key]}}</view>
+        <view wx:else   > {{item[colunmItem.key]}}</view>
+		</view>
       </view>
     </view>
   </block>

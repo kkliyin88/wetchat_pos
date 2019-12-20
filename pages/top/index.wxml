@@ -1,13 +1,50 @@
+<cover-view class='back' bindtap='goback' style="top:{{statusBarHeight+20+'rpx'}}"></cover-view>
 <view class='wrap'>
-  <top title='畅销商品排行' bind:goback='goback'></top>
-</view>
+	<view class='top'>
+		 <top title='畅销商品排行' bind:goback='goback'></top>
+	</view>
+<view class='empty'></view>
 <view class='condition_wrap'>
   <view class='condition'>
-    <select prop-array='{{saleTypeArray}}' value='{{query.statisticalMode}}' bind:change-select='change' key='statisticalMode' class='select_box' placeholder='销售类型'></select>
-    <select prop-array='{{areaList}}' value='{{query.regionCode}}' bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
-     <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
+	 <view class='condition_item'>
+	 	<view wx:if='{{query.memberBrandId}}' bindtap='clickMenberBrand'>{{menberBrandItem.text}} | ▼</view>
+	 	<view wx:else bindtap='clickMenberBrand'>会员品牌 | ▼ </view>
+	 </view>
+	<view class='condition_item'>
+		<view wx:if='{{query.statisticalMode}}' bindtap='clickSaleType'>{{saleTypeItem.text}} | ▼</view>
+		<view wx:else bindtap='clickSaleType'>统计类型 | ▼ </view>
+	</view>
+	<view class='condition_item'>
+		<view wx:if='{{query.regionCode}}' bindtap='clickArea'>{{areaItem.text}} | ▼ </view>
+		<view wx:else bindtap='clickArea'>选择区域 | ▼ </view>
+	</view>
+	<view class='condition_item'>
+		<view wx:if='{{query.dateType}}' bindtap='clickDateType'>{{dateTypeItem.text}} | ▼ </view>
+		<view wx:else bindtap='clickDateType'>时间维度 | ▼ </view>
+	</view>
   </view>
 </view>
 <view class='table_box'>
-  <table columns='{{columns}}' listData="{{pageData}}"></table>
+	<view class='th'>
+		<view wx:for='{{columns}}' class='th{{thIndex}}' wx:key="{{key}}" wx:for-index="thIndex"  wx:for-item="columnsItem">
+			{{columnsItem.title}}
+		</view>
+	</view>
+	<view  style='height: 55rpx;'></view>
+	<view class='table_content'>
+		<view wx:for='{{pageData}}'  class='tr tr{{tdIndex}} {{tdIndex==pageData.length-1?"trEnd":""}}' wx:key="{{index}}" wx:for-index="tdIndex"  wx:for-item="item">
+			<view class='td td0'>
+				<image wx:if='{{item.index<=3}}' src='{{item.pic}}' style='height: 50rpx;width: 60rpx;'></image>
+				<view wx:else>{{item.index}}</view>
+			</view>
+			<view class='td td1' style='margin-top: 40rpx;'>
+				 <image src='{{item.picUrl}}' style='height: 100rpx;width: 100rpx;'></image>
+			</view>
+			<view class='td td2'> {{item.goodsName}}</view>
+			<view class='td td3'> {{item.netSalesCnt}}</view>
+			<view class='td td4'> {{item.netSalesAmt}}</view>
+		</view>
+	</view>
 </view>
+</view>
+<pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='showPop'> </pop>

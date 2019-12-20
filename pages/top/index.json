@@ -1,8 +1,7 @@
 {
   "usingComponents": {
     "top": "/components/top/index",
-    "select": "/components/select/index",
-	 "table": "/components/table/index"
+	 "pop": "/components/pop/index"
   },
   "enablePullDownRefresh": true
 }

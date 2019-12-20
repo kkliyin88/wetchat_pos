@@ -1,9 +1,8 @@
 {
   "usingComponents": 
   {
-   
+     "pop": "/components/pop/index",
 	 "title": "/components/title/index",
-    "select": "/components/select/index",
     "progress": "/components/progress/index"
   },
   "enablePullDownRefresh": true

@@ -49,7 +49,6 @@ Page({
 	  })
   },
   selectTopic(e){
-	  console.log(e)
 	  this.setData({'condition.topTheme':e.target.dataset.set})
   },
   changeDateType(){
@@ -57,6 +56,20 @@ Page({
 		 'condition.dateType':this.data.condition.dateType==1?2:1
 	 });
 	 this.getPageData();
+  },
+  formatData(value1){
+	let value  = value1.toFixed(2).toString();
+	let strArr  = value.split('.');
+	let num = strArr[0];
+	let str = ''
+	for(var i=num.length- 1,j=1;i>=0;i--,j++){  
+		if(j%3==0 && i!=0){//每隔三位加逗号，过滤正好在第一个数字的情况  
+			str+=num[i]+",";//加千分位逗号  
+			continue;  
+		}  
+		str+=num[i];//倒着累加数字
+	}
+	return  str.split('').reverse().join("") +'.'+ strArr[1]
   },
   getPageData() {
     let params = {
@@ -71,7 +84,12 @@ Page({
       if (res.data.code == 200) {
         res.data.data.list.map((item, index) => {
           item.index = index + 1;
+		  item.value = this.formatData((item.zsr || item.zlr))
+		  item.test = (item.zsr || item.zlr).toString().split('.')
+		  
+		  console.log( 'item.test',item.test)
         });
+		
 		res.data.data.list.map((item,i)=>{
 			if(i<3){
 				item.pic = base_url + (i+1) +'.png'
@@ -80,7 +98,6 @@ Page({
         this.setData({
           pageData: res.data.data.list
         })
-		console.log('pageData',this.data.pageData)
       }
     }).catch((err) => {
       wx.hideLoading()

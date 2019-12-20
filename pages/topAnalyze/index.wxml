@@ -27,7 +27,7 @@
 				</view>
 				
 				<view class='td td1'>{{item.name1}}</view>	
-				<view class='td td2'>￥{{item.zsr}}</view>
+				<view class='td td2'>￥{{item.value}}</view>
 			</view>
 		</view>
 	</view>

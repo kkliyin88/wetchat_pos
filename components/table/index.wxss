@@ -11,7 +11,7 @@
 .tr {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   height: 3rem;
   align-items: center;
   border-top: 0.5rpx solid #f4f6ff;
@@ -19,9 +19,9 @@
   color: #000537;
   font-size:24rpx;
 }
-
+/* .td */
 .td {
-  width: 40%;
+ /* width: 40%; */
   justify-content: center;
   text-align: center;
   overflow: hidden;
@@ -29,15 +29,40 @@
   white-space: nowrap;
   color: #000537;
   font-size:24rpx;
+ 
 }
-
+.td1,.th1{
+	width: 100rpx;
+	
+}
+.td2,.th2{
+	width: 65rpx;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.td3,.th3{
+	width: 65rpx;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	flex: 1;
+}
+.td4,.th4{
+	width: 150rpx;
+	
+}
+.td5,.th5{
+	width: 150rpx;
+	
+}
 .header {
   color: #666;
   font-size: 30rpx;
   border-top: none;
 }
 .th {
-  width: 40%;
+/*  width: 40%; */
   justify-content: center;
   display: flex;
   height: 3rem;

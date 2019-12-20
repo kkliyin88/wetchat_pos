@@ -126,6 +126,14 @@ Page({
     }
   },
   gotoProfit() {
+	  if(app.globalData.roleLevel>2){
+		  wx.showToast({
+		    title: '您没有权限进入该页面,如需要请联系管理人员!',
+		    icon: 'none',
+		    duration:2000
+		  })
+		  return 
+	  }
 	  wx.switchTab({url:'/pages/zongti/index'})
   },
   getAreaList() {

@@ -26,11 +26,14 @@ Component({
    */
   methods: {
 	  select(e){
+		  
 		  this.setData({
 			  selectItem:e.currentTarget.dataset.item
 		  })
+		  console.log('selectItem',this.data.selectItem)
 	  },
 	  sumit(e){
+		 console.log('selectItem111',this.data.selectItem)
 		  if(Object.keys(this.data.selectItem).length>0){ //判断是否为空对象
 			  this.triggerEvent('sumitSelect',this.data.selectItem); 
 		  }

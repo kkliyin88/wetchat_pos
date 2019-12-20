@@ -99,7 +99,7 @@ page{
 	text-align: center;
 }
 .th2,.td2{
-	width: 200rpx;
+	width: 220rpx;
 	text-align: center;
 }
 

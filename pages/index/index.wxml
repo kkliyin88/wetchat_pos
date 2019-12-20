@@ -7,37 +7,38 @@
     <view class='text chang_acount' bindtap="logout">切换账号</view>
   </view>
   <view class="swiper_box">
-      <swiper  bindchange='changeswiper' current="{{swiperParams.current}}" indicator-color='{{swiperParams.indicatorcolor}}' indicator-active-color='{{swiperParams.indicatoractivecolor}}' indicator-dots="{{swiperParams.indicatorDots}}" autoplay="{{swiperParams.autoplay}}" interval="{{swiperParams.interval}}" duration="{{swiperParams.duration}}" >
-        <swiper-item wx:for="{{menberBrandList}}" wx:key='{{item.id}}'>
-          <view class='title2' >{{item.desc}}</view>
-          <view class='container_content' bindtap="changePage_perform">
-            <view class='actual_data'>
-               <view  class='text_block' wx:for='{{listAll}}'  wx:for-item="initListArr"  wx:key='{{item.index}}' > 
-                  <block wx:if='{{initListArr.length>0}}'> 
-                    <view class='roll roll_{{initListArr.length-1}}' >
-                    <view wx:for='{{initListArr}}' wx:for-item="number" wx:key='{{item.index}}'>{{number}}</view>             
-                    </view>
-                  </block>
-                  <view wx:else >
-                    <view class='roll'>
-                    <view>.</view>
-                    </view>
-                  </view>
-               </view>
+    <swiper bindchange='changeswiper' current="{{swiperParams.current}}" indicator-color='{{swiperParams.indicatorcolor}}' indicator-active-color='{{swiperParams.indicatoractivecolor}}' indicator-dots="{{swiperParams.indicatorDots}}" autoplay="{{swiperParams.autoplay}}"
+      interval="{{swiperParams.interval}}" duration="{{swiperParams.duration}}">
+      <swiper-item wx:for="{{menberBrandList}}" wx:key='{{item.id}}'>
+        <view class='title2'>{{item.desc}}</view>
+        <view class='container_content' bindtap="changePage_perform">
+          <view class='actual_data'>
+            <view class='text_block' wx:for='{{listAll}}' wx:for-item="initListArr" wx:key='{{item.index}}'>
+              <block wx:if='{{initListArr.length>0}}'>
+                <view class='roll roll_{{initListArr.length-1}}'>
+                  <view wx:for='{{initListArr}}' wx:for-item="number" wx:key='{{item.index}}'>{{number}}</view>
+                </view>
+              </block>
+              <view wx:else>
+                <view class='roll'>
+                  <view>.</view>
+                </view>
+              </view>
             </view>
           </view>
-          <view class='content_box'>
-            <view class='content'>
-              <view class='text'>今日指标</view>
-              <view class='text'>--</view>
-            </view>
-            <view class='content'>
-              <view class='text'>完成率</view>
-              <view class='text'>--</view>
-            </view>
+        </view>
+        <view class='content_box'>
+          <view class='content'>
+            <view class='text'>今日指标</view>
+            <view class='text'>--</view>
           </view>
-        </swiper-item>
-      </swiper>
+          <view class='content'>
+            <view class='text'>完成率</view>
+            <view class='text'>--</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 </view>
 <view class='flex_box' style="margin-top: -20rpx;">

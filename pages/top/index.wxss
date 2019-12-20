@@ -1,23 +1,48 @@
+.back{
+	height: 100rpx;
+	width: 100rpx;
+	position: fixed;
+	top: 60rpx;
+	z-index: 9999;
+}
 .wrap{
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 page{
    background:linear-gradient(181deg,rgba(145,158,247,1) 0%,rgba(93,105,231,1) 100%);
 }
+.empty{
+	position: relative;
+	height: 100rpx;
+}
 .condition_wrap{
+  top:150rpx;
+  position: fixed;
   height: 110rpx;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  z-index: 999;
 }
 .condition{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   text-align: center;
+  color: #FFF;
+  margin-right: 25rpx;
+}
+.condition_item{
+	margin-left: 15rpx;
+	background:rgba(153,165,243,1);
+	font-size: 24rpx;
+	border-radius:6rpx;
+	padding: 10rpx;
 }
 .select_box{
   margin: 0 10rpx;
@@ -27,5 +52,81 @@ page{
 .table_box{
   margin: 0 20rpx;
   border-radius: 15rpx;
-  overflow: hidden;
+  margin-bottom: 30rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
+.trEnd{
+	border-radius: 0 0 30rpx 30rpx;
+}
+.table_content{
+	flex: 1;
+	overflow-y: scroll;
+	border-radius: 0 0 30rpx 30rpx;
+}
+.th {
+  position: absolute;
+  top: 0;
+  justify-content: space-between;
+  display: flex;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-weight:400;
+  width: 100%;
+  color: #FFF;
+  font-size: 30rpx;
+ background:#7886F2 ; 
+ text-align: center;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 110rpx;
+  line-height: 110rpx;
+  align-items: center;
+  border-top: 1rpx solid #F0F1FF;
+  background: #FFF;
+  color: #000537;
+  font-size:24rpx;
+}
+/* .td */
+.td {
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000537;
+  font-size:24rpx;
+}
+.td0,.th0{
+	width: 100rpx;
+	text-align: center;
+}
+.td1,.th1{
+	width: 100rpx;
+	text-align: center;
+	vertical-align: center;
+}
+
+.td2,.th2{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	flex: 1;
+}
+.td3,.th3{
+   width: 100rpx;
+   text-align: center;
+
+}
+.td4,.th4{
+	width: 150rpx;
+	text-align: center;
+}
+
+
+

@@ -53,7 +53,6 @@ App({
     }], //会员品牌列表
     currentMenberBrandIndex: 0,
     tabActiveIndex:0,
-    // tableData: [],
     columns: [{
       title: '',
       key: 'code',
@@ -71,19 +70,33 @@ App({
       style: 'textalign:center;color:#666;fontsize:30rpx;background:#FAFBFF'
     }
     ],
+	saleTypeList: [{
+	  id: "1",
+	  text: '销售额',
+	  value: "1",
+	  type:'saleType'
+	}, {
+	  id: "2",
+	  value: "2",
+	  text: '销售量',
+	   type:'saleType'
+	}],
     dateTypeList: [{
-        "id": "1",
-        "text": '当天',
-        "value": "1",
+        id: "1",
+        text: '当天',
+        value: "1",
+		type:'dateType'
       }, {
-        "id": "2",
-        "value": "2",
-        "text": '本周'
+        id: "2",
+        value: "2",
+        text: '本周',
+		type:'dateType',
       },
       {
-        "id": "3",
-        "value": "3",
-        "text": '本月'
+        id: "3",
+        value: "3",
+        text: '本月',
+		type:'dateType'
       }
     ],
     contentList: [{
