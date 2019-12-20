@@ -13,7 +13,6 @@ Page({
 	areaItem:{},
 	popTitle:'',
     dateTypeList: [],
-	dateTypeItem:{},
     windowHeight: '',
 	popFlag:false,
 	dateTypeItem:{
@@ -95,11 +94,6 @@ Page({
     }).catch((err) => {
       console.log('err'.err)
     })
-  },
-  change(targer) {
-    let temp = 'query.' + targer.detail.key
-    this.setData({ [temp]: targer.detail.value });
-    this.getPageData();
   },
   goback() {
     wx.redirectTo({

@@ -15,11 +15,15 @@ Page({
     sumData: {},
     shopRegionCode:'',
     personData: [],
-    areaList: [],
+	areaList:[],
+	selectList:[],
+	areaItem:{},
+	popTitle:'',
+	dateTypeList: [],
+	popFlag:false,
     ec: {
       lazyLoad: true // 延迟加载
     },
-    dateTypeList: [],
     query: {
       regionCode: '',
       dateType: '1',
@@ -31,30 +35,70 @@ Page({
       url: app.globalData.roleLevel == 3 ? '/pages/shopPerformance/index?dateType=' + this.data.query.dateType + '&regionCode='+this.data.shopRegionCode:'/pages/index/index'
     })
   },
-  change(targer) {
-    let temp = 'query.' + targer.detail.key
-    this.setData({
-      [temp]: targer.detail.value
-    });
-    if (targer.detail.key == 'regionCode' && targer.detail.value !=""){
-      this.setData({ 
-        storeName: '' ,
-        'query.storeCode':'',
-        })
-    }
-    this.getPageData();
-    this.getPerformTrend();
+  
+  sumitSelect(e){
+  	  if(e.detail.type=='area'){
+  		this.setData({
+  			  areaItem: e.detail,
+  			  'query.regionCode':e.detail.value,
+  		})
+  	  }else if(e.detail.type=='dateType'){
+  		  this.setData({
+  			 dateTypeItem: e.detail,
+  			 'query.dateType':e.detail.value
+  		  }) 
+  	  }
+  	  this.getPageData();
+  	  this.getPerformTrend();
   },
+   clickArea(){
+   	  this.setData({
+   	  	 selectList:this.data.areaList,
+   		  popTitle:'选择区域'
+   	  }) 
+   	   this.showPop(); 
+   },
+   clickDateType(){
+   	  this.setData({
+   	  	 selectList:app.globalData.dateTypeList,
+   	  		  popTitle:'选择时间维度'
+   	  }) 
+   	  this.showPop(); 
+   },
   getAreaList() {
-    let that = this
-    wx.getStorage({
-      key: 'areaList',
-      success(res) {
-        that.setData({
-          areaList: res.data
+    let params = {
+      url: 'behaviorapi/mini/fegin/listRegionAndCity',
+    }
+    http(params).then((res) => {
+  	  console.log('res',res)
+      if (res.data.code == 200) {
+         res.data.data.map((item) => {
+          item.text = item.regionName;
+          item.value = item.regionCode;
+  		   delete item.regionCode;
+  		  item.type = 'area';
         })
+  		let temparr = res.data.data
+        temparr.unshift({
+          text: '全国',
+          value: '',
+  		   id:'',
+  		   type:'area',
+          regionName: '全国'
+        })
+        this.setData({
+          areaList: temparr
+        })
+        return
       }
+    }).catch((err) => {
+      console.log('err'.err)
     })
+  },
+  showPop(){
+  	 this.setData({
+  		 popFlag:!this.data.popFlag
+  	 }) 
   },
   getPageData() {
     let params = {

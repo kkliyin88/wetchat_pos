@@ -44,3 +44,4 @@
   <view class='circle'></view>
   <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
 </view>
+<pop title='{{popTitle}}' bind:sumitSelect='sumitSelect' wx:if='{{popFlag}}' list='{{selectList}}' bind:close='showPop'> </pop>
