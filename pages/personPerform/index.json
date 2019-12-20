@@ -2,7 +2,7 @@
   "usingComponents": 
   {
     "title": "/components/title/index",
-    "select": "/components/select/index",
+     "pop": "/components/pop/index",
 	  "ec-canvas": "/common/ec-canvas/ec-canvas",
     "progress": "/components/progress/index"
   },

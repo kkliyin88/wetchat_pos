@@ -3,8 +3,14 @@
   <view class='condition_wrap'>
     <view class='condition'>
       <view class='perform_title'>{{storeName}}</view>
-      <select prop-array='{{areaList}}' bind:change-select='change' key='regionCode' nowText='{{query.regionCode}}' class='select_box' placeholder='区域'></select>
-      <select prop-array='{{dateTypeList}}' value='{{query.dateType}}' bind:change-select='change' key='dateType' nowText='{{query.dateType}}' class='select_box' placeholder='日期类型'></select>
+	  <view class='condition_item'>
+	  	<view wx:if='{{query.regionCode}}' bindtap='clickArea'>{{areaItem.text}} | ▼ </view>
+	  	<view wx:else bindtap='clickArea'>选择区域 | ▼ </view>
+	  </view>
+	  <view class='condition_item'>
+	  	<view wx:if='{{query.dateType}}' bindtap='clickDateType'>{{dateTypeItem.text}} | ▼ </view>
+	  	<view wx:else bindtap='clickDateType'>时间维度 | ▼ </view>
+	  </view>
     </view>
   </view>
   <view class='content_box'>
